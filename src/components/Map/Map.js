@@ -231,8 +231,8 @@ YMIN
 					"paint": {
 						"circle-color": this.generateThematicByAreaStyle(),
 						"circle-opacity": 0.8,
-						"circle-stroke-color": "#9E3333",
-						"circle-stroke-width":3,
+						"circle-stroke-color": "#b30000",
+						"circle-stroke-width":1.5,
 						"circle-stroke-opacity": 0.5,
 						"circle-radius": this.generateThematicByRadius()
 
