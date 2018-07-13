@@ -11,7 +11,8 @@ import { STYLE_URL,
 	ARRAY_AREA,
 	ARRAY_RADIS,
 	FILTER_FIELD,
-	ARRAY_COLORS
+	ARRAY_COLORS,
+	ANY_COMPARADOR
 } from "../../constants";
 import PropTypes from "prop-types";
 import MapboxMap from "../../common/mapboxMap";
@@ -231,7 +232,7 @@ YMIN
 						"circle-color": this.generateThematicByAreaStyle(),
 						"circle-opacity": 0.8,
 						"circle-stroke-color": "#9E3333",
-						"circle-stroke-width":2,
+						"circle-stroke-width":3,
 						"circle-stroke-opacity": 0.5,
 						"circle-radius": this.generateThematicByRadius()
 
@@ -357,10 +358,10 @@ YMIN
 
 		this.map.fitBounds(bbox);
 
-		const AREAKM = (parseFloat(feature.properties.AREA) / 10000);
+		const AREAKM = (parseFloat(feature.properties.AREA) / 1000000);
 		let showLinkYear = false;
 
-		if (parseInt(feature.properties.ANY) > 2003) {
+		if (parseInt(feature.properties.ANY) >= ANY_COMPARADOR) {
 			showLinkYear = true;
 
 		}
