@@ -2,12 +2,21 @@
 
 import React, { Component } from "react";
 import { MAPBOX_ACCESS_TOKEN } from "../../constants";
-import { STYLE_URL, PBF_INCENDIS, VECTOR_LAYER_POL, VECTOR_LAYER_POINT, URL_COMPARADOR, TEMATIC_FIELD} from "../../constants";
+import { STYLE_URL,
+	PBF_INCENDIS,
+	VECTOR_LAYER_POL,
+	VECTOR_LAYER_POINT,
+	URL_COMPARADOR,
+	TEMATIC_FIELD,
+	ARRAY_AREA,
+	ARRAY_RADIS,
+	FILTER_FIELD,
+	ARRAY_COLORS
+} from "../../constants";
 import PropTypes from "prop-types";
 import MapboxMap from "../../common/mapboxMap";
 import styles from "./Map.css";
 import { Icon } from "semantic-ui-react";
-
 
 
 const sourceMain = "incendis-cat";
@@ -21,13 +30,6 @@ export default class Map extends Component {
 
 	state = {
 
-		styleUrl:STYLE_URL,
-		pbfIncendis:PBF_INCENDIS,
-		lng:2.949501,
-		lat:42.023761,
-		zoom:15.85,
-		index: null,
-		mainColor: this.props.mainColor,
 		showPanel: false,
 		showPanelPopup: false,
 		showLinkYear:false,
@@ -97,9 +99,7 @@ YMIN
 
 
 	componentDidUpdate() {
-	this.addFilterByYear();
-	
-	
+		this.addFilterByYear();
 
 	}
 
@@ -112,7 +112,7 @@ YMIN
 		const { MUNICIPI, DATAINCENT, MUNICIPI_MOV, DATAINCENT_MOV, ANY, AREA, AREAKM, CODIFINAL, XMAX, XMIN, YMAX, YMIN} = this.state;
 
 		return (
-			<div style={{color: this.props.mainColor }}>
+			<div >
 				<div style={{display: this.state.showPanelPopup ? "block" : "none" }} className={styles.panelinfoPopup}>
 					<div><h4>{MUNICIPI_MOV}</h4></div>
 					<div>{DATAINCENT_MOV}</div>
@@ -126,7 +126,7 @@ YMIN
 							</div>
 						</div>
 					</div>
-					<div style={{color: this.props.mainColor }} className={styles.panelinfobody}>
+					<div  className={styles.panelinfobody}>
 						<div className={styles.panelinfobody}>{`Any: ${ANY}`}</div>
 						<div className={styles.panelinfobody}>{`Data: ${DATAINCENT}`}</div>
 						<div className={styles.panelinfobody}>{`Àrea: ${AREAKM} km2`}</div>
@@ -145,17 +145,16 @@ YMIN
 
 
 
-	generateThematicStyle() {
+	generateThematicByAreaStyle() {
 
-		const paintStyle = ["match", ["get", TEMATIC_FIELD]];
+		
+		const paintStyle = ["step", ["get", TEMATIC_FIELD]];
 
-
-		this.props.arrayAnys.forEach((_break, i) => {
-
-			paintStyle.push(_break, this.props.arrayColors[i]);
-
+		ARRAY_AREA.forEach((_break, i) => {
+			paintStyle.push(ARRAY_COLORS[i], parseInt(_break));
 		});
 		paintStyle.push("rgba(0,0,0,0)");
+
 
 		return paintStyle;
 
@@ -163,9 +162,24 @@ YMIN
 	}
 
 
+	generateThematicByRadius() {
+
+		const paintStyle = ["interpolate", ["exponential", 1], ["number", ["get", TEMATIC_FIELD]]];
+
+		ARRAY_AREA.forEach((_break, i) => {
+
+			paintStyle.push(_break, ARRAY_RADIS[i]);
+
+		});
+		
+
+		return paintStyle;
+
+
+	}
+
 
 	setData(data) {
-
 
 		if (this.map.isLoaded) {
 
@@ -183,7 +197,7 @@ YMIN
 					},
 					"paint": {
 						"fill-opacity": .5,
-						"fill-color": this.generateThematicStyle(),
+						"fill-color": this.generateThematicByAreaStyle(),
 					}
 				},
 				{
@@ -199,7 +213,7 @@ YMIN
 					},
 					"paint": {
 						"line-opacity": .8,
-						"line-color": this.generateThematicStyle(),
+						"line-color": this.generateThematicByAreaStyle(),
 					}
 				},
 				{
@@ -214,22 +228,12 @@ YMIN
 						"visibility": "visible"
 					},
 					"paint": {
-						"circle-color": this.generateThematicStyle(),
+						"circle-color": this.generateThematicByAreaStyle(),
 						"circle-opacity": 0.8,
 						"circle-stroke-color": "#9E3333",
 						"circle-stroke-width":2,
 						"circle-stroke-opacity": 0.5,
-						"circle-radius": ["interpolate", ["exponential", 1],
-							["number", ["get", "AREA"]],
-							100, 3,
-							20000, 4,
-							4150588.97, 9,
-							32525993.45, 15,
-							65174371.37, 20,
-							104980900.53, 28,
-							163017313.02, 35
-
-						]
+						"circle-radius": this.generateThematicByRadius()
 
 					}
 				}
@@ -261,14 +265,12 @@ YMIN
 			this.addFilterByYear();
 
 			this.map.subscribe("click", layerCircle, (e) => {
-
 				const feature = e.features[0];
 				this.setActionOnClick(feature);
 
 			});
 
 			this.map.subscribe("click", layerPol, (e) => {
-
 				const feature = e.features[0];
 				this.setActionOnClick(feature);
 
@@ -277,7 +279,7 @@ YMIN
 			this.map.subscribe("mousemove", layerPol, (e) => {
 				this.map.setCursorPointer("pointer");
 				const feature = e.features[0];
-
+				
 				this.setState({
 					MUNICIPI_MOV: feature.properties.MUNICIPI,
 					DATAINCENT_MOV: feature.properties.DATA_INCEN,
@@ -383,21 +385,21 @@ YMIN
 
 	addFilterByYear() {
 
-		
+
 		if (this.map.isLoaded) {
 
 
-		if (parseInt(this.props.anyIncendi) === 2018) {
-			this.map.setFilter(layerPol, ["any", ["!=", TEMATIC_FIELD, parseInt(this.props.anyIncendi)]]);
-			this.map.setFilter(layerLin, ["any", ["!=", TEMATIC_FIELD, parseInt(this.props.anyIncendi)]]);
-			this.map.setFilter(layerCircle, ["any", ["!=", TEMATIC_FIELD, parseInt(this.props.anyIncendi)]]);
-		} else {
+			if (parseInt(this.props.anyIncendi) === 2018) {
+				this.map.setFilter(layerPol, ["any", ["!=", FILTER_FIELD, parseInt(this.props.anyIncendi)]]);
+				this.map.setFilter(layerLin, ["any", ["!=", FILTER_FIELD, parseInt(this.props.anyIncendi)]]);
+				this.map.setFilter(layerCircle, ["any", ["!=", FILTER_FIELD, parseInt(this.props.anyIncendi)]]);
+			} else {
 
-			this.map.setFilter(layerPol, ["any", ["==", TEMATIC_FIELD, parseInt(this.props.anyIncendi)]]);
-			this.map.setFilter(layerLin, ["any", ["==", TEMATIC_FIELD, parseInt(this.props.anyIncendi)]]);
-			this.map.setFilter(layerCircle, ["any", ["==", TEMATIC_FIELD, parseInt(this.props.anyIncendi)]]);
+				this.map.setFilter(layerPol, ["any", ["==", FILTER_FIELD, parseInt(this.props.anyIncendi)]]);
+				this.map.setFilter(layerLin, ["any", ["==", FILTER_FIELD, parseInt(this.props.anyIncendi)]]);
+				this.map.setFilter(layerCircle, ["any", ["==", FILTER_FIELD, parseInt(this.props.anyIncendi)]]);
+			}
 		}
-	}
 	}
 
 
@@ -408,10 +410,5 @@ YMIN
 
 
 Map.propTypes = {
-	anyIncendi: PropTypes.number,
-	mainColor: PropTypes.string,
-	currentColor: PropTypes.string,
-	arrayColors: PropTypes.array,
-	arrayAnys: PropTypes.array
-
+	anyIncendi: PropTypes.number
 };
