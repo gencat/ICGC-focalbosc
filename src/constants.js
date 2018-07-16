@@ -9,17 +9,19 @@ export const ANY_INIT = 1986;
 export const ANY_FINAL = 2017;
 export const MAX_YEAR = ANY_FINAL + 1;
 export const ANY_COMPARADOR = 2004;
+export const ANY_COMPARADOR_MAX = 2016;
 
 export const COLOR_INIT = "#ffbd00";
 export const COLOR_FINAL = "#c21125";
 export const TEMATIC_FIELD = "AREA";
 export const FILTER_FIELD = "ANY";
 
-export const MAX_INIT_ZOOM = 16;
+export const INIT_APP_ZOOM = 7.85;
+export const LIMIT_ZOOM = 11;
 
 
 /* THEMATICS */
-export const ARRAY_AREA = [2, 1000000 , 31000000, 66000000, 112000000,182000000, 415000000 ];
+export const ARRAY_AREA = [2, 1000000 , 31000000, 66000000, 112000000,182000000, 416000000 ];
 //export const ARRAY_AREA = [70, 770833, 69343652, 207889290, 277162109, 346434928, 415707747];
 export const ARRAY_RADIS = [2, 6, 12, 20, 25, 35, 48];
 //export const ARRAY_COLORS = ["#ffe657", "#ffbd00", "#feb24c", "#fd8d3c", "#fc4e2a", "#e31a1c", "#b10026"];
@@ -125,6 +127,45 @@ export const INCENDISCAT_POL_LAYER = {
 	}
 };
 
+
+/* DATA */
+export const mappingAnyLayer = {
+	2000: 0,
+	2001: 0,
+	2002: 0,
+	2003: 0,
+	2004: 1,
+	2005: 1,
+	2006: 2,
+	2007: 2,
+	2008: 3,
+	2009: 4,
+	2010: 5,
+	2011: 6,
+	2012: 7,
+	2013: 8,
+	2014: 9,
+	2015: 10,
+	2016: 11,
+	2017: 12
+};
+
+export const ortoLayersOptions = [
+	{key: "ortoICGC2003", text: "2000-2003", value: 0},
+	{key: "ortoICGC2005", text: "2004-2005", value: 1},
+	{key: "ortoICGC2007", text: "2006-2007", value: 2},
+	{key: "ortoICGC2008", text: "2008", value: 3},
+	{key: "ortoICGC2009", text: "2009", value: 4},
+	{key: "ortoICGC2010", text: "2010", value: 5},
+	{key: "ortoICGC2011", text: "2011", value: 6},
+	{key: "ortoICGC2012", text: "2012", value: 7},
+	{key: "ortoICGC2013", text: "2013", value: 8},
+	{key: "ortoICGC2014", text: "2014", value: 9},
+	{key: "ortoICGC2015", text: "2015", value: 10},
+	{key: "ortoICGC2016", text: "2016", value: 11},
+	{key: "ortoICGCActual", text: "Actual", value: 12}
+
+];
 
 
 

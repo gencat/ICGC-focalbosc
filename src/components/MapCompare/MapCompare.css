@@ -1,0 +1,14 @@
+.containerMap{
+	height: 100vh;
+	width: 100vh;
+	margin-right: 0 !important;
+	
+}
+
+.map {
+	position: absolute;
+	/* top: 120px; */
+	top: 0;
+	bottom: 0;
+	width: 100%;
+}

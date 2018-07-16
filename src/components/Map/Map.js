@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import { MAPBOX_ACCESS_TOKEN } from "../../constants";
-import { 
+import {
 	MAPSTYLE_HISTORIC,
 	URL_COMPARADOR,
 	FILTER_FIELD,
@@ -11,13 +11,17 @@ import {
 	INCENDISCAT_CIRCLE_LAYER,
 	INCENDISCAT_LINE_LAYER,
 	LAYER_CIRCLE, LAYER_LIN, LAYER_POL,
-	INCENDISCAT_SOURCE
+	INCENDISCAT_SOURCE,
+	INIT_APP_ZOOM,
+	LIMIT_ZOOM
 
 } from "../../constants";
 import PropTypes from "prop-types";
 import MapboxMap from "../../common/mapboxMap";
-import styles from "./Map.css";
+
 import { Icon } from "semantic-ui-react";
+
+import styles from "./Map.css";
 
 
 export default class Map extends Component {
@@ -48,7 +52,7 @@ export default class Map extends Component {
 
 		this.map = new MapboxMap(MAPBOX_ACCESS_TOKEN, {
 			"style": MAPSTYLE_HISTORIC,
-			"zoom":7.85,
+			"zoom": INIT_APP_ZOOM,
 			"center":[1.434, 41.491],
 			"container": this.mapContainer,
 			"pitch": 0,
@@ -102,13 +106,19 @@ export default class Map extends Component {
 
 		});
 
-		this.map.subscribe("zoomend", LAYER_POL, (e) => {
+		/* this.map.subscribe("zoomend", LAYER_POL, (e) => {
 
-			const easeTo = this.map.getZoom() > 12 ? 45 : 0;
-
+			const zoom = this.map.getZoom();
+			const easeTo =  zoom > 12 ? 45 : 0;
 			this.map.easeTo({
 				"pitch": easeTo
 			});
+
+		}); */
+
+		this.map.subscribe("zoomend", "", (e) => {
+
+			this.props.onZoomChange(this.map.getZoom(), this.map.getBounds(), this.map.getCenter());
 
 		});
 

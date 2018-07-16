@@ -76,13 +76,6 @@ class MapboxMap extends Map {
 	}
 
 
-
-
-
-
-
-
-
 	/**
 	 * Adds data to draw to the map. Do not call directly
 	 *
@@ -170,6 +163,18 @@ class MapboxMap extends Map {
 	getZoom() {
 
 		return	this.map.getZoom();
+
+	}
+
+	getBounds() {
+
+		return	this.map.getBounds();
+
+	}
+
+	getCenter() {
+
+		return	this.map.getCenter();
 
 	}
 
