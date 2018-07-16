@@ -191,8 +191,9 @@ YMIN
 					"source-layer": VECTOR_LAYER_POL,
 					"interactive": true,
 					"type": "fill",
-					"maxzoom": 18,
-					"minzoom": 10.5,
+					
+					"maxzoom": 11,
+					"minzoom": 9.5,
 					"layout": {
 						"visibility": "visible"
 					},
@@ -207,13 +208,14 @@ YMIN
 					"source-layer": VECTOR_LAYER_POL,
 					"interactive": true,
 					"type": "line",
-					"maxzoom": 11,
-					"minzoom": 9.5,
+					"maxzoom": 18,
+					"minzoom": 10.5,
 					"layout": {
 						"visibility": "visible"
 					},
 					"paint": {
 						"line-opacity": .8,
+						"line-width": 3,
 						"line-color": this.generateThematicByAreaStyle(),
 					}
 				},
@@ -231,8 +233,8 @@ YMIN
 					"paint": {
 						"circle-color": this.generateThematicByAreaStyle(),
 						"circle-opacity": 0.8,
-						"circle-stroke-color": "#9E3333",
-						"circle-stroke-width":3,
+						"circle-stroke-color": "#b30000",
+						"circle-stroke-width":1.5,
 						"circle-stroke-opacity": 0.5,
 						"circle-radius": this.generateThematicByRadius()
 
@@ -271,11 +273,12 @@ YMIN
 
 			});
 
-			this.map.subscribe("click", layerPol, (e) => {
+			this.map.subscribe("click", layerLin, (e) => {
 				const feature = e.features[0];
 				this.setActionOnClick(feature);
 
 			});
+
 
 			this.map.subscribe("mousemove", layerPol, (e) => {
 				this.map.setCursorPointer("pointer");

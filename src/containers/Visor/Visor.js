@@ -4,14 +4,10 @@ import React from "react";
 import Map from "../../components/Map/Map";
 import styles from "./Visor.css";
 import { Icon } from "semantic-ui-react";
-import { ANY_INIT, ANY_FINAL} from "../../constants";
-
-
+import { ANY_INIT, ANY_FINAL, MAX_YEAR} from "../../constants";
 
 
 export default class Visor extends React.Component {
-
-
 
 	constructor(props) {
 		super(props);
@@ -19,33 +15,30 @@ export default class Visor extends React.Component {
 		this.state = {
 			year:ANY_FINAL,
 			yearFake:ANY_FINAL,
-			maxYear:ANY_FINAL + 1,
-			minYear:ANY_INIT
-				
+			currentZoom: 
 		};
 
 		this.changeYear = this.changeYear.bind(this);
-	  }
+	}
 
 
-	
-
-	  updateYear(year) {
-	
+	updateYear(year) {
 
 		if (year === 2018) {
-			this.setState({yearFake: "Tots",
+			this.setState({
+				yearFake: "Tots",
 				year: year
 			});
 		} else {
-			this.setState({yearFake: year,
+			this.setState({
+				yearFake: year,
 				year: year
 			});
 		}
 
-	  }
+	}
 
-	 
+
 	changeYear(event) {
 
 		this.updateYear(event.target.value);
@@ -53,11 +46,11 @@ export default class Visor extends React.Component {
 
 	changeAddStepYear(e) {
 
-		const currentYear = this.state.year;
+		const currentYear = Number(this.state.year);
 
-		if (parseInt(currentYear) < parseInt(this.state.maxYear)) {
+		if (currentYear < MAX_YEAR) {
 
-			this.updateYear(parseInt(currentYear) + 1);
+			this.updateYear(currentYear + 1);
 
 		}
 
@@ -65,13 +58,21 @@ export default class Visor extends React.Component {
 
 	changeSubstractStepYear(e) {
 
-		const currentYear = this.state.year;
+		const currentYear = Number(this.state.year);
 
-		if (parseInt(currentYear) > parseInt(this.state.minYear)) {
+		if (currentYear < MAX_YEAR) {
 
-			this.updateYear(parseInt(currentYear) - 1);
+			this.updateYear(currentYear - 1);
 
 		}
+
+	}
+
+	renderMap() {
+
+		return (
+			<Map anyIncendi={this.state.year}/>
+		);
 
 	}
 
@@ -80,12 +81,10 @@ export default class Visor extends React.Component {
 
 		return (
 
-
 			<div>
+
 				<div className={styles.controls} id="controls" >
-
 					<div className={styles.anysControls}>
-
 						<div className={styles.anySelecionat}>{this.state.yearFake}</div>
 					</div>
 					<div className={styles.anysButtons}>
@@ -93,11 +92,12 @@ export default class Visor extends React.Component {
 						<br />
 						<Icon  className={styles.anysIcones} size="large" onClick={this.changeSubstractStepYear.bind(this)} name="chevron circle down" />
 					</div>
+				</div>
 
-				</div>
 				<div className={styles.containerMap}>
-					<Map anyIncendi={this.state.year}/>
+					{this.renderMap()}
 				</div>
+
 			</div>
 		);
 	}
