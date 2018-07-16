@@ -4,7 +4,7 @@ import React from "react";
 import Map from "../../components/Map/Map";
 import styles from "./Visor.css";
 import { Icon } from "semantic-ui-react";
-import { ANY_INIT, ANY_FINAL, MAX_YEAR} from "../../constants";
+import { ANY_FINAL, MAX_YEAR, MAX_INIT_ZOOM} from "../../constants";
 
 
 export default class Visor extends React.Component {
@@ -15,7 +15,7 @@ export default class Visor extends React.Component {
 		this.state = {
 			year:ANY_FINAL,
 			yearFake:ANY_FINAL,
-			currentZoom: 
+			currentZoom: MAX_INIT_ZOOM
 		};
 
 		this.changeYear = this.changeYear.bind(this);
@@ -68,10 +68,16 @@ export default class Visor extends React.Component {
 
 	}
 
+	handleZoomChange(newZoom) {
+
+		console.log(newZoom);
+
+	}
+
 	renderMap() {
 
 		return (
-			<Map anyIncendi={this.state.year}/>
+			<Map anyIncendi={this.state.year} onZoomChange={this.handleZoomChange.bind(this)}/>
 		);
 
 	}
