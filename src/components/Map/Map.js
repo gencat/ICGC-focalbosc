@@ -76,7 +76,6 @@ export default class Map extends Component {
 
 	componentDidUpdate() {
 		this.addFilterByYear();
-
 	}
 
 	initMapEvents() {

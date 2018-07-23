@@ -1,0 +1,26 @@
+.containerFooter{
+	width: 100%;
+	max-height: 3em;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.5em;
+	background-color:#FDA163;
+	position: absolute;
+	bottom: 0;
+	z-index: 1000;
+}
+
+.myInvertedButton{
+	box-shadow: none !important;
+	background: transparent none !important;
+	color: #fff !important;
+	text-shadow: none!important;
+}
+
+.myInvertedButton:hover, .myInvertedButton:focus {
+	background: #fff !important;
+	box-shadow: 0 0 0 2px #fff inset!important;
+	color: rgba(0,0,0,.8) !important;
+}

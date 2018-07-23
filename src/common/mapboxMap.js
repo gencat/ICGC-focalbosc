@@ -152,7 +152,18 @@ class MapboxMap extends Map {
 
 	}
 
+	/**
+	 * Fit a map to a bounding box
+	 *
+	 * @param {bbox} Array "bbox":"1.079053,41.290767,1.104497,41.308387"
+	 */
+	fitBBOX(bbox) {
 
+		const lngLatBounds = [[bbox[0], bbox[1]], [bbox[2], bbox[3]]];
+
+		this.map.fitBounds(lngLatBounds);
+
+	}
 
 	fitBounds(bounds: array) {
 

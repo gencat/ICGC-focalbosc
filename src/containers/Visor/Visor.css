@@ -1,16 +1,32 @@
-.containerMap{
+.containerVisor{
+  height: calc(100% - 3em);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 1em;
+}
 
-	height: 100%;
-	width: 100%;
+.containerMenuSelectors{
+  z-index: 1000;
+  background-color: #FDA163;
+  border-top: solid 2px #C2112675;
+  padding-left: 1em !important;
+  padding-right: 1em !important;
+}
+
+.mySelect{
+  color: white;
+  background-color: #C21126;
+  border: none !important;
 }
 
 .controls {
-  position: absolute;
+  position: relative;
   z-index: 10;
-  top: 0px;
+  top: 5em;
   left: 0px;
   width: 240px;
-  height: 120px;
+  height: 100px;
   background-color: rgba(255,255,255,0.9);
   padding: 10px;
   padding-left: 25px;
