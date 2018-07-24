@@ -157,11 +157,11 @@ class MapboxMap extends Map {
 	 *
 	 * @param {bbox} Array "bbox":"1.079053,41.290767,1.104497,41.308387"
 	 */
-	fitBBOX(bbox) {
+	fitBBOX(bbox, pitch = 0) {
 
 		const lngLatBounds = [[bbox[0], bbox[1]], [bbox[2], bbox[3]]];
 
-		this.map.fitBounds(lngLatBounds);
+		this.map.fitBounds(lngLatBounds, {pitch});
 
 	}
 
@@ -209,7 +209,26 @@ class MapboxMap extends Map {
 
 
 	removeLayer(id) {
-		this.map.removeLayer(id);
+		if (this.map.getLayer(id)) {
+			this.map.removeLayer(id);
+		}
+	}
+
+	removeSource(id) {
+		if (this.map.getSource(id)) {
+			this.map.removeSource(id);
+		}
+	}
+
+	addSource(id, source) {
+
+		this.map.addSource(id, source);
+
+	}
+
+	addLayer(layer, before) {
+
+		this.map.addLayer(layer, before);
 	}
 
 	setPaintProperty(layer, property, data) {

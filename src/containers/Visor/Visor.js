@@ -18,27 +18,27 @@ export default class PanelContainer extends ReactQueryParams {
 
 		const codifinal = this.queryParams.codifinal;
 
-		if (codifinal !== undefined) {
+		/* if (codifinal !== undefined) {
 
 			//TODO
 
-		} else {
+		} else { */
 
-			this.state = {
+		this.state = {
 
-				year:CONSTANTS.ANY_FINAL,
+			year:CONSTANTS.ANY_FINAL,
 
-				currentBBOX: [],
-				currentCenter: [],
+			currentBBOX: [],
+			currentCenter: [],
 
-				currentIncendi: {},
-				beforeMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
-				afterMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
+			currentIncendi: {},
+			beforeMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
+			afterMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
 
-				modeComparador: false
-			};
+			modeComparador: false
+		};
 
-		}
+		//}
 
 		this.changeYear = this.changeYear.bind(this);
 

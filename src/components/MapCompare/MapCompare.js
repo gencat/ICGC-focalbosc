@@ -80,19 +80,34 @@ export default class MapCompare extends Component {
 		}
 
 		if (prevProps.beforeMapLayer.value !== this.props.beforeMapLayer.value) {
-			this.beforeMap.setLayoutProperty(prevProps.beforeMapLayer.key, "visibility", "none");
-			this.beforeMap.setLayoutProperty(this.props.beforeMapLayer.key, "visibility", "visible");
+
+			this.beforeMap.removeLayer(prevProps.beforeMapLayer.key);
+			
+			this.beforeMap.addLayer({"id": this.props.beforeMapLayer.key, "type": "raster", "source": this.props.beforeMapLayer.key}, CONSTANTS.CUT_LAYER);
+
 		}
 
 		if (prevProps.afterMapLayer.value !== this.props.afterMapLayer.value) {
-			this.afterMap.setLayoutProperty(prevProps.afterMapLayer.key, "visibility", "none");
-			this.afterMap.setLayoutProperty(this.props.afterMapLayer.key, "visibility", "visible");
+
+
+			this.afterMap.removeLayer(prevProps.afterMapLayer.key);
+			
+			this.afterMap.addLayer({"id": this.props.afterMapLayer.key, "type": "raster", "source": this.props.afterMapLayer.key}, CONSTANTS.CUT_LAYER);
+
+
+
+
+
+
 		}
+
+		const pitch = this.props.modeComparador ? 45 : 0;
 
 		if (prevProps.modeComparador !== this.props.modeComparador) {
 
 			this.map._setPosition(this.props.modeComparador ? 500 : 0);
-			const pitch = this.props.modeComparador ? 45 : 0;
+			
+			console.log("Abans easteTo", pitch);
 			this.afterMap.easeTo({pitch: pitch});
 			this.beforeMap.easeTo({pitch: pitch});
 		}
@@ -100,12 +115,12 @@ export default class MapCompare extends Component {
 		if (this.props.currentIncendi !== {} && (prevProps.currentIncendi.value === {} ||  prevProps.currentIncendi.value !== this.props.currentIncendi.value)) {
 
 			const bboxList = this.props.currentIncendi.bbox.split(",");
-			console.log(this.props.currentIncendi.bbox);
-			this.afterMap.fitBBOX(bboxList);
-			this.beforeMap.fitBBOX(bboxList);
-			/* const pitch = this.props.modeComparador ? 45 : 0;
-			this.afterMap.easeTo({pitch: pitch});
-			this.beforeMap.easeTo({pitch: pitch}); */
+			console.log("Abans fitBBOX", this.props.currentIncendi.bbox);
+			this.afterMap.fitBBOX(bboxList, pitch);
+			this.beforeMap.fitBBOX(bboxList, pitch);
+			 //const pitch = this.props.modeComparador ? 45 : 0;
+			//this.afterMap.easeTo({pitch: pitch});
+			//this.beforeMap.easeTo({pitch: pitch}); 
 
 		}
 
@@ -119,6 +134,18 @@ export default class MapCompare extends Component {
 		};
 		this.afterMap.addMapData(defaultInit);
 		this.beforeMap.addMapData(defaultInit);
+
+
+
+		//this.afterMap.addSource(CONSTANTS.INCENDISCAT_SOURCE.name, CONSTANTS.INCENDISCAT_SOURCE.data);
+		//this.beforeMap.addSource(CONSTANTS.INCENDISCAT_SOURCE.name, CONSTANTS.INCENDISCAT_SOURCE.data);
+
+
+
+
+		//this.beforeMap.addLayer({"id": this.props.beforeMapLayer.key, "type": "raster", "source": this.props.beforeMapLayer.key}, CONSTANTS.CUT_LAYER);
+
+
 
 		this.updateFilterByYear();
 
