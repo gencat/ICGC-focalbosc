@@ -195,6 +195,7 @@ export default class PanelContainer extends ReactQueryParams {
 
 
 	handleSelectIncendi (codi) {
+		console.log("handleSelectIncendi", codi);
 		this.handleIncendiChange(this.getIncendiByCodi(codi));
 	}
 
@@ -235,6 +236,8 @@ export default class PanelContainer extends ReactQueryParams {
 
 			const any = this.state.year >= CONSTANTS.MAX_YEAR ? "Tots" : this.state.year;
 
+			const anyUp = this.state.year === CONSTANTS.MAX_YEAR ? "Tots" : this.state.year+1;
+			const anyDown = this.state.year === CONSTANTS.ANY_INIT ? CONSTANTS.ANY_INIT : this.state.year-1;
 		/* 	const tagUp */
 
 			return (
@@ -243,9 +246,10 @@ export default class PanelContainer extends ReactQueryParams {
 						<div className={styles.anySelecionat}>{any}</div>
 					</div>
 					<div className={styles.anysButtons}>
-						<Icon className={styles.anysIcones} size="large" onClick={this.changeAddStepYear.bind(this)} name="chevron circle up" />2017
+						<Icon className={styles.anysIcones} size="large" onClick={this.changeAddStepYear.bind(this)} name="chevron circle up" />{anyUp}
 						<br />
-						<Icon  className={styles.anysIcones} size="large" onClick={this.changeSubstractStepYear.bind(this)} name="chevron circle down" />1986
+						<Icon  className={styles.anysIcones} size="large" onClick={this.changeSubstractStepYear.bind(this)} name="chevron circle down" />{anyDown}
+						<br />
 					</div>
 				</div>
 			);
