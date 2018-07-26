@@ -5,8 +5,10 @@ import PropTypes from "prop-types";
 import MapboxMap from "../../common/mapboxMap";
 import * as CONSTANTS from "../../constants";
 
+import Utils from "../../common/utils";
+
 import Compare  from "mapbox-gl-compare";
-import { Icon } from "semantic-ui-react";
+import { Icon, Button, Image } from "semantic-ui-react";
 
 import styles from "./MapCompare.css";
 
@@ -16,6 +18,7 @@ export default class MapCompare extends Component {
 	beforeMap;
 	afterMap;
 	//currentZoom;
+	timestamp;
 
 	state = {
 
@@ -39,13 +42,14 @@ export default class MapCompare extends Component {
 	async componentDidMount() {
 
 		console.log("componentDidMount");
+		/* this.timestamp = Date.now(); */
 
 		this.currentZoom = CONSTANTS.INIT_APP_ZOOM;
 
 		this.beforeMap = new MapboxMap(CONSTANTS.MAPBOX_ACCESS_TOKEN, {
 			style: CONSTANTS.MAPSTYLE_HISTORIC,
 			zoom: CONSTANTS.INIT_APP_ZOOM,
-			center: [1.434, 41.491],
+			center: CONSTANTS.INIT_APP_CENTER,
 			container: this.beforeMapContainer
 		});
 
@@ -53,7 +57,7 @@ export default class MapCompare extends Component {
 		this.afterMap = new MapboxMap(CONSTANTS.MAPBOX_ACCESS_TOKEN, {
 			style: CONSTANTS.MAPSTYLE_HISTORIC,
 			zoom: CONSTANTS.INIT_APP_ZOOM,
-			center: [1.434, 41.491],
+			center: CONSTANTS.INIT_APP_CENTER,
 			container: this.afterMapContainer
 		});
 
@@ -75,6 +79,8 @@ export default class MapCompare extends Component {
 
 	componentDidUpdate(prevProps) {
 
+		console.log("componentDidUpdate");
+
 		if (prevProps.anyIncendi !== this.props.anyIncendi) {
 			this.updateFilterByYear();
 		}
@@ -82,22 +88,14 @@ export default class MapCompare extends Component {
 		if (prevProps.beforeMapLayer.value !== this.props.beforeMapLayer.value) {
 
 			this.beforeMap.removeLayer(prevProps.beforeMapLayer.key);
-			
 			this.beforeMap.addLayer({"id": this.props.beforeMapLayer.key, "type": "raster", "source": this.props.beforeMapLayer.key}, CONSTANTS.CUT_LAYER);
 
 		}
 
 		if (prevProps.afterMapLayer.value !== this.props.afterMapLayer.value) {
 
-
 			this.afterMap.removeLayer(prevProps.afterMapLayer.key);
-			
 			this.afterMap.addLayer({"id": this.props.afterMapLayer.key, "type": "raster", "source": this.props.afterMapLayer.key}, CONSTANTS.CUT_LAYER);
-
-
-
-
-
 
 		}
 
@@ -106,21 +104,16 @@ export default class MapCompare extends Component {
 		if (prevProps.modeComparador !== this.props.modeComparador) {
 
 			this.map._setPosition(this.props.modeComparador ? 500 : 0);
-			
-			console.log("Abans easteTo", pitch);
 			this.afterMap.easeTo({pitch: pitch});
 			this.beforeMap.easeTo({pitch: pitch});
 		}
 
-		if (this.props.currentIncendi !== {} && (prevProps.currentIncendi.value === {} ||  prevProps.currentIncendi.value !== this.props.currentIncendi.value)) {
+		if (!Utils.isEmpty(this.props.currentIncendi) && (prevProps.currentIncendi.value === {} ||  prevProps.currentIncendi.value !== this.props.currentIncendi.value)) {
 
 			const bboxList = this.props.currentIncendi.bbox.split(",");
 			console.log("Abans fitBBOX", this.props.currentIncendi.bbox);
 			this.afterMap.fitBBOX(bboxList, pitch);
 			this.beforeMap.fitBBOX(bboxList, pitch);
-			 //const pitch = this.props.modeComparador ? 45 : 0;
-			//this.afterMap.easeTo({pitch: pitch});
-			//this.beforeMap.easeTo({pitch: pitch}); 
 
 		}
 
@@ -134,18 +127,6 @@ export default class MapCompare extends Component {
 		};
 		this.afterMap.addMapData(defaultInit);
 		this.beforeMap.addMapData(defaultInit);
-
-
-
-		//this.afterMap.addSource(CONSTANTS.INCENDISCAT_SOURCE.name, CONSTANTS.INCENDISCAT_SOURCE.data);
-		//this.beforeMap.addSource(CONSTANTS.INCENDISCAT_SOURCE.name, CONSTANTS.INCENDISCAT_SOURCE.data);
-
-
-
-
-		//this.beforeMap.addLayer({"id": this.props.beforeMapLayer.key, "type": "raster", "source": this.props.beforeMapLayer.key}, CONSTANTS.CUT_LAYER);
-
-
 
 		this.updateFilterByYear();
 
@@ -171,6 +152,8 @@ export default class MapCompare extends Component {
 			this.afterMap.setCursorPointer("pointer");
 			const feature = e.features[0];
 
+			/* this.timestamp = Date.now(); */
+
 			this.setState({
 				MUNICIPI_MOV: feature.properties.MUNICIPI,
 				DATAINCENT_MOV: feature.properties.DATA_INCEN,
@@ -185,6 +168,8 @@ export default class MapCompare extends Component {
 
 			this.afterMap.setCursorPointer("pointer");
 			const feature = e.features[0];
+
+			/* this.timestamp = Date.now(); */
 
 			this.setState({
 				MUNICIPI_MOV: feature.properties.MUNICIPI,
@@ -322,6 +307,43 @@ export default class MapCompare extends Component {
 		});
 	}
 
+	resetMap () {
+
+
+		this.props.onResetMap();
+
+		//const bboxList =  [3.3360, 40.4700, 0.1087, 42.8840];
+
+		/* this.afterMap.setCenter(CONSTANTS.INIT_APP_CENTER);
+		this.beforeMap.setCenter(CONSTANTS.INIT_APP_CENTER); */
+		
+		const cameraOptions = {
+			center: CONSTANTS.INIT_APP_CENTER,
+			zoom: CONSTANTS.INIT_APP_ZOOM
+		};
+		this.afterMap.easeTo(cameraOptions);
+		this.beforeMap.easeTo(cameraOptions);
+
+		
+
+	}
+
+	renderButtonResetComparador() {
+
+		return (
+			<div className={styles.containerButtonReset}>
+				<Button onClick={this.resetMap.bind(this)} size="small" className={styles.myButtonReset} animated='vertical'>
+					<Button.Content visible><Image src="./cat_white.svg"></Image></Button.Content>
+					<Button.Content hidden>
+						<Icon size="large" name='arrow left' />
+					</Button.Content>
+				</Button>
+			</div>
+
+		);
+
+	}	
+
 
 	render() {
 
@@ -348,16 +370,14 @@ export default class MapCompare extends Component {
 						<div className={styles.panelinfobody}>{`Any: ${ANY}`}</div>
 						<div className={styles.panelinfobody}>{`Data: ${DATAINCENT}`}</div>
 						<div className={styles.panelinfobody}>{`Àrea: ${AREAKM} km2`}</div>
-						<div  style={{display: this.state.showLinkYear ? "block" : "none" }} className={styles.panelinfolink}>
-							<a className={styles.infolink} target="blank" href={`${CONSTANTS.URL_COMPARADOR}${CODIFINAL}`}>
-						Veure l'àrea abans i després de l'incendi <Icon size="large" name="external square" /></a>
-						</div>
 					</div>
 				</div>
 
 				<div id="beforeMap" ref={el => (this.beforeMapContainer = el)} className={styles.map}/>
 
 				<div id="afterMap" ref={el => (this.afterMapContainer = el)} className={styles.map}/>
+
+				{this.renderButtonResetComparador()}
 
 			</div>
 		);
@@ -371,6 +391,7 @@ MapCompare.propTypes = {
 	currentIncendi: PropTypes.object,
 	onZoomChange: PropTypes.func,
 	onSelectIncendi: PropTypes.func,
+	onResetMap: PropTypes.func,
 	modeComparador: PropTypes.bool,
 	anyIncendi: PropTypes.number
 };

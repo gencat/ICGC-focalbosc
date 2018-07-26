@@ -5,9 +5,12 @@
 export const MAPBOX_ACCESS_TOKEN = "";
 export const URL_COMPARADOR = "http://visors.icgc.cat/comparador-incendis/?codifinal=";
 
+export const URL_PROTOTIPS = "http://betaportal.icgc.cat/?ref=focalbosc";
+export const URL_GITHUB = "https://github.com/gencat/ICGC-focalbosc";
+
 export const ANY_INIT = 1986;
 export const ANY_FINAL = 2017;
-export const MAX_YEAR = ANY_FINAL + 1;
+export const MAX_YEAR = ANY_FINAL;
 export const ANY_COMPARADOR = 2004;
 export const ANY_COMPARADOR_MAX = 2016;
 
@@ -17,6 +20,7 @@ export const TEMATIC_FIELD = "AREA";
 export const FILTER_FIELD = "ANY";
 
 export const INIT_APP_ZOOM = 7.85;
+export const INIT_APP_CENTER = [1.434, 41.491];
 export const LIMIT_ZOOM = 11;
 
 
@@ -162,9 +166,9 @@ export const mappingAnyLayer = {
 };
 
 export const ortoLayersOptions = [
-	{key: "ortoICGC2003", name:"orto5m2003A", text: "2000-2003", value: 0},
-	{key: "ortoICGC2005", name:"orto5m2005A", text: "2004-2005", value: 1},
-	{key: "ortoICGC2007", name:"orto5m2007A", text: "2006-2007", value: 2},
+	{key: "ortoICGC2003", name:"orto5m2003A", text: "2000-03", value: 0},
+	{key: "ortoICGC2005", name:"orto5m2005A", text: "2004-05", value: 1},
+	{key: "ortoICGC2007", name:"orto5m2007A", text: "2006-07", value: 2},
 	{key: "ortoICGC2008", name:"orto5m2008", text: "2008", value: 3},
 	{key: "ortoICGC2009", name:"orto5m2009", text: "2009", value: 4},
 	{key: "ortoICGC2010", name:"orto5m2010", text: "2010", value: 5},

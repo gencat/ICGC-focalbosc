@@ -16,28 +16,34 @@
 .panelinfo{
 	position: absolute;
 	z-index: 50;
-	top: 123px;
+	top: 260px;
 	left: 0px;
 	width: 240px;
-	background: rgba(248, 248, 248, 0.9);
+	background: rgba(250, 72, 30, 0.95);
 	padding: 20px;
- 
+	border: solid 2px #fff;
+	border-radius: 5px;
+	color: #fff;
+
 }
 
 .panelinfoPopup{
 	position: absolute;
 	z-index: 50;
-	top: 123px;
+	top: 260px;
 	/* bottom: 35px; */
 	left: 0px;
 	width: 240px;
 	height: 73px;
-	background: rgba(248, 248, 248, 0.9);
- 
+	background-color: rgba(250, 72, 30, 0.9);
+	color: #fff;
 	font-size: 1em;
 	padding: 10px;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	border: solid 2px #fff;
+	border-radius: 5px;
+	text-align: center;
 }
 
 
@@ -65,7 +71,7 @@
 
 }
 .panelinfoheadertext{
-	color: #C21125;
+	color: #860000;
 
 }
 .panelinfobody{
@@ -95,4 +101,19 @@
 
 .infolink{
 	color: #C21125;
+}
+
+.containerButtonReset{
+  position: absolute;
+	z-index: 50;
+	bottom: 55px;
+  left: 5px;
+  /* width: 80px;
+  height: 80px; */
+}
+
+.myButtonReset{
+  width: 75px;
+  background-color: #ff994a !important;
+  color: #fff !important;
 }
