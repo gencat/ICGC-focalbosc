@@ -21,7 +21,7 @@ class MapboxMap extends Map {
 
 		const defaultParameters = {
 			container: "",
-			style: "https://tilemaps.icgc.cat/tileserver/styles/fosc.json",
+			style: "https://tilemaps.icgc.cat/tileserver/styles/water.json",
 			center: [1.60859, 41.7554],
 			zoom: 6,
 		};
@@ -243,6 +243,7 @@ class MapboxMap extends Map {
 
 	}
 
+							 
 
 	/**
 	 * SetFilters
@@ -343,6 +344,8 @@ class MapboxMap extends Map {
 	queryRenderedFeatures(place, layer) {
 
 		return this.map.queryRenderedFeatures(place, {layers: [layer]});
+				  
+	 
 
 	}
 
