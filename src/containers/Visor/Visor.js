@@ -14,7 +14,7 @@ import styles from "./Visor.css";
 export default class PanelContainer extends ReactQueryParams {
 
 	constructor(props) {
-		
+
 		super(props);
 
 		const codifinal = this.queryParams.codifinal;
@@ -25,19 +25,19 @@ export default class PanelContainer extends ReactQueryParams {
 
 		} else { */
 
-			this.state = {
+		this.state = {
 
-				year:CONSTANTS.MAX_YEAR,
+			year:CONSTANTS.MAX_YEAR,
 
-				currentBBOX: [],
-				currentCenter: [],
+			currentBBOX: [],
+			currentCenter: [],
 
-				currentIncendi: {},
-				beforeMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
-				afterMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
+			currentIncendi: {},
+			beforeMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
+			afterMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
 
-				modeComparador: false
-			};
+			modeComparador: false
+		};
 
 		//}
 
@@ -105,6 +105,16 @@ export default class PanelContainer extends ReactQueryParams {
 	changeYear(event) {
 
 		this.updateYear(event.target.value);
+	}
+
+	changeMaxYear() {
+
+		this.updateYear(CONSTANTS.ANY_FINAL);
+	}
+
+	changeMinYear() {
+
+		this.updateYear(CONSTANTS.ANY_INIT);
 	}
 
 	changeAddStepYear(e) {
@@ -188,7 +198,7 @@ export default class PanelContainer extends ReactQueryParams {
 
 
 		this.setQueryParams({
-			codifinal: newCurrentIncendi.key
+			codifinal: `${newCurrentIncendi.key}&`
 		});
 
 	}
@@ -235,7 +245,7 @@ export default class PanelContainer extends ReactQueryParams {
 
 			const any = this.state.year >= CONSTANTS.MAX_YEAR ? "Tots" : this.state.year;
 
-		/* 	const tagUp */
+			/* 	const tagUp */
 
 			return (
 				<div className={styles.controls} id="controls" >
@@ -243,9 +253,13 @@ export default class PanelContainer extends ReactQueryParams {
 						<div className={styles.anySelecionat}>{any}</div>
 					</div>
 					<div className={styles.anysButtons}>
-						<Icon className={styles.anysIcones} size="large" onClick={this.changeAddStepYear.bind(this)} name="chevron circle up" />2017
+						<Icon className={styles.anysIcones} size="small" onClick={this.changeMaxYear.bind(this)} name="caret up" />2017
 						<br />
-						<Icon  className={styles.anysIcones} size="large" onClick={this.changeSubstractStepYear.bind(this)} name="chevron circle down" />1986
+						<Icon className={styles.anysIcones} size="large" onClick={this.changeAddStepYear.bind(this)} name="chevron circle up" />
+						<br />
+						<Icon  className={styles.anysIcones} size="large" onClick={this.changeSubstractStepYear.bind(this)} name="chevron circle down" />
+						<br/>
+						<Icon className={styles.anysIcones} size="small" onClick={this.changeMinYear.bind(this)}  name="caret down" />1886
 					</div>
 				</div>
 			);
@@ -329,7 +343,7 @@ export default class PanelContainer extends ReactQueryParams {
 
 	}
 
-/* 	renderButtonResetComparador() {
+	/* 	renderButtonResetComparador() {
 
 		return (
 			<div className={styles.containerButtonReset}>
@@ -354,7 +368,7 @@ export default class PanelContainer extends ReactQueryParams {
 				{this.renderMenuSelectors()}
 				{this.renderSelectorAnys()}
 				{this.renderMap()}
-				
+
 			</div>
 
 

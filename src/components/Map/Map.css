@@ -24,7 +24,7 @@
 .panelinfo{
     position: absolute;
     z-index: 50;
-    top: 123px;
+    top: 143px;
     left: 0px;
     width: 240px;
     background: rgba(248, 248, 248, 0.9);
@@ -35,7 +35,7 @@
 .panelinfoPopup{
     position: absolute;
     z-index: 50;
-    top: 123px;
+    top: 300px;
     /* bottom: 35px; */
     left: 0px;
     width: 240px;
@@ -47,7 +47,6 @@
     padding-top: 10px;
     padding-bottom: 10px;
 }
-
 
 .panelinfoheader{
     padding: 20px;

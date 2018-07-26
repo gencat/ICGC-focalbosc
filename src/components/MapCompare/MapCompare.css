@@ -16,7 +16,7 @@
 .panelinfo{
 	position: absolute;
 	z-index: 50;
-	top: 260px;
+	top: 300px;
 	left: 0px;
 	width: 240px;
 	background: rgba(250, 72, 30, 0.95);
@@ -30,7 +30,7 @@
 .panelinfoPopup{
 	position: absolute;
 	z-index: 50;
-	top: 260px;
+	top: 300px;
 	/* bottom: 35px; */
 	left: 0px;
 	width: 240px;
