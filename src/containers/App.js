@@ -11,7 +11,7 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<div className={styles.myApp}>
-				<Header title="Comparador d'incendis"/>
+				<Header title="Foc al Bosc" showModalInfo={true}/>
 				<Visor/>
 				<Footer/>
 			</div>

@@ -189,10 +189,13 @@ class MapboxMap extends Map {
 
 	}
 
+	setCenter(center: array) {
+		return this.map.setCenter(center);
+	}
+
 	easeTo(options) {
-
+		console.log(options);
 		this.map.easeTo(options);
-
 
 	}
 

@@ -20,6 +20,13 @@ import styles from "./Footer.css";
 
 export default class Footer extends Component {
 
+	openLink(url) {
+
+		console.log
+		window.open(url, '_blank');
+
+	}
+
 	render() {
 		return (
 
@@ -27,7 +34,7 @@ export default class Footer extends Component {
 
 				<div className={styles.containerLeft}>
 
-					<Button className={styles.myInvertedButton}>
+					<Button className={styles.myInvertedButton} onClick={this.openLink.bind(this, )}>
 						<Icon name='external alternate' /> +Prototips
 					</Button>
 					<Button  className={styles.myInvertedButton}>
@@ -41,10 +48,10 @@ export default class Footer extends Component {
 				<div className={styles.containerRight}>
 
 					<Button circular inverted icon='mail' />
-					<Button circular color='twitter' icon='twitter' />
-					<Button circular color='linkedin' icon='facebook' />
-					<Button circular color='google plus' icon='google plus' />
-					<Button circular color='red' icon='pinterest' />
+					<Button circular inverted icon='twitter' />
+					<Button circular inverted icon='facebook' />
+					<Button circular inverted icon='google plus' />
+					<Button circular inverted icon='pinterest' />
 
 				</div>
 

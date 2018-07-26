@@ -8,7 +8,7 @@
 }
 
 .title{
-	color: #78000E !important;
+	color: #fff !important;
 	/* color: #C21126; */
 }
 
@@ -18,7 +18,7 @@
 
 .myMenu {
 	height: 0.8em;
-	border-bottom: 2px solid #e4191d;
+	border-bottom: 2px solid #fff;
 }
 
 .containerHeader{
@@ -30,5 +30,16 @@
 	align-items: center;
 	/* padding: 1em;
 	margin-bottom: 1em; */
-	background-color:#FDA163;
+	background-color:#FA481E;
 }
+
+/* .containerlogo{
+	align-self: flex-start;	
+}
+.containertitle{
+	align-self: center;
+}
+
+.containerlogo{
+	align-self: flex-end;
+} */
