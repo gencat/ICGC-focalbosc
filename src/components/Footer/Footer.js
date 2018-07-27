@@ -9,7 +9,9 @@ import {
 	URLTWITTER,
 	URLFACEBOOK,
 	URLGOOGLE,
-	URLPINTEREST
+	URLPINTEREST,
+	URL_GITHUB,
+	URL_PROTOTIPS
 } from "../../constants";
 
 /* const styles = {
@@ -30,8 +32,8 @@ export default class Footer extends Component {
 	constructor() {
 		super();
 		this.state = {
-			width: window.innerWidth
-
+			width: window.innerWidth,
+			encodeUrl: encodeURI(window.location.href)
 		};
 
 		window.addEventListener("resize", this.handleWindowSizeChange);
@@ -61,15 +63,12 @@ export default class Footer extends Component {
 
 	getUrlApp() {
 
-
-
 		return this.state.url;
 
 	}
 
 	getEncodedUrlApp() {
 
-		//this.setState({ encodeUrl: encodeURI(window.location.href)});
 		return  this.state.encodeUrl;
 
 	}
@@ -120,10 +119,10 @@ export default class Footer extends Component {
 			return (
 
 				<div className={styles.containerLeft}>
-					<Button className={styles.myInvertedButton} onClick={this.openLink.bind(this, )}>
+					<Button className={styles.myInvertedButton} onClick={() => this.openLink(URL_PROTOTIPS)}>
 						<Icon name='external alternate' /> +Prototips
 					</Button>
-					<Button  className={styles.myInvertedButton}>
+					<Button  className={styles.myInvertedButton} onClick={() => this.openLink(URL_GITHUB)}>
 						<Icon name='github' /> Github
 					</Button>
 					{this.renderBTLink()}
