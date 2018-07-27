@@ -14,7 +14,7 @@ import styles from "./Visor.css";
 export default class PanelContainer extends ReactQueryParams {
 
 	constructor(props) {
-		
+
 		super(props);
 
 		const codifinal = this.queryParams.codifinal;
@@ -25,19 +25,19 @@ export default class PanelContainer extends ReactQueryParams {
 
 		} else { */
 
-			this.state = {
+		this.state = {
 
-				year:CONSTANTS.MAX_YEAR,
+			year:CONSTANTS.MAX_YEAR,
 
-				currentBBOX: [],
-				currentCenter: [],
+			currentBBOX: [],
+			currentCenter: [],
 
-				currentIncendi: {},
-				beforeMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
-				afterMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
+			currentIncendi: {},
+			beforeMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
+			afterMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
 
-				modeComparador: false
-			};
+			modeComparador: false
+		};
 
 		//}
 
@@ -236,9 +236,9 @@ export default class PanelContainer extends ReactQueryParams {
 
 			const any = this.state.year >= CONSTANTS.MAX_YEAR ? "Tots" : this.state.year;
 
-			const anyUp = this.state.year === CONSTANTS.MAX_YEAR ? "Tots" : this.state.year+1;
-			const anyDown = this.state.year === CONSTANTS.ANY_INIT ? CONSTANTS.ANY_INIT : this.state.year-1;
-		/* 	const tagUp */
+			const anyUp = this.state.year === CONSTANTS.MAX_YEAR ? "Tots" : this.state.year + 1;
+			const anyDown = this.state.year === CONSTANTS.ANY_INIT ? CONSTANTS.ANY_INIT : this.state.year - 1;
+			/* 	const tagUp */
 
 			return (
 				<div className={styles.controls} id="controls" >
@@ -323,17 +323,27 @@ export default class PanelContainer extends ReactQueryParams {
 
 		return (
 
-			<Grid centered columns={2} className={styles.containerMenuSelectors}>
-				<Grid.Column >
-					{this.renderSelectorIncendis(this.state.currentIncendi.value)}
-				</Grid.Column>
+			<Grid centered  className={styles.containerMenuSelectors}>
+	
+				<Grid.Row only='tablet mobile'>
+					<Grid.Column >
+						{this.renderSelectorIncendis(this.state.currentIncendi.value)}
+					</Grid.Column>
+				</Grid.Row>
+
+				<Grid.Row columns={2} only='computer'>
+					<Grid.Column >
+						{this.renderSelectorIncendis(this.state.currentIncendi.value)}
+					</Grid.Column>
+				</Grid.Row>
+
 			</Grid>
 		);
 
 
 	}
 
-/* 	renderButtonResetComparador() {
+	/* 	renderButtonResetComparador() {
 
 		return (
 			<div className={styles.containerButtonReset}>
@@ -358,7 +368,7 @@ export default class PanelContainer extends ReactQueryParams {
 				{this.renderMenuSelectors()}
 				{this.renderSelectorAnys()}
 				{this.renderMap()}
-				
+
 			</div>
 
 

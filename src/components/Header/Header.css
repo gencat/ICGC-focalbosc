@@ -4,6 +4,7 @@
 }
 
 .containertitle{
+	padding: 1em;
 
 }
 
@@ -13,8 +14,13 @@
 }
 
 .containeritemRight{
-
+	padding: 0.8em;
 }
+
+.buttonModalInfoMobile{
+	font-size: 0.8em;
+}
+
 
 .myMenu {
 	height: 0.8em;

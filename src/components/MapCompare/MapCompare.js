@@ -20,11 +20,12 @@ export default class MapCompare extends Component {
 	//currentZoom;
 	timestamp;
 
+	doReset;
+
 	state = {
 
 		showPanel: false,
 		showPanelPopup: false,
-		showLinkYear:false,
 		MUNICIPI:"",
 		DATAINCENT:"",
 		MUNICIPI_MOV:"",
@@ -44,6 +45,7 @@ export default class MapCompare extends Component {
 		console.log("componentDidMount");
 		/* this.timestamp = Date.now(); */
 
+		this.doReset = 0;
 		this.currentZoom = CONSTANTS.INIT_APP_ZOOM;
 
 		this.beforeMap = new MapboxMap(CONSTANTS.MAPBOX_ACCESS_TOKEN, {
