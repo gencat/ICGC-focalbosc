@@ -21,7 +21,7 @@ class MapboxMap extends Map {
 
 		const defaultParameters = {
 			container: "",
-			style: "https://tilemaps.icgc.cat/tileserver/styles/fosc.json",
+			style: "https://tilemaps.icgc.cat/tileserver/styles/water.json",
 			center: [1.60859, 41.7554],
 			zoom: 6,
 		};
@@ -74,13 +74,6 @@ class MapboxMap extends Map {
 		this.map.remove();
 
 	}
-
-
-
-
-
-
-
 
 
 	/**
@@ -159,7 +152,18 @@ class MapboxMap extends Map {
 
 	}
 
+	/**
+	 * Fit a map to a bounding box
+	 *
+	 * @param {bbox} Array "bbox":"1.079053,41.290767,1.104497,41.308387"
+	 */
+	fitBBOX(bbox, pitch = 0) {
 
+		const lngLatBounds = [[bbox[0], bbox[1]], [bbox[2], bbox[3]]];
+
+		this.map.fitBounds(lngLatBounds, {pitch});
+
+	}
 
 	fitBounds(bounds: array) {
 
@@ -173,10 +177,25 @@ class MapboxMap extends Map {
 
 	}
 
+	getBounds() {
+
+		return	this.map.getBounds();
+
+	}
+
+	getCenter() {
+
+		return	this.map.getCenter();
+
+	}
+
+	setCenter(center: array) {
+		return this.map.setCenter(center);
+	}
+
 	easeTo(options) {
-
+		console.log(options);
 		this.map.easeTo(options);
-
 
 	}
 
@@ -193,7 +212,26 @@ class MapboxMap extends Map {
 
 
 	removeLayer(id) {
-		this.map.removeLayer(id);
+		if (this.map.getLayer(id)) {
+			this.map.removeLayer(id);
+		}
+	}
+
+	removeSource(id) {
+		if (this.map.getSource(id)) {
+			this.map.removeSource(id);
+		}
+	}
+
+	addSource(id, source) {
+
+		this.map.addSource(id, source);
+
+	}
+
+	addLayer(layer, before) {
+
+		this.map.addLayer(layer, before);
 	}
 
 	setPaintProperty(layer, property, data) {
@@ -208,6 +246,7 @@ class MapboxMap extends Map {
 
 	}
 
+							 
 
 	/**
 	 * SetFilters
@@ -308,6 +347,8 @@ class MapboxMap extends Map {
 	queryRenderedFeatures(place, layer) {
 
 		return this.map.queryRenderedFeatures(place, {layers: [layer]});
+				  
+	 
 
 	}
 

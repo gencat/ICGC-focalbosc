@@ -1,0 +1,120 @@
+.containerMap{
+	height: 100vh;
+	width: 100vh;
+	margin-right: 0 !important;
+	
+}
+
+.map {
+	position: absolute;
+	top: 4em;
+	bottom: 0;
+	width: 100%;
+}
+
+/* Panel info */
+.panelinfo{
+	position: absolute;
+	z-index: 50;
+	top: 260px;
+	left: 0px;
+	width: 240px;
+	background: rgba(250, 72, 30, 0.95);
+	padding: 20px;
+	border: solid 2px #fff;
+	border-radius: 5px;
+	color: #fff;
+
+}
+
+.panelinfoPopup{
+	position: absolute;
+	z-index: 50;
+	top: 260px;
+	/* bottom: 35px; */
+	left: 0px;
+	width: 240px;
+	height: 73px;
+	background-color: rgba(250, 72, 30, 0.9);
+	color: #fff;
+	font-size: 1em;
+	padding: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border: solid 2px #fff;
+	border-radius: 5px;
+	text-align: center;
+}
+
+
+.panelinfoheader{
+	padding: 20px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+
+}
+.panelinfoheaderdetail{
+	min-height: 30px;
+
+}
+.panelinfoheaderclose{
+	height: 30px;
+	/* padding-top: 5px; */
+	padding-bottom: 5px;
+	float: right;
+	vertical-align: middle;
+	cursor:pointer;
+
+}
+.panelinfoheadertext{
+	color: #860000;
+
+}
+.panelinfobody{
+	padding-top:5px
+}
+
+.panelinfolink{
+ 
+	border: 1px solid #C21125;
+	margin-top: 10px;
+	padding: 2px;
+	font-weight: bold;
+	color: #C21125;
+	border-radius: 2px;
+}
+
+.panelinfolink:hover{
+	border: 1px solid #C21125;
+	margin-top: 10px;
+	padding: 2px;
+	font-weight: bold;
+	color: #C21125;
+	border-radius: 2px;
+	text-decoration: underline;
+}
+
+
+.infolink{
+	color: #C21125;
+}
+
+.containerButtonReset{
+  position: absolute;
+	z-index: 50;
+	bottom: 55px;
+  left: 5px;
+  /* width: 80px;
+  height: 80px; */
+}
+
+.myButtonReset{
+  width: 75px;
+  background-color: #ff994a !important;
+  color: #fff !important;
+}
+

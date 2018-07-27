@@ -1,11 +1,11 @@
 // @flow
-"use strict";
+
 
 import mapboxgl from "mapbox-gl";
 
 /**
  * Map using the mapbox backend
- * 
+ *
  * @param {string} apiKey The api key used by the map
  * @param {string} containerId The container id where the map will be drawn
  * @param {string} styleId The style id that will be used to draw the map
@@ -27,21 +27,21 @@ class Map {
 
 	/**
 	 * Creates the map
-	 * 
+	 *
 	 * @returns A Promise when the map has been loaded
 	 */
-	create():Promise<void> {
+	create(): Promise<void> {
 
 		return new Promise((resolve, reject) => {
 
-			if(this.options.container !== "") {
+			if (this.options.container !== "") {
 
 				this.mapCreate(resolve, reject);
 
 			} else {
-	
+
 				reject(new Error("Container id not set"));
-	
+
 			}
 
 		});
@@ -50,7 +50,7 @@ class Map {
 
 	/**
 	 * Creates the map object. Implementation specific
-	 * 
+	 *
 	 * @param {function} resolve The function to call when the map creation succeeds
 	 * @param {function} reject The function to call when the map creation fails
 	 */
@@ -63,7 +63,7 @@ class Map {
 	/**
 	 * Function called when the map has finished loading. Subclasses must call it before
 	 * setting any data
-	 * 
+	 *
 	 */
 	mapHasLoaded() {
 
@@ -76,7 +76,7 @@ class Map {
 	 */
 	remove() {
 
-		if(this.isInitialized)
+		if (this.isInitialized)
 			this.mapRemove();
 
 	}
@@ -92,8 +92,8 @@ class Map {
 
 	/**
 	 * Sets the map options
-	 * 
-	 * @param {MapOptions} options 
+	 *
+	 * @param {MapOptions} options
 	 */
 	setOptions(options: MapOptions) {
 
@@ -103,12 +103,12 @@ class Map {
 
 	/**
 	 * Sets the data to draw
-	 * 
-	 * @param {MapData} data 
+	 *
+	 * @param {MapData} data
 	 */
 	setData(data: MapData) {
 
-		if(this.isLoaded) {
+		if (this.isLoaded) {
 
 			this.removeMapData();
 			this.addMapData(data);
@@ -123,12 +123,12 @@ class Map {
 
 	/**
 	 * Adds data to draw to the existing data
-	 * 
-	 * @param {MapData} data 
+	 *
+	 * @param {MapData} data
 	 */
 	addData(data: MapData) {
 
-		if(this.isLoaded) {
+		if (this.isLoaded) {
 
 			this.addMapData(data);
 
@@ -142,8 +142,8 @@ class Map {
 
 	/**
 	 * Adds data to draw to the existing data. Implementation specific
-	 * 
-	 * @param {MapData} data 
+	 *
+	 * @param {MapData} data
 	 */
 	addMapData(data: MapData) {
 
@@ -153,7 +153,7 @@ class Map {
 
 	/**
 	 * Removes all the data from the map. Implementation specific
-	 * 
+	 *
 	 */
 	removeMapData() {
 
@@ -162,9 +162,9 @@ class Map {
 	}
 
 	/**
-	 * Subscribe to a map event that happens on a layer 
-	 * 
-	 * @param {string} eventName The event name 
+	 * Subscribe to a map event that happens on a layer
+	 *
+	 * @param {string} eventName The event name
 	 * @param {string} layerName The layer name
 	 * @param {Function} callback The callback to run when the event arrives
 	 */
@@ -175,12 +175,12 @@ class Map {
 	}
 
 
-/**
-	 * AddControl to map map 
-	 * 
-	 * @param {string} controlName The event name 
+	/**
+	 * AddControl to map map
+	 *
+	 * @param {string} controlName The event name
 	 * @param {object} controlOptions The layer name
-	 * 
+	 *
 	 */
 	addControlMap(controlName, controlOptions) {
 
@@ -195,18 +195,20 @@ class Map {
 
 	}
 
-	getZoom(){
+	getZoom() {
 
 		throw new Error("Map::getZoom function must be implemented by its subclasses");
 
 	}
 
-	easeTo(options){
+	easeTo(options) {
 
 		throw new Error("Map::easeTo function must be implemented by its subclasses");
 
 
 	}
+
+	getMap() { return this.map; }
 
 
 

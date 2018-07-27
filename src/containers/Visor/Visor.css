@@ -1,21 +1,86 @@
-.containerMap{
+.containerVisor{
+  height: calc(100% - 3em);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 1em;
+}
 
-	height: 100%;
-	width: 100%;
+.containerMenuSelectors{
+  z-index: 1000;
+  background-color: #FF994A;
+  /* border-top: solid 2px white; */
+  padding-left: 1em !important;
+  padding-right: 1em !important;
+  padding-bottom: 1em !important;
+  /* text-align: center; */
+}
+
+.mySelect{
+  color: #fff !important;
+  /* background-color: #ffb67d !important; */
+  background-color: #FA481E !important;
+  border-color: #fff !important;
+  font-size: 1.2em !important;
+  text-align: center !important;
+}
+
+.mySelect:hover, .mySelect:focus, .mySelect:active{
+  background-color: rgba(250, 70, 30, .2) !important;
+}
+
+.mySelect > .default .text, .mySelect > .default .text:focus{
+  color: rgba(255, 255, 255, 0.87) !important;
+}
+
+.mySelect > .menu {
+  color: #fff !important;
+  /* background-color: #ffb67d !important; */
+  background-color: #FF994A !important;
+}
+
+.mySelectAnysOrto{
+  color: #fff !important;
+  /* background-color: #ffb67d !important; */
+  background-color: #FF994A !important;
+  border-color: #fff !important;
+  font-size: 1.2em !important;
+}
+
+.containerSelectOrtoLeft{
+  position: absolute;
+  z-index: 50;
+  top: 150px;
+  left: 5px;
+  width: 125px;
+  border: solid 2px #fff;
+  border-radius: 5px;
+}
+
+.containerSelectOrtoRight{
+  position: absolute;
+  z-index: 50;
+  top: 150px;
+  right: 5px;
+  width: 125px;
+  border: solid 2px #fff;
+  border-radius: 5px;
 }
 
 .controls {
-  position: absolute;
+  position: relative;
   z-index: 10;
-  top: 0px;
+  top: 5em;
   left: 0px;
   width: 240px;
-  height: 120px;
-  background-color: rgba(255,255,255,0.9);
+  height: 100px;
+  background-color: rgba(255, 153, 74, 0.9);
   padding: 10px;
   padding-left: 25px;
   z-index: 3;
-  
+  color: #fff;
+  border: solid 2px;
+  border-radius: 5px;
 }
 
 
@@ -32,7 +97,6 @@
 
 .anysButtons {
   margin-left: 10px;
-  /* margin-top: 20px; */
   display: inline-block;
   position: relative;
   vertical-align: top;
