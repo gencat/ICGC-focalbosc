@@ -56,7 +56,7 @@ export default class Footer extends Component {
 			<Modal size="small" trigger={<Button  className={styles.myInvertedButton}><Icon name='linkify' /> Enllaça</Button>} closeIcon>
 				<Header title=" " showModalInfo={false}></Header>
 				<Modal.Content image>
-					<Modal.Description>
+					<Modal.Description className={styles.description}>
 						<Container textAlign='justified'>
 							<h3>Enllaça la vista</h3>
 							<Divider />
