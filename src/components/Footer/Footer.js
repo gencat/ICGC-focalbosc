@@ -27,7 +27,23 @@ import {
 
 export default class Footer extends Component {
 
+	constructor() {
+		super();
+		this.state = {
+			width: window.innerWidth,
+		};
 
+		window.addEventListener("resize", this.handleWindowSizeChange);
+	}
+
+
+	componentWillUnmount() {
+		window.removeEventListener("resize", this.handleWindowSizeChange);
+	}
+
+	handleWindowSizeChange = () => {
+		this.setState({ width: window.innerWidth });
+	};
 
 	openLink(url) {
 
@@ -45,7 +61,6 @@ export default class Footer extends Component {
 
 		const text = `<iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="${this.getUrlApp()}" ></iframe>`;
 
-
 		return text;
 
 	}
@@ -53,7 +68,7 @@ export default class Footer extends Component {
 	renderBTLink() {
 
 		return (
-			<Modal size="small" trigger={<Button  className={styles.myInvertedButton}><Icon name='linkify' /> Enllaça</Button>} closeIcon>
+			<Modal size="tiny" trigger={<Button  className={styles.myInvertedButton}><Icon name='linkify' /> Enllaça</Button>} closeIcon>
 				<Header title=" " showModalInfo={false}></Header>
 				<Modal.Content image>
 					<Modal.Description className={styles.description}>
@@ -79,13 +94,15 @@ export default class Footer extends Component {
 
 	}
 
-	render() {
-		return (
+	renderContainerLeft() {
 
-			<div className={styles.containerFooter}>
+		const { width } = this.state;
+		const isMobile = width <= 500;
+
+		if (!isMobile) {
+			return (
 
 				<div className={styles.containerLeft}>
-
 					<Button className={styles.myInvertedButton} onClick={this.openLink.bind(this,)}>
 						<Icon name='external alternate' /> +Prototips
 					</Button>
@@ -94,27 +111,48 @@ export default class Footer extends Component {
 					</Button>
 					{this.renderBTLink()}
 				</div>
+			);
+		}
 
-				<div className={styles.containerRight}>
+	}
 
-					<a target="blank" href={`${URLMAIL}${this.getUrlApp()}`}>
-						<Button circular inverted icon='mail' />
-					</a>
 
-				    <a target="blank" href={`${URLTWITTER}${this.getUrlApp()}`}>
-					   <Button circular inverted icon='twitter' />
-					</a>
-					
-					<a target="blank" href={`${URLFACEBOOK}${this.getUrlApp()}`}>
-						<Button circular inverted icon='facebook' />
-					</a>
-					  <a target="blank" href={`${URLGOOGLE}${this.getUrlApp()}`}>
-						<Button circular inverted icon='google plus' />
-					</a>
-					  <a target="blank" href={`${URLPINTEREST}${this.getUrlApp()}`}>
-						<Button circular inverted icon='pinterest' />
-					</a>
-				</div>
+	renderContainerRight() {
+
+		return (
+			<div className={styles.containerRight}>
+
+				<a target="blank" href={`${URLMAIL}${this.getUrlApp()}`}>
+					<Button circular inverted icon='mail' />
+				</a>
+
+				<a target="blank" href={`${URLTWITTER}${this.getUrlApp()}`}>
+				 <Button circular inverted icon='twitter' />
+				</a>
+
+				<a target="blank" href={`${URLFACEBOOK}${this.getUrlApp()}`}>
+					<Button circular inverted icon='facebook' />
+				</a>
+
+			</div>
+		);
+
+	}
+
+	render() {
+
+		const { width } = this.state;
+		const isMobile = width <= 500;
+
+		const footerStyle = (width <= 500 ? styles.containerFooterMobile : styles.containerFooter);
+
+		return (
+
+			<div className={footerStyle}>
+
+				{this.renderContainerLeft()}
+
+				{this.renderContainerRight() }
 
 			</div>
 		);
