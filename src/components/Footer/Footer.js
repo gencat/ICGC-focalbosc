@@ -30,7 +30,8 @@ export default class Footer extends Component {
 	constructor() {
 		super();
 		this.state = {
-			width: window.innerWidth,
+			width: window.innerWidth
+
 		};
 
 		window.addEventListener("resize", this.handleWindowSizeChange);
@@ -51,15 +52,25 @@ export default class Footer extends Component {
 
 	}
 
+	handleOpenModal() {
+
+		this.setState({ url: window.location.href });
+		this.setState({ encodeUrl: encodeURI(window.location.href)});
+
+	}
+
 	getUrlApp() {
 
-		return window.location.href;
+
+
+		return this.state.url;
 
 	}
 
 	getEncodedUrlApp() {
 
-		return encodeURI(window.location.href);
+		//this.setState({ encodeUrl: encodeURI(window.location.href)});
+		return  this.state.encodeUrl;
 
 	}
 
@@ -74,7 +85,7 @@ export default class Footer extends Component {
 	renderBTLink() {
 
 		return (
-			<Modal size="tiny" trigger={<Button  className={styles.myInvertedButton}><Icon name='linkify' /> Enllaça</Button>} closeIcon>
+			<Modal size="tiny" trigger={<Button  onClick={this.handleOpenModal.bind(this)} className={styles.myInvertedButton}><Icon name='linkify' /> Enllaça</Button>} closeIcon>
 				<Header title=" " showModalInfo={false}></Header>
 				<Modal.Content image>
 					<Modal.Description className={styles.description}>
@@ -109,7 +120,7 @@ export default class Footer extends Component {
 			return (
 
 				<div className={styles.containerLeft}>
-					<Button className={styles.myInvertedButton} onClick={this.openLink.bind(this,)}>
+					<Button className={styles.myInvertedButton} onClick={this.openLink.bind(this, )}>
 						<Icon name='external alternate' /> +Prototips
 					</Button>
 					<Button  className={styles.myInvertedButton}>
