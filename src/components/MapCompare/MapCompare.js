@@ -293,7 +293,7 @@ export default class MapCompare extends Component {
 		return (
 			<div className={styles.containerButtonReset}>
 				<Button onClick={this.resetMap.bind(this)} size="small" className={styles.myButtonReset} animated='vertical'>
-					<Button.Content visible><Image src="./focalbosc/cat_white.svg"></Image></Button.Content>
+					<Button.Content visible><Image src="./cat_white.svg"></Image></Button.Content>
 					<Button.Content hidden>
 						<Icon size="large" name='arrow left' />
 					</Button.Content>
