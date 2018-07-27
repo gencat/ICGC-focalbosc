@@ -8,7 +8,7 @@
 
 .containerMenuSelectors{
   z-index: 1000;
-  background-color: #FF994A;
+  background-color:rgba(115,116,88,0.85);
   /* border-top: solid 2px white; */
   padding-left: 1em !important;
   padding-right: 1em !important;

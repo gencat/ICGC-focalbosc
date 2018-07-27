@@ -19,8 +19,8 @@ export const COLOR_FINAL = "#c21125";
 export const TEMATIC_FIELD = "AREA";
 export const FILTER_FIELD = "ANY";
 
-export const INIT_APP_ZOOM = 7.85;
-export const INIT_APP_CENTER = [1.434, 41.491];
+export const INIT_APP_ZOOM = 7.4;
+export const INIT_APP_CENTER = [1.564, 41.714];
 export const LIMIT_ZOOM = 11;
 
 

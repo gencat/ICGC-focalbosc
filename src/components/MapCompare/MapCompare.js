@@ -52,6 +52,8 @@ export default class MapCompare extends Component {
 			style: CONSTANTS.MAPSTYLE_HISTORIC,
 			zoom: CONSTANTS.INIT_APP_ZOOM,
 			center: CONSTANTS.INIT_APP_CENTER,
+			hash:true,
+			attributionControl:false,
 			container: this.beforeMapContainer
 		});
 
@@ -60,6 +62,8 @@ export default class MapCompare extends Component {
 			style: CONSTANTS.MAPSTYLE_HISTORIC,
 			zoom: CONSTANTS.INIT_APP_ZOOM,
 			center: CONSTANTS.INIT_APP_CENTER,
+			hash:true,
+			attributionControl:false,
 			container: this.afterMapContainer
 		});
 
@@ -113,7 +117,7 @@ export default class MapCompare extends Component {
 		if (!Utils.isEmpty(this.props.currentIncendi) && (prevProps.currentIncendi.value === {} ||  prevProps.currentIncendi.value !== this.props.currentIncendi.value)) {
 
 			const bboxList = this.props.currentIncendi.bbox.split(",");
-			console.log("Abans fitBBOX", this.props.currentIncendi.bbox);
+			//console.log("Abans fitBBOX", this.props.currentIncendi.bbox);
 			this.afterMap.fitBBOX(bboxList, pitch);
 			this.beforeMap.fitBBOX(bboxList, pitch);
 
