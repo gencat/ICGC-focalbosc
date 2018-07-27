@@ -8,6 +8,5 @@ cd tmp
 mkdir dist
 
 npm install
-npm run watch-dev
 
 mv ./* /var/www/html/
