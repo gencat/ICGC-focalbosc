@@ -81,6 +81,8 @@ export default class MapCompare extends Component {
 
 		this.initMapEvents();
 
+		this.props.initURLParams();
+
 	}
 
 	componentDidUpdate(prevProps) {
@@ -257,54 +259,6 @@ export default class MapCompare extends Component {
 
 		this.props.onSelectIncendi(feature.properties.CODI_FINAL);
 
-		/* if (this.isYearToCompare(feature.properties.ANY)) {
-
-			this.props.onSelectIncendi(feature.properties.CODI_FINAL);
-
-		} else {
-
-			const bbox = [
-				[parseFloat(feature.properties.XMIN), parseFloat(feature.properties.YMIN)],
-				[parseFloat(feature.properties.XMAX), parseFloat(feature.properties.YMAX)]
-			];
-
-			this.afterMap.fitBounds(bbox);
-			this.beforeMap.fitBounds(bbox);
-
-		} */
-
-		/* const bbox = [
-			[parseFloat(feature.properties.XMIN), parseFloat(feature.properties.YMIN)],
-			[parseFloat(feature.properties.XMAX), parseFloat(feature.properties.YMAX)]
-		];
-
-		this.afterMap.fitBounds(bbox);
-		this.beforeMap.fitBounds(bbox); */
-
-		/* const AREAKM = (parseFloat(feature.properties.AREA) / 1000000);
-		let showLinkYear = false;
-
-		if (parseInt(feature.properties.ANY) >= CONSTANTS.ANY_COMPARADOR) {
-			showLinkYear = true;
-
-		}
-
-		this.setState({
-			MUNICIPI: feature.properties.MUNICIPI,
-			DATAINCENT: feature.properties.DATA_INCEN,
-			ANY: feature.properties.ANY,
-			AREA: feature.properties.AREA,
-			AREAKM: AREAKM.toFixed(2),
-			CODIFINAL: feature.properties.CODI_FINAL,
-			XMAX: feature.properties.XMAX,
-			XMIN: feature.properties.XMIN,
-			YMAX: feature.properties.YMAX,
-			YMIN: feature.properties.YMIN,
-			showPanelPopup: false,
-			showLinkYear: showLinkYear,
-			showPanel: true,
-		}); */
-
 	}
 
 	closePanel() {
@@ -350,24 +304,14 @@ export default class MapCompare extends Component {
 
 	}	
 
+	getStyleComparador() {
+		if(!this.props.modeComparador) return `${styles.map} ${styles.noComparator}`;
+
+		return `${styles.map}`;
+	}
 
 	render() {
 
-		{/* <div style={{display: this.state.showPanel ? "block" : "none" }} className={styles.panelinfo}>
-					<div className={styles.panelinfoheader}>
-						<div className={styles.panelinfoheaderdetail}>
-							<Icon className={styles.panelinfoheaderclose} size="large" onClick={this.closePanel.bind(this)} name="window close" />
-							<div  className={styles.panelinfoheadertext}>
-								<h3>{MUNICIPI}</h3>
-							</div>
-						</div>
-					</div>
-					<div  className={styles.panelinfobody}>
-						<div className={styles.panelinfobody}>{`Any: ${ANY}`}</div>
-						<div className={styles.panelinfobody}>{`Data: ${DATAINCENT}`}</div>
-						<div className={styles.panelinfobody}>{`Àrea: ${AREAKM} km2`}</div>
-					</div>
-				</div> */}
 		const { MUNICIPI, DATAINCENT, MUNICIPI_MOV, DATAINCENT_MOV, ANY, AREAKM, CODIFINAL } = this.state;
 
 		return (
@@ -378,8 +322,7 @@ export default class MapCompare extends Component {
 					<div>{DATAINCENT_MOV}</div>
 				</div>				
 
-				<div id="beforeMap" ref={el => (this.beforeMapContainer = el)} className={styles.map}/>
-
+				<div id="beforeMap" ref={el => (this.beforeMapContainer = el)} className={this.getStyleComparador()}/>
 				<div id="afterMap" ref={el => (this.afterMapContainer = el)} className={styles.map}/>
 
 				{this.renderButtonResetComparador()}
@@ -398,5 +341,6 @@ MapCompare.propTypes = {
 	onSelectIncendi: PropTypes.func,
 	onResetMap: PropTypes.func,
 	modeComparador: PropTypes.bool,
-	anyIncendi: PropTypes.number
+	anyIncendi: PropTypes.number,
+	initURLParams: PropTypes.func
 };

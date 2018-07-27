@@ -1,9 +1,9 @@
-._e_e_src_containers_App__myApp{
+._E_E_src_containers_App__myApp{
 
 	height: 100vh;
 	width: 100%;
 
-}._e_e_src_containers_Visor_Visor__containerVisor{
+}._E_E_src_containers_Visor_Visor__containerVisor{
   height: calc(100% - 3em);
   display: flex;
   flex-direction: column;
@@ -11,7 +11,7 @@
   padding-top: 1em;
 }
 
-._e_e_src_containers_Visor_Visor__containerMenuSelectors{
+._E_E_src_containers_Visor_Visor__containerMenuSelectors{
   z-index: 1000;
   background-color:rgba(115,116,88,0.85);
   /* border-top: solid 2px white; */
@@ -21,7 +21,7 @@
   /* text-align: center; */
 }
 
-._e_e_src_containers_Visor_Visor__mySelect{
+._E_E_src_containers_Visor_Visor__mySelect{
   color: #fff !important;
   /* background-color: #ffb67d !important; */
   background-color: #FA481E !important;
@@ -30,21 +30,21 @@
   text-align: center !important;
 }
 
-._e_e_src_containers_Visor_Visor__mySelect:hover, ._e_e_src_containers_Visor_Visor__mySelect:focus, ._e_e_src_containers_Visor_Visor__mySelect:active{
+._E_E_src_containers_Visor_Visor__mySelect:hover, ._E_E_src_containers_Visor_Visor__mySelect:focus, ._E_E_src_containers_Visor_Visor__mySelect:active{
   background-color: rgba(250, 70, 30, .2) !important;
 }
 
-._e_e_src_containers_Visor_Visor__mySelect > ._e_e_src_containers_Visor_Visor__default ._e_e_src_containers_Visor_Visor__text, ._e_e_src_containers_Visor_Visor__mySelect > ._e_e_src_containers_Visor_Visor__default ._e_e_src_containers_Visor_Visor__text:focus{
+._E_E_src_containers_Visor_Visor__mySelect > ._E_E_src_containers_Visor_Visor__default ._E_E_src_containers_Visor_Visor__text, ._E_E_src_containers_Visor_Visor__mySelect > ._E_E_src_containers_Visor_Visor__default ._E_E_src_containers_Visor_Visor__text:focus{
   color: rgba(255, 255, 255, 0.87) !important;
 }
 
-._e_e_src_containers_Visor_Visor__mySelect > ._e_e_src_containers_Visor_Visor__menu {
+._E_E_src_containers_Visor_Visor__mySelect > ._E_E_src_containers_Visor_Visor__menu {
   color: #fff !important;
   /* background-color: #ffb67d !important; */
   background-color: #FF994A !important;
 }
 
-._e_e_src_containers_Visor_Visor__mySelectAnysOrto{
+._E_E_src_containers_Visor_Visor__mySelectAnysOrto{
   color: #fff !important;
   /* background-color: #ffb67d !important; */
   background-color: #FF994A !important;
@@ -52,7 +52,7 @@
   font-size: 1.2em !important;
 }
 
-._e_e_src_containers_Visor_Visor__containerSelectOrtoLeft{
+._E_E_src_containers_Visor_Visor__containerSelectOrtoLeft{
   position: absolute;
   z-index: 50;
   top: 150px;
@@ -62,7 +62,7 @@
   border-radius: 5px;
 }
 
-._e_e_src_containers_Visor_Visor__containerSelectOrtoRight{
+._E_E_src_containers_Visor_Visor__containerSelectOrtoRight{
   position: absolute;
   z-index: 50;
   top: 150px;
@@ -72,7 +72,7 @@
   border-radius: 5px;
 }
 
-._e_e_src_containers_Visor_Visor__controls {
+._E_E_src_containers_Visor_Visor__controls {
   position: relative;
   z-index: 10;
   top: 5em;
@@ -89,18 +89,18 @@
 }
 
 
-._e_e_src_containers_Visor_Visor__anysText {
+._E_E_src_containers_Visor_Visor__anysText {
      /* display: inline-block; */
     /* vertical-align: top; */
     font-size: 0.8em;
 }
 
-._e_e_src_containers_Visor_Visor__anysControls {
+._E_E_src_containers_Visor_Visor__anysControls {
   display: inline-block;
   vertical-align: top;
 }
 
-._e_e_src_containers_Visor_Visor__anysButtons {
+._E_E_src_containers_Visor_Visor__anysButtons {
   margin-left: 10px;
   display: inline-block;
   position: relative;
@@ -109,7 +109,7 @@
 }
 
 
-._e_e_src_containers_Visor_Visor__anysIcones {
+._E_E_src_containers_Visor_Visor__anysIcones {
   font-size: 27px !important;
   cursor: pointer;
   /* padding-top: 4px !important; */
@@ -119,11 +119,11 @@
  
 
 
-._e_e_src_containers_Visor_Visor__anysIconesDintre {
+._E_E_src_containers_Visor_Visor__anysIconesDintre {
   margin: 7px 0px;
 }
 
-._e_e_src_containers_Visor_Visor__anysRangs{
+._E_E_src_containers_Visor_Visor__anysRangs{
 
   position: relative;
   top: 20px;
@@ -131,7 +131,7 @@
 
 }
 
-._e_e_src_containers_Visor_Visor__anySelecionat {
+._E_E_src_containers_Visor_Visor__anySelecionat {
   margin-top: 20px;
   /* margin-bottom: -7px; */
   vertical-align: top;
@@ -141,7 +141,7 @@
   cursor: default;
   width: 105px;
 }
-._e_e_src_components_Footer_Footer__containerFooter{
+._E_E_src_components_Footer_Footer__containerFooter{
 	width: 100%;
 	max-height: 3em;
 	display: flex;
@@ -155,7 +155,7 @@
 	justify-content: space-between;
 }
 
-._e_e_src_components_Footer_Footer__containerFooterMobile{
+._E_E_src_components_Footer_Footer__containerFooterMobile{
 	width: 100%;
 	max-height: 3em;
 	display: flex;
@@ -169,55 +169,83 @@
 	justify-content: center;
 }
 
-._e_e_src_components_Footer_Footer__myInvertedButton{
+._E_E_src_components_Footer_Footer__myInvertedButton{
 	box-shadow: none !important;
 	background: transparent none !important;
 	color: #fff !important;
 	text-shadow: none!important;
 }
 
-._e_e_src_components_Footer_Footer__myInvertedButton:hover, ._e_e_src_components_Footer_Footer__myInvertedButton:focus {
+._E_E_src_components_Footer_Footer__myInvertedButton:hover, ._E_E_src_components_Footer_Footer__myInvertedButton:focus {
 	background: #fff !important;
 	box-shadow: 0 0 0 2px #fff inset!important;
 	color: rgba(0,0,0,.8) !important;
 }
 
-._e_e_src_components_Footer_Footer__description{
+._E_E_src_components_Footer_Footer__description{
 	width:100%;
 }
 
-._e_e_src_components_Footer_Footer__containerRightMobile{
+._E_E_src_components_Footer_Footer__containerRightMobile{
 	align-self: flex-end;
+<<<<<<< HEAD
 }._e_e_src_components_Header_Header__containerlogo {
+=======
+}._E_E_src_components_Header_Header__containerlogo {
+>>>>>>> 1503144c8518b57f8d395f05e837cef1ff6cf41a
 	max-width: 10em;
 	padding: 0.5rem;
 }
 
+<<<<<<< HEAD
 ._e_e_src_components_Header_Header__containertitle{
+=======
+._E_E_src_components_Header_Header__containertitle{
+>>>>>>> 1503144c8518b57f8d395f05e837cef1ff6cf41a
 	padding: 1em;
 
 }
 
+<<<<<<< HEAD
 ._e_e_src_components_Header_Header__title{
+=======
+._E_E_src_components_Header_Header__title{
+>>>>>>> 1503144c8518b57f8d395f05e837cef1ff6cf41a
 	color: #fff !important;
 	/* color: #C21126; */
 }
 
+<<<<<<< HEAD
 ._e_e_src_components_Header_Header__containeritemRight{
 	padding: 0.8em;
 }
 
 ._e_e_src_components_Header_Header__buttonModalInfoMobile{
+=======
+._E_E_src_components_Header_Header__containeritemRight{
+	padding: 0.8em;
+}
+
+._E_E_src_components_Header_Header__buttonModalInfoMobile{
+>>>>>>> 1503144c8518b57f8d395f05e837cef1ff6cf41a
 	font-size: 0.8em;
 }
 
 
+<<<<<<< HEAD
 ._e_e_src_components_Header_Header__myMenu {
+=======
+._E_E_src_components_Header_Header__myMenu {
+>>>>>>> 1503144c8518b57f8d395f05e837cef1ff6cf41a
 	height: 0.8em;
 	border-bottom: 2px solid #fff;
 }
 
+<<<<<<< HEAD
 ._e_e_src_components_Header_Header__containerHeader{
+=======
+._E_E_src_components_Header_Header__containerHeader{
+>>>>>>> 1503144c8518b57f8d395f05e837cef1ff6cf41a
 	width: 100%;
 	max-height: 3em;
 	display: flex;
@@ -230,7 +258,11 @@
 }
 
 
+<<<<<<< HEAD
 ._e_e_src_components_Header_Header__description{
+=======
+._E_E_src_components_Header_Header__description{
+>>>>>>> 1503144c8518b57f8d395f05e837cef1ff6cf41a
 
 	width:100%;
 	
@@ -245,22 +277,34 @@
 
 .containerlogo{
 	align-self: flex-end;
+<<<<<<< HEAD
 } */._e_e_src_components_MapCompare_MapCompare__containerMap{
+=======
+} */._E_E_src_components_MapCompare_MapCompare__containerMap{
+>>>>>>> 1503144c8518b57f8d395f05e837cef1ff6cf41a
 	height: 100vh;
 	width: 100vh;
 	margin-right: 0 !important;
 	
 }
 
-._e_e_src_components_MapCompare_MapCompare__map {
+._E_E_src_components_MapCompare_MapCompare__map {
 	position: absolute;
 	top: 4em;
 	bottom: 0;
 	width: 100%;
 }
 
+._E_E_src_components_MapCompare_MapCompare__noComparator {
+
+}
+
+._E_E_src_components_MapCompare_MapCompare__map[class*="noComparator"] > div[class="mapboxgl-compare"] {
+	z-index: -1000;
+}
+
 /* Panel info */
-._e_e_src_components_MapCompare_MapCompare__panelinfo{
+._E_E_src_components_MapCompare_MapCompare__panelinfo{
 	position: absolute;
 	z-index: 50;
 	top: 260px;
@@ -274,7 +318,7 @@
 
 }
 
-._e_e_src_components_MapCompare_MapCompare__panelinfoPopup{
+._E_E_src_components_MapCompare_MapCompare__panelinfoPopup{
 	position: absolute;
 	z-index: 50;
 	top: 260px;
@@ -294,7 +338,7 @@
 }
 
 
-._e_e_src_components_MapCompare_MapCompare__panelinfoheader{
+._E_E_src_components_MapCompare_MapCompare__panelinfoheader{
 	padding: 20px;
 	margin: 0;
 	padding: 0;
@@ -304,11 +348,11 @@
 	vertical-align: baseline;
 
 }
-._e_e_src_components_MapCompare_MapCompare__panelinfoheaderdetail{
+._E_E_src_components_MapCompare_MapCompare__panelinfoheaderdetail{
 	min-height: 30px;
 
 }
-._e_e_src_components_MapCompare_MapCompare__panelinfoheaderclose{
+._E_E_src_components_MapCompare_MapCompare__panelinfoheaderclose{
 	height: 30px;
 	/* padding-top: 5px; */
 	padding-bottom: 5px;
@@ -317,15 +361,15 @@
 	cursor:pointer;
 
 }
-._e_e_src_components_MapCompare_MapCompare__panelinfoheadertext{
+._E_E_src_components_MapCompare_MapCompare__panelinfoheadertext{
 	color: #860000;
 
 }
-._e_e_src_components_MapCompare_MapCompare__panelinfobody{
+._E_E_src_components_MapCompare_MapCompare__panelinfobody{
 	padding-top:5px
 }
 
-._e_e_src_components_MapCompare_MapCompare__panelinfolink{
+._E_E_src_components_MapCompare_MapCompare__panelinfolink{
  
 	border: 1px solid #C21125;
 	margin-top: 10px;
@@ -335,7 +379,7 @@
 	border-radius: 2px;
 }
 
-._e_e_src_components_MapCompare_MapCompare__panelinfolink:hover{
+._E_E_src_components_MapCompare_MapCompare__panelinfolink:hover{
 	border: 1px solid #C21125;
 	margin-top: 10px;
 	padding: 2px;
@@ -346,11 +390,11 @@
 }
 
 
-._e_e_src_components_MapCompare_MapCompare__infolink{
+._E_E_src_components_MapCompare_MapCompare__infolink{
 	color: #C21125;
 }
 
-._e_e_src_components_MapCompare_MapCompare__containerButtonReset{
+._E_E_src_components_MapCompare_MapCompare__containerButtonReset{
   position: absolute;
 	z-index: 50;
 	bottom: 55px;
@@ -359,7 +403,7 @@
   height: 80px; */
 }
 
-._e_e_src_components_MapCompare_MapCompare__myButtonReset{
+._E_E_src_components_MapCompare_MapCompare__myButtonReset{
   width: 75px;
   background-color: #ff994a !important;
   color: #fff !important;

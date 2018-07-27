@@ -21,23 +21,43 @@ export default class PanelContainer extends ReactQueryParams {
 
 		/* if (codifinal !== undefined) {
 
+
 			console.log(codifinal);
+
+			const incendiVal = this.getIncendiByCodi(codifinal);
+
+			const beforeAny = Number(CONSTANTS.incendisList[incendiVal].any) - 1;
+			const afterAny = Number(CONSTANTS.incendisList[incendiVal].any) + 1;
+
+			this.state = {
+
+				year: CONSTANTS.incendisList[incendiVal].any,
+
+				currentBBOX: [],
+				currentCenter: [],
+
+				currentIncendi: CONSTANTS.incendisList[incendiVal],
+				beforeMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[beforeAny]],
+				afterMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[afterAny]],
+
+				modeComparador: this.isYearToCompare(CONSTANTS.incendisList[incendiVal].any)
+			};
 
 		} else { */
 
-		this.state = {
+			this.state = {
 
-			year:CONSTANTS.MAX_YEAR,
+				year: CONSTANTS.MAX_YEAR,
 
-			currentBBOX: [],
-			currentCenter: [],
+				currentBBOX: [],
+				currentCenter: [],
 
-			currentIncendi: {},
-			beforeMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
-			afterMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
+				currentIncendi: {},
+				beforeMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
+				afterMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
 
-			modeComparador: false
-		};
+				modeComparador: false
+			};
 
 		//}
 
@@ -204,6 +224,20 @@ export default class PanelContainer extends ReactQueryParams {
 	}
 
 
+	initURLParams() {
+
+		console.log("initURLParams");
+		const codifinal = this.queryParams.codifinal;
+
+		if (codifinal !== undefined) {
+
+			console.log(codifinal);
+			this.handleIncendiChange(this.getIncendiByCodi(codifinal));
+
+		}
+
+	}
+
 	handleSelectIncendi (codi) {
 		console.log("handleSelectIncendi", codi);
 		this.handleIncendiChange(this.getIncendiByCodi(codi));
@@ -235,6 +269,7 @@ export default class PanelContainer extends ReactQueryParams {
 				onSelectIncendi={this.handleSelectIncendi.bind(this)}
 				onZoomChange={this.handleZoomChange.bind(this)}
 				onResetMap={this.resetComparador.bind(this)}
+				initURLParams={this.initURLParams.bind(this)}
 			/>
 		);
 
@@ -334,7 +369,7 @@ export default class PanelContainer extends ReactQueryParams {
 		return (
 
 			<Grid centered  className={styles.containerMenuSelectors}>
-	
+
 				<Grid.Row only='tablet mobile'>
 					<Grid.Column >
 						{this.renderSelectorIncendis(this.state.currentIncendi.value)}
