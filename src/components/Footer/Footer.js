@@ -1,9 +1,16 @@
 // @flow
 
 import React, { Component } from "react";
-import { Image,  Menu, Button, Icon } from "semantic-ui-react";
-
+import {  Modal, Button, Container, Divider, Form, Icon } from "semantic-ui-react";
+import Header from "../Header/Header";
 import styles from "./Footer.css";
+import {
+	URLMAIL,
+	URLTWITTER,
+	URLFACEBOOK,
+	URLGOOGLE,
+	URLPINTEREST
+} from "../../constants";
 
 /* const styles = {
 
@@ -20,10 +27,55 @@ import styles from "./Footer.css";
 
 export default class Footer extends Component {
 
+
+
 	openLink(url) {
 
-		console.log
-		window.open(url, '_blank');
+		window.open(url, "_blank");
+
+	}
+
+	getUrlApp() {
+
+		return window.location.href;
+
+	}
+
+	getEmbedUrlApp() {
+
+		const text = `<iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="${this.getUrlApp()}" ></iframe>`;
+
+
+		return text;
+
+	}
+
+	renderBTLink() {
+
+		return (
+			<Modal size="small" trigger={<Button  className={styles.myInvertedButton}><Icon name='linkify' /> Enllaça</Button>} closeIcon>
+				<Header title=" " showModalInfo={false}></Header>
+				<Modal.Content image>
+					<Modal.Description className={styles.description}>
+						<Container textAlign='justified'>
+							<h3>Enllaça la vista</h3>
+							<Divider />
+							<Form inline>
+								<Form.Field >
+									<label>Per enllaçar amb aquest mapa, copieu i enganxeu el següent text:</label>
+									<input value={this.getUrlApp()} />
+								</Form.Field>
+								<Form.Field>
+									<label>Per inserir aquest mapa al vostre web, copieu i enganxeu el següent text:</label>
+									<textarea value={this.getEmbedUrlApp()} />
+								</Form.Field>
+							</Form>
+						</Container>
+					</Modal.Description>
+				</Modal.Content>
+			</Modal>
+
+		);
 
 	}
 
@@ -34,25 +86,34 @@ export default class Footer extends Component {
 
 				<div className={styles.containerLeft}>
 
-					<Button className={styles.myInvertedButton} onClick={this.openLink.bind(this, )}>
+					<Button className={styles.myInvertedButton} onClick={this.openLink.bind(this,)}>
 						<Icon name='external alternate' /> +Prototips
 					</Button>
 					<Button  className={styles.myInvertedButton}>
 						<Icon name='github' /> Github
 					</Button>
-					<Button  className={styles.myInvertedButton}>
-						<Icon name='linkify' /> Enllaça
-					</Button>
+					{this.renderBTLink()}
 				</div>
 
 				<div className={styles.containerRight}>
 
-					<Button circular inverted icon='mail' />
-					<Button circular inverted icon='twitter' />
-					<Button circular inverted icon='facebook' />
-					<Button circular inverted icon='google plus' />
-					<Button circular inverted icon='pinterest' />
+					<a target="blank" href={`${URLMAIL}${this.getUrlApp()}`}>
+						<Button circular inverted icon='mail' />
+					</a>
 
+				    <a target="blank" href={`${URLTWITTER}${this.getUrlApp()}`}>
+					   <Button circular inverted icon='twitter' />
+					</a>
+					
+					<a target="blank" href={`${URLFACEBOOK}${this.getUrlApp()}`}>
+						<Button circular inverted icon='facebook' />
+					</a>
+					  <a target="blank" href={`${URLGOOGLE}${this.getUrlApp()}`}>
+						<Button circular inverted icon='google plus' />
+					</a>
+					  <a target="blank" href={`${URLPINTEREST}${this.getUrlApp()}`}>
+						<Button circular inverted icon='pinterest' />
+					</a>
 				</div>
 
 			</div>

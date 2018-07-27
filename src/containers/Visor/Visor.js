@@ -107,6 +107,16 @@ export default class PanelContainer extends ReactQueryParams {
 		this.updateYear(event.target.value);
 	}
 
+	changeMaxYear() {
+
+		this.updateYear(CONSTANTS.ANY_FINAL);
+	}
+
+	changeMinYear() {
+
+		this.updateYear(CONSTANTS.ANY_INIT);
+	}
+
 	changeAddStepYear(e) {
 
 		const currentYear = Number(this.state.year);
@@ -188,7 +198,7 @@ export default class PanelContainer extends ReactQueryParams {
 
 
 		this.setQueryParams({
-			codifinal: newCurrentIncendi.key
+			codifinal: `${newCurrentIncendi.key}&`
 		});
 
 	}

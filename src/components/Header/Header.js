@@ -36,7 +36,7 @@ export default class Header extends Component {
 					<Modal size="small" trigger={<Button inverted circular icon='info' className={styles.buttonModalInfoMobile} ></Button>} closeIcon>
 						<Header title=" " showModalInfo={false}></Header>
 						<Modal.Content image>
-							<Modal.Description>
+							<Modal.Description  className={styles.description}>
 
 								<Container textAlign='justified'>
 

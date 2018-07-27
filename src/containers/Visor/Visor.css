@@ -73,7 +73,7 @@
   top: 5em;
   left: 0px;
   width: 240px;
-  height: 100px;
+  height: 129px;
   background-color: rgba(255, 153, 74, 0.9);
   padding: 10px;
   padding-left: 25px;
@@ -97,7 +97,7 @@
 
 .anysButtons {
   margin-left: 10px;
-  /* margin-top: 20px; */
+  margin-top: -5px;
   display: inline-block;
   position: relative;
   vertical-align: top;
@@ -128,7 +128,7 @@
 }
 
 .anySelecionat {
-  margin-top: 20px;
+  margin-top: 35px;
   /* margin-bottom: -7px; */
   vertical-align: top;
   font-weight: bold;
