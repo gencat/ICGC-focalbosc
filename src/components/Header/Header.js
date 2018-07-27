@@ -72,7 +72,7 @@ export default class Header extends Component {
 	render() {
 
 		const title = (this.props.title ? this.props.title : "Nou prototip");
-		const pathLogo = (this.props.pathLogo ? this.props.pathLogo : "./ICGC_white.svg");
+		const pathLogo = (this.props.pathLogo ? this.props.pathLogo : "./focalbosc/ICGC_white.svg");
 
 		const { width } = this.state;
   	const isMobile = width <= 500;
