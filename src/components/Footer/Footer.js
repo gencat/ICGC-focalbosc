@@ -57,6 +57,12 @@ export default class Footer extends Component {
 
 	}
 
+	getEncodedUrlApp() {
+
+		return encodeURI(window.location.href);
+
+	}
+
 	getEmbedUrlApp() {
 
 		const text = `<iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="${this.getUrlApp()}" ></iframe>`;
@@ -122,15 +128,15 @@ export default class Footer extends Component {
 		return (
 			<div className={styles.containerRight}>
 
-				<a target="blank" href={`${URLMAIL}${this.getUrlApp()}`}>
+				<a target="blank" href={`${URLMAIL}${this.getEncodedUrlApp()}`}>
 					<Button circular inverted icon='mail' />
 				</a>
 
-				<a target="blank" href={`${URLTWITTER}${this.getUrlApp()}`}>
+				<a target="blank" href={`${URLTWITTER}${this.getEncodedUrlApp()}`}>
 				 <Button circular inverted icon='twitter' />
 				</a>
 
-				<a target="blank" href={`${URLFACEBOOK}${this.getUrlApp()}`}>
+				<a target="blank" href={`${URLFACEBOOK}${this.getEncodedUrlApp()}`}>
 					<Button circular inverted icon='facebook' />
 				</a>
 
