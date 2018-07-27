@@ -14,19 +14,17 @@ export default class Header extends Component {
 			width: window.innerWidth,
 		};
 
-		window.addEventListener('resize', this.handleWindowSizeChange);
+		window.addEventListener("resize", this.handleWindowSizeChange);
 	}
 
-	
-	// make sure to remove the listener
-	// when the component is not mounted anymore
+
 	componentWillUnmount() {
-		window.removeEventListener('resize', this.handleWindowSizeChange);
+		window.removeEventListener("resize", this.handleWindowSizeChange);
 	}
-	
+
 	handleWindowSizeChange = () => {
 		this.setState({ width: window.innerWidth });
-	};	
+	};
 
 	renderModalInfo() {
 
@@ -82,13 +80,13 @@ export default class Header extends Component {
 		if (isMobile) {
 			return (
 				<div className={styles.containerHeader}>
-	
+
 					<div className={styles.containertitle}>
 						<h2 className={styles.title}>{title}</h2>
 					</div>
-	
+
 					{this.renderModalInfo()}
-	
+
 				</div>
 			);
 		}
