@@ -23,7 +23,7 @@ export default class MapCompare extends Component {
 	doReset;
 
 	state = {
-
+		width: window.innerWidth,
 		showPanel: false,
 		showPanelPopup: false,
 		MUNICIPI:"",
@@ -39,6 +39,19 @@ export default class MapCompare extends Component {
 		YMIN:"",
 		AREAKM:""
 	}
+
+	constructor() {
+		super();
+		window.addEventListener("resize", this.handleWindowSizeChange);
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener("resize", this.handleWindowSizeChange);
+	}
+
+	handleWindowSizeChange = () => {
+		this.setState({ width: window.innerWidth });
+	};
 
 	async componentDidMount() {
 
@@ -111,7 +124,8 @@ export default class MapCompare extends Component {
 
 		if (prevProps.modeComparador !== this.props.modeComparador) {
 
-			this.map._setPosition(this.props.modeComparador ? 500 : 0);
+
+			this.map._setPosition(this.props.modeComparador ? (this.state.width / 2) : 0);
 			this.afterMap.easeTo({pitch: pitch});
 			this.beforeMap.easeTo({pitch: pitch});
 		}
@@ -302,10 +316,10 @@ export default class MapCompare extends Component {
 
 		);
 
-	}	
+	}
 
 	getStyleComparador() {
-		if(!this.props.modeComparador) return `${styles.map} ${styles.noComparator}`;
+		if (!this.props.modeComparador) return `${styles.map} ${styles.noComparator}`;
 
 		return `${styles.map}`;
 	}
@@ -320,7 +334,7 @@ export default class MapCompare extends Component {
 				<div style={{display: this.state.showPanelPopup ? "block" : "none" }} className={styles.panelinfoPopup}>
 					<div><h4>{MUNICIPI_MOV}</h4></div>
 					<div>{DATAINCENT_MOV}</div>
-				</div>				
+				</div>
 
 				<div id="beforeMap" ref={el => (this.beforeMapContainer = el)} className={this.getStyleComparador()}/>
 				<div id="afterMap" ref={el => (this.afterMapContainer = el)} className={styles.map}/>
