@@ -205,6 +205,7 @@ export default class PanelContainer extends ReactQueryParams {
 
 
 	handleSelectIncendi (codi) {
+		console.log("handleSelectIncendi", codi);
 		this.handleIncendiChange(this.getIncendiByCodi(codi));
 	}
 
@@ -245,6 +246,8 @@ export default class PanelContainer extends ReactQueryParams {
 
 			const any = this.state.year >= CONSTANTS.MAX_YEAR ? "Tots" : this.state.year;
 
+			const anyUp = this.state.year === CONSTANTS.MAX_YEAR ? "Tots" : this.state.year + 1;
+			const anyDown = this.state.year === CONSTANTS.ANY_INIT ? CONSTANTS.ANY_INIT : this.state.year - 1;
 			/* 	const tagUp */
 
 			return (
@@ -253,13 +256,10 @@ export default class PanelContainer extends ReactQueryParams {
 						<div className={styles.anySelecionat}>{any}</div>
 					</div>
 					<div className={styles.anysButtons}>
-						<Icon className={styles.anysIcones} size="small" onClick={this.changeMaxYear.bind(this)} name="caret up" />2017
+						<Icon className={styles.anysIcones} size="large" onClick={this.changeAddStepYear.bind(this)} name="chevron circle up" />{anyUp}
 						<br />
-						<Icon className={styles.anysIcones} size="large" onClick={this.changeAddStepYear.bind(this)} name="chevron circle up" />
+						<Icon  className={styles.anysIcones} size="large" onClick={this.changeSubstractStepYear.bind(this)} name="chevron circle down" />{anyDown}
 						<br />
-						<Icon  className={styles.anysIcones} size="large" onClick={this.changeSubstractStepYear.bind(this)} name="chevron circle down" />
-						<br/>
-						<Icon className={styles.anysIcones} size="small" onClick={this.changeMinYear.bind(this)}  name="caret down" />1886
 					</div>
 				</div>
 			);
@@ -333,10 +333,20 @@ export default class PanelContainer extends ReactQueryParams {
 
 		return (
 
-			<Grid centered columns={2} className={styles.containerMenuSelectors}>
-				<Grid.Column >
-					{this.renderSelectorIncendis(this.state.currentIncendi.value)}
-				</Grid.Column>
+			<Grid centered  className={styles.containerMenuSelectors}>
+	
+				<Grid.Row only='tablet mobile'>
+					<Grid.Column >
+						{this.renderSelectorIncendis(this.state.currentIncendi.value)}
+					</Grid.Column>
+				</Grid.Row>
+
+				<Grid.Row columns={2} only='computer'>
+					<Grid.Column >
+						{this.renderSelectorIncendis(this.state.currentIncendi.value)}
+					</Grid.Column>
+				</Grid.Row>
+
 			</Grid>
 		);
 

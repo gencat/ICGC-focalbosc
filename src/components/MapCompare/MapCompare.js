@@ -20,11 +20,12 @@ export default class MapCompare extends Component {
 	//currentZoom;
 	timestamp;
 
+	doReset;
+
 	state = {
 
 		showPanel: false,
 		showPanelPopup: false,
-		showLinkYear:false,
 		MUNICIPI:"",
 		DATAINCENT:"",
 		MUNICIPI_MOV:"",
@@ -44,6 +45,7 @@ export default class MapCompare extends Component {
 		console.log("componentDidMount");
 		/* this.timestamp = Date.now(); */
 
+		this.doReset = 0;
 		this.currentZoom = CONSTANTS.INIT_APP_ZOOM;
 
 		this.beforeMap = new MapboxMap(CONSTANTS.MAPBOX_ACCESS_TOKEN, {
@@ -249,7 +251,9 @@ export default class MapCompare extends Component {
 
 		console.log("setActionOnClick", feature);
 
-		if (this.isYearToCompare(feature.properties.ANY)) {
+		this.props.onSelectIncendi(feature.properties.CODI_FINAL);
+
+		/* if (this.isYearToCompare(feature.properties.ANY)) {
 
 			this.props.onSelectIncendi(feature.properties.CODI_FINAL);
 
@@ -263,7 +267,7 @@ export default class MapCompare extends Component {
 			this.afterMap.fitBounds(bbox);
 			this.beforeMap.fitBounds(bbox);
 
-		}
+		} */
 
 		/* const bbox = [
 			[parseFloat(feature.properties.XMIN), parseFloat(feature.properties.YMIN)],
@@ -273,7 +277,7 @@ export default class MapCompare extends Component {
 		this.afterMap.fitBounds(bbox);
 		this.beforeMap.fitBounds(bbox); */
 
-		const AREAKM = (parseFloat(feature.properties.AREA) / 1000000);
+		/* const AREAKM = (parseFloat(feature.properties.AREA) / 1000000);
 		let showLinkYear = false;
 
 		if (parseInt(feature.properties.ANY) >= CONSTANTS.ANY_COMPARADOR) {
@@ -295,7 +299,7 @@ export default class MapCompare extends Component {
 			showPanelPopup: false,
 			showLinkYear: showLinkYear,
 			showPanel: true,
-		});
+		}); */
 
 	}
 
@@ -316,15 +320,13 @@ export default class MapCompare extends Component {
 
 		/* this.afterMap.setCenter(CONSTANTS.INIT_APP_CENTER);
 		this.beforeMap.setCenter(CONSTANTS.INIT_APP_CENTER); */
-		
+
 		const cameraOptions = {
 			center: CONSTANTS.INIT_APP_CENTER,
 			zoom: CONSTANTS.INIT_APP_ZOOM
 		};
 		this.afterMap.easeTo(cameraOptions);
 		this.beforeMap.easeTo(cameraOptions);
-
-		
 
 	}
 
@@ -347,17 +349,7 @@ export default class MapCompare extends Component {
 
 	render() {
 
-		const { MUNICIPI, DATAINCENT, MUNICIPI_MOV, DATAINCENT_MOV, ANY, AREAKM, CODIFINAL } = this.state;
-
-		return (
-			<div className={styles.containerMap}>
-
-				<div style={{display: this.state.showPanelPopup ? "block" : "none" }} className={styles.panelinfoPopup}>
-					<div><h4>{MUNICIPI_MOV}</h4></div>
-					<div>{DATAINCENT_MOV}</div>
-				</div>
-
-				<div style={{display: this.state.showPanel ? "block" : "none" }} className={styles.panelinfo}>
+		{/* <div style={{display: this.state.showPanel ? "block" : "none" }} className={styles.panelinfo}>
 					<div className={styles.panelinfoheader}>
 						<div className={styles.panelinfoheaderdetail}>
 							<Icon className={styles.panelinfoheaderclose} size="large" onClick={this.closePanel.bind(this)} name="window close" />
@@ -371,7 +363,16 @@ export default class MapCompare extends Component {
 						<div className={styles.panelinfobody}>{`Data: ${DATAINCENT}`}</div>
 						<div className={styles.panelinfobody}>{`Àrea: ${AREAKM} km2`}</div>
 					</div>
-				</div>
+				</div> */}
+		const { MUNICIPI, DATAINCENT, MUNICIPI_MOV, DATAINCENT_MOV, ANY, AREAKM, CODIFINAL } = this.state;
+
+		return (
+			<div className={styles.containerMap}>
+
+				<div style={{display: this.state.showPanelPopup ? "block" : "none" }} className={styles.panelinfoPopup}>
+					<div><h4>{MUNICIPI_MOV}</h4></div>
+					<div>{DATAINCENT_MOV}</div>
+				</div>				
 
 				<div id="beforeMap" ref={el => (this.beforeMapContainer = el)} className={styles.map}/>
 

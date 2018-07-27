@@ -8,12 +8,32 @@ import styles from "./Header.css";
 
 export default class Header extends Component {
 
+	constructor() {
+		super();
+		this.state = {
+			width: window.innerWidth,
+		};
+
+		window.addEventListener('resize', this.handleWindowSizeChange);
+	}
+
+	
+	// make sure to remove the listener
+	// when the component is not mounted anymore
+	componentWillUnmount() {
+		window.removeEventListener('resize', this.handleWindowSizeChange);
+	}
+	
+	handleWindowSizeChange = () => {
+		this.setState({ width: window.innerWidth });
+	};	
+
 	renderModalInfo() {
 
 		if (this.props.showModalInfo) {
 			return (
 				<div className={styles.containeritemRight}>
-					<Modal size="small" trigger={<Button inverted circular icon='info' ></Button>} closeIcon>
+					<Modal size="small" trigger={<Button inverted circular icon='info' className={styles.buttonModalInfoMobile} ></Button>} closeIcon>
 						<Header title=" " showModalInfo={false}></Header>
 						<Modal.Content image>
 							<Modal.Description  className={styles.description}>
@@ -56,11 +76,29 @@ export default class Header extends Component {
 		const title = (this.props.title ? this.props.title : "Nou prototip");
 		const pathLogo = (this.props.pathLogo ? this.props.pathLogo : "./ICGC_white.svg");
 
+		const { width } = this.state;
+  	const isMobile = width <= 500;
+
+		if (isMobile) {
+			return (
+				<div className={styles.containerHeader}>
+	
+					<div className={styles.containertitle}>
+						<h2 className={styles.title}>{title}</h2>
+					</div>
+	
+					{this.renderModalInfo()}
+	
+				</div>
+			);
+		}
+
 		return (
 			<div className={styles.containerHeader}>
 
 				<div className={styles.containerlogo}>
 					<Image
+						only="mobile"
 						className={styles.logo}
 						src={pathLogo}/>
 				</div>
