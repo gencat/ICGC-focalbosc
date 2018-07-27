@@ -6,6 +6,6 @@ cd tmp
 mkdir dist
 
 npm install
-npm run build-min
+npm run start
 
 mv ./* /var/www/html/
