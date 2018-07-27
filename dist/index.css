@@ -1,9 +1,113 @@
-._E_E_src_containers_App__myApp{
+._e_e_src_containers_App__myApp{
 
 	height: 100vh;
 	width: 100%;
 
-}._E_E_src_containers_Visor_Visor__containerVisor{
+}._e_e_src_components_Header_Header__containerlogo {
+	max-width: 10em;
+	padding: 0.5rem;
+}
+
+._e_e_src_components_Header_Header__containertitle{
+	padding: 1em;
+
+}
+
+._e_e_src_components_Header_Header__title{
+	color: #fff !important;
+	/* color: #C21126; */
+}
+
+._e_e_src_components_Header_Header__containeritemRight{
+	padding: 0.8em;
+}
+
+._e_e_src_components_Header_Header__buttonModalInfoMobile{
+	font-size: 0.8em;
+}
+
+
+._e_e_src_components_Header_Header__myMenu {
+	height: 0.8em;
+	border-bottom: 2px solid #fff;
+}
+
+._e_e_src_components_Header_Header__containerHeader{
+	width: 100%;
+	max-height: 3em;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	/* padding: 1em;
+	margin-bottom: 1em; */
+	background-color:#FA481E;
+}
+
+
+._e_e_src_components_Header_Header__description{
+
+	width:100%;
+	
+	}
+
+/* .containerlogo{
+	align-self: flex-start;	
+}
+.containertitle{
+	align-self: center;
+}
+
+.containerlogo{
+	align-self: flex-end;
+} */._e_e_src_components_Footer_Footer__containerFooter{
+	width: 100%;
+	max-height: 3em;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 0.5em;
+	background-color:rgba(115,116,88,0.85);
+	position: absolute;
+	bottom: 0;
+	z-index: 1000;
+	justify-content: space-between;
+}
+
+._e_e_src_components_Footer_Footer__containerFooterMobile{
+	width: 100%;
+	max-height: 3em;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 0.5em;
+	background-color:rgba(115,116,88,0.85);
+	position: absolute;
+	bottom: 0;
+	z-index: 1000;
+	justify-content: center;
+}
+
+._e_e_src_components_Footer_Footer__myInvertedButton{
+	box-shadow: none !important;
+	background: transparent none !important;
+	color: #fff !important;
+	text-shadow: none!important;
+}
+
+._e_e_src_components_Footer_Footer__myInvertedButton:hover, ._e_e_src_components_Footer_Footer__myInvertedButton:focus {
+	background: #fff !important;
+	box-shadow: 0 0 0 2px #fff inset!important;
+	color: rgba(0,0,0,.8) !important;
+}
+
+._e_e_src_components_Footer_Footer__description{
+	width:100%;
+}
+
+._e_e_src_components_Footer_Footer__containerRightMobile{
+	align-self: flex-end;
+}._e_e_src_containers_Visor_Visor__containerVisor{
   height: calc(100% - 3em);
   display: flex;
   flex-direction: column;
@@ -11,7 +115,7 @@
   padding-top: 1em;
 }
 
-._E_E_src_containers_Visor_Visor__containerMenuSelectors{
+._e_e_src_containers_Visor_Visor__containerMenuSelectors{
   z-index: 1000;
   background-color:rgba(115,116,88,0.85);
   /* border-top: solid 2px white; */
@@ -21,7 +125,7 @@
   /* text-align: center; */
 }
 
-._E_E_src_containers_Visor_Visor__mySelect{
+._e_e_src_containers_Visor_Visor__mySelect{
   color: #fff !important;
   /* background-color: #ffb67d !important; */
   background-color: #FA481E !important;
@@ -30,21 +134,21 @@
   text-align: center !important;
 }
 
-._E_E_src_containers_Visor_Visor__mySelect:hover, ._E_E_src_containers_Visor_Visor__mySelect:focus, ._E_E_src_containers_Visor_Visor__mySelect:active{
+._e_e_src_containers_Visor_Visor__mySelect:hover, ._e_e_src_containers_Visor_Visor__mySelect:focus, ._e_e_src_containers_Visor_Visor__mySelect:active{
   background-color: rgba(250, 70, 30, .2) !important;
 }
 
-._E_E_src_containers_Visor_Visor__mySelect > ._E_E_src_containers_Visor_Visor__default ._E_E_src_containers_Visor_Visor__text, ._E_E_src_containers_Visor_Visor__mySelect > ._E_E_src_containers_Visor_Visor__default ._E_E_src_containers_Visor_Visor__text:focus{
+._e_e_src_containers_Visor_Visor__mySelect > ._e_e_src_containers_Visor_Visor__default ._e_e_src_containers_Visor_Visor__text, ._e_e_src_containers_Visor_Visor__mySelect > ._e_e_src_containers_Visor_Visor__default ._e_e_src_containers_Visor_Visor__text:focus{
   color: rgba(255, 255, 255, 0.87) !important;
 }
 
-._E_E_src_containers_Visor_Visor__mySelect > ._E_E_src_containers_Visor_Visor__menu {
+._e_e_src_containers_Visor_Visor__mySelect > ._e_e_src_containers_Visor_Visor__menu {
   color: #fff !important;
   /* background-color: #ffb67d !important; */
   background-color: #FF994A !important;
 }
 
-._E_E_src_containers_Visor_Visor__mySelectAnysOrto{
+._e_e_src_containers_Visor_Visor__mySelectAnysOrto{
   color: #fff !important;
   /* background-color: #ffb67d !important; */
   background-color: #FF994A !important;
@@ -52,7 +156,7 @@
   font-size: 1.2em !important;
 }
 
-._E_E_src_containers_Visor_Visor__containerSelectOrtoLeft{
+._e_e_src_containers_Visor_Visor__containerSelectOrtoLeft{
   position: absolute;
   z-index: 50;
   top: 150px;
@@ -62,7 +166,7 @@
   border-radius: 5px;
 }
 
-._E_E_src_containers_Visor_Visor__containerSelectOrtoRight{
+._e_e_src_containers_Visor_Visor__containerSelectOrtoRight{
   position: absolute;
   z-index: 50;
   top: 150px;
@@ -72,7 +176,7 @@
   border-radius: 5px;
 }
 
-._E_E_src_containers_Visor_Visor__controls {
+._e_e_src_containers_Visor_Visor__controls {
   position: relative;
   z-index: 10;
   top: 5em;
@@ -89,18 +193,18 @@
 }
 
 
-._E_E_src_containers_Visor_Visor__anysText {
+._e_e_src_containers_Visor_Visor__anysText {
      /* display: inline-block; */
     /* vertical-align: top; */
     font-size: 0.8em;
 }
 
-._E_E_src_containers_Visor_Visor__anysControls {
+._e_e_src_containers_Visor_Visor__anysControls {
   display: inline-block;
   vertical-align: top;
 }
 
-._E_E_src_containers_Visor_Visor__anysButtons {
+._e_e_src_containers_Visor_Visor__anysButtons {
   margin-left: 10px;
   display: inline-block;
   position: relative;
@@ -109,7 +213,7 @@
 }
 
 
-._E_E_src_containers_Visor_Visor__anysIcones {
+._e_e_src_containers_Visor_Visor__anysIcones {
   font-size: 27px !important;
   cursor: pointer;
   /* padding-top: 4px !important; */
@@ -119,11 +223,11 @@
  
 
 
-._E_E_src_containers_Visor_Visor__anysIconesDintre {
+._e_e_src_containers_Visor_Visor__anysIconesDintre {
   margin: 7px 0px;
 }
 
-._E_E_src_containers_Visor_Visor__anysRangs{
+._e_e_src_containers_Visor_Visor__anysRangs{
 
   position: relative;
   top: 20px;
@@ -131,7 +235,7 @@
 
 }
 
-._E_E_src_containers_Visor_Visor__anySelecionat {
+._e_e_src_containers_Visor_Visor__anySelecionat {
   margin-top: 20px;
   /* margin-bottom: -7px; */
   vertical-align: top;
@@ -141,134 +245,30 @@
   cursor: default;
   width: 105px;
 }
-._E_E_src_components_Footer_Footer__containerFooter{
-	width: 100%;
-	max-height: 3em;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	padding: 0.5em;
-	background-color:rgba(115,116,88,0.85);
-	position: absolute;
-	bottom: 0;
-	z-index: 1000;
-	justify-content: space-between;
-}
-
-._E_E_src_components_Footer_Footer__containerFooterMobile{
-	width: 100%;
-	max-height: 3em;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	padding: 0.5em;
-	background-color:rgba(115,116,88,0.85);
-	position: absolute;
-	bottom: 0;
-	z-index: 1000;
-	justify-content: center;
-}
-
-._E_E_src_components_Footer_Footer__myInvertedButton{
-	box-shadow: none !important;
-	background: transparent none !important;
-	color: #fff !important;
-	text-shadow: none!important;
-}
-
-._E_E_src_components_Footer_Footer__myInvertedButton:hover, ._E_E_src_components_Footer_Footer__myInvertedButton:focus {
-	background: #fff !important;
-	box-shadow: 0 0 0 2px #fff inset!important;
-	color: rgba(0,0,0,.8) !important;
-}
-
-._E_E_src_components_Footer_Footer__description{
-	width:100%;
-}
-
-._E_E_src_components_Footer_Footer__containerRightMobile{
-	align-self: flex-end;
-}._E_E_src_components_Header_Header__containerlogo {
-	max-width: 10em;
-	padding: 0.5rem;
-}
-
-._E_E_src_components_Header_Header__containertitle{
-	padding: 1em;
-
-}
-
-._E_E_src_components_Header_Header__title{
-	color: #fff !important;
-	/* color: #C21126; */
-}
-
-._E_E_src_components_Header_Header__containeritemRight{
-	padding: 0.8em;
-}
-
-._E_E_src_components_Header_Header__buttonModalInfoMobile{
-	font-size: 0.8em;
-}
-
-
-._E_E_src_components_Header_Header__myMenu {
-	height: 0.8em;
-	border-bottom: 2px solid #fff;
-}
-
-._E_E_src_components_Header_Header__containerHeader{
-	width: 100%;
-	max-height: 3em;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-	/* padding: 1em;
-	margin-bottom: 1em; */
-	background-color:#FA481E;
-}
-
-
-._E_E_src_components_Header_Header__description{
-
-	width:100%;
-	
-	}
-
-/* .containerlogo{
-	align-self: flex-start;	
-}
-.containertitle{
-	align-self: center;
-}
-
-.containerlogo{
-	align-self: flex-end;
-} */._E_E_src_components_MapCompare_MapCompare__containerMap{
+._e_e_src_components_MapCompare_MapCompare__containerMap{
 	height: 100vh;
 	width: 100vh;
 	margin-right: 0 !important;
 	
 }
 
-._E_E_src_components_MapCompare_MapCompare__map {
+._e_e_src_components_MapCompare_MapCompare__map {
 	position: absolute;
 	top: 48px;
 	bottom: 0;
 	width: 100%;
 }
 
-._E_E_src_components_MapCompare_MapCompare__noComparator {
+._e_e_src_components_MapCompare_MapCompare__noComparator {
 
 }
 
-._E_E_src_components_MapCompare_MapCompare__map[class*="noComparator"] > div[class="mapboxgl-compare"] {
+._e_e_src_components_MapCompare_MapCompare__map[class*="noComparator"] > div[class="mapboxgl-compare"] {
 	z-index: -1000;
 }
 
 /* Panel info */
-._E_E_src_components_MapCompare_MapCompare__panelinfo{
+._e_e_src_components_MapCompare_MapCompare__panelinfo{
 	position: absolute;
 	z-index: 50;
 	top: 260px;
@@ -282,7 +282,7 @@
 
 }
 
-._E_E_src_components_MapCompare_MapCompare__panelinfoPopup{
+._e_e_src_components_MapCompare_MapCompare__panelinfoPopup{
 	position: absolute;
 	z-index: 50;
 	top: 260px;
@@ -302,7 +302,7 @@
 }
 
 
-._E_E_src_components_MapCompare_MapCompare__panelinfoheader{
+._e_e_src_components_MapCompare_MapCompare__panelinfoheader{
 	padding: 20px;
 	margin: 0;
 	padding: 0;
@@ -312,11 +312,11 @@
 	vertical-align: baseline;
 
 }
-._E_E_src_components_MapCompare_MapCompare__panelinfoheaderdetail{
+._e_e_src_components_MapCompare_MapCompare__panelinfoheaderdetail{
 	min-height: 30px;
 
 }
-._E_E_src_components_MapCompare_MapCompare__panelinfoheaderclose{
+._e_e_src_components_MapCompare_MapCompare__panelinfoheaderclose{
 	height: 30px;
 	/* padding-top: 5px; */
 	padding-bottom: 5px;
@@ -325,15 +325,15 @@
 	cursor:pointer;
 
 }
-._E_E_src_components_MapCompare_MapCompare__panelinfoheadertext{
+._e_e_src_components_MapCompare_MapCompare__panelinfoheadertext{
 	color: #860000;
 
 }
-._E_E_src_components_MapCompare_MapCompare__panelinfobody{
+._e_e_src_components_MapCompare_MapCompare__panelinfobody{
 	padding-top:5px
 }
 
-._E_E_src_components_MapCompare_MapCompare__panelinfolink{
+._e_e_src_components_MapCompare_MapCompare__panelinfolink{
  
 	border: 1px solid #C21125;
 	margin-top: 10px;
@@ -343,7 +343,7 @@
 	border-radius: 2px;
 }
 
-._E_E_src_components_MapCompare_MapCompare__panelinfolink:hover{
+._e_e_src_components_MapCompare_MapCompare__panelinfolink:hover{
 	border: 1px solid #C21125;
 	margin-top: 10px;
 	padding: 2px;
@@ -354,11 +354,11 @@
 }
 
 
-._E_E_src_components_MapCompare_MapCompare__infolink{
+._e_e_src_components_MapCompare_MapCompare__infolink{
 	color: #C21125;
 }
 
-._E_E_src_components_MapCompare_MapCompare__containerButtonReset{
+._e_e_src_components_MapCompare_MapCompare__containerButtonReset{
   position: absolute;
 	z-index: 50;
 	bottom: 55px;
@@ -367,7 +367,7 @@
   height: 80px; */
 }
 
-._E_E_src_components_MapCompare_MapCompare__myButtonReset{
+._e_e_src_components_MapCompare_MapCompare__myButtonReset{
   width: 75px;
   background-color: #ff994a !important;
   color: #fff !important;
