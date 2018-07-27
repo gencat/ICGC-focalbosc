@@ -304,6 +304,11 @@ export default class MapCompare extends Component {
 
 	}	
 
+	getStyleComparador() {
+		if(!this.props.modeComparador) return `${styles.map} ${styles.noComparator}`;
+
+		return `${styles.map}`;
+	}
 
 	render() {
 
@@ -317,8 +322,7 @@ export default class MapCompare extends Component {
 					<div>{DATAINCENT_MOV}</div>
 				</div>				
 
-				<div id="beforeMap" ref={el => (this.beforeMapContainer = el)} className={styles.map}/>
-
+				<div id="beforeMap" ref={el => (this.beforeMapContainer = el)} className={this.getStyleComparador()}/>
 				<div id="afterMap" ref={el => (this.afterMapContainer = el)} className={styles.map}/>
 
 				{this.renderButtonResetComparador()}

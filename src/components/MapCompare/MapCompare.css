@@ -12,6 +12,14 @@
 	width: 100%;
 }
 
+.noComparator {
+
+}
+
+.map[class*="noComparator"] > div[class="mapboxgl-compare"] {
+	z-index: -1000;
+}
+
 /* Panel info */
 .panelinfo{
 	position: absolute;
