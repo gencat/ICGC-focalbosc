@@ -81,7 +81,8 @@
 
 ._E_E_src_components_Header_Header__containerHeader{
 	width: 100%;
-	max-height: 3em;
+	/* max-height: 3em; */
+	height: 48px;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -108,7 +109,7 @@
 .containerlogo{
 	align-self: flex-end;
 } */._E_E_src_containers_Visor_Visor__containerVisor{
-  height: calc(100% - 3em);
+  height: calc(100% - 48px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
