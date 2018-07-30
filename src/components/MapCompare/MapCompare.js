@@ -122,21 +122,22 @@ export default class MapCompare extends Component {
 
 		const pitch = this.props.modeComparador ? 45 : 0;
 
-		if (prevProps.modeComparador !== this.props.modeComparador) {
+		
+
+		if (!Utils.isEmpty(this.props.currentIncendi) && (prevProps.currentIncendi.value === {} ||  prevProps.currentIncendi.value !== this.props.currentIncendi.value)) {
+
+			const bboxList = this.props.currentIncendi.bbox.split(",");
+			this.map._setPosition(this.props.modeComparador ? (this.state.width / 2) : 0);
+			//console.log("Abans fitBBOX", this.props.currentIncendi.bbox);
+			this.afterMap.fitBBOX(bboxList, pitch);
+			this.beforeMap.fitBBOX(bboxList, pitch);
+
+		} else if (prevProps.modeComparador !== this.props.modeComparador) {
 
 
 			this.map._setPosition(this.props.modeComparador ? (this.state.width / 2) : 0);
 			this.afterMap.easeTo({pitch: pitch});
 			this.beforeMap.easeTo({pitch: pitch});
-		}
-
-		if (!Utils.isEmpty(this.props.currentIncendi) && (prevProps.currentIncendi.value === {} ||  prevProps.currentIncendi.value !== this.props.currentIncendi.value)) {
-
-			const bboxList = this.props.currentIncendi.bbox.split(",");
-			//console.log("Abans fitBBOX", this.props.currentIncendi.bbox);
-			this.afterMap.fitBBOX(bboxList, pitch);
-			this.beforeMap.fitBBOX(bboxList, pitch);
-
 		}
 
 	}

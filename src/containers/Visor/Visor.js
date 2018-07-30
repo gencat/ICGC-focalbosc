@@ -354,7 +354,6 @@ export default class PanelContainer extends ReactQueryParams {
 				fluid
 				className={styles.mySelect}
 				placeholder="Selecciona l'incendi"
-				search
 				selection
 				value={initValue}
 				onChange={(e, data) => this.handleIncendiChange(data.value)}
