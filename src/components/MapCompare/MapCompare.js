@@ -270,7 +270,7 @@ export default class MapCompare extends Component {
 	setActionOnClick(feature) {
 
 		console.log("setActionOnClick", feature);
-
+		this.closePanel();
 		this.props.onSelectIncendi(feature.properties.CODI_FINAL);
 
 	}
@@ -278,8 +278,7 @@ export default class MapCompare extends Component {
 	closePanel() {
 
 		this.setState({
-			showPanelPopup: false,
-			showPanel: false
+			showPanelPopup: false
 		});
 	}
 
