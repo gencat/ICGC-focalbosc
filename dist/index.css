@@ -3,7 +3,65 @@
 	height: 100vh;
 	width: 100%;
 
-}._E_E_src_containers_Visor_Visor__containerVisor{
+}._E_E_src_components_Header_Header__containerlogo {
+	max-width: 10em;
+	padding: 0.5rem;
+}
+
+._E_E_src_components_Header_Header__containertitle{
+	padding: 1em;
+
+}
+
+._E_E_src_components_Header_Header__title{
+	color: #fff !important;
+	/* color: #C21126; */
+}
+
+._E_E_src_components_Header_Header__containeritemRight{
+	padding: 0.8em;
+}
+
+._E_E_src_components_Header_Header__buttonModalInfoMobile{
+	font-size: 0.8em;
+}
+
+
+._E_E_src_components_Header_Header__myMenu {
+	height: 0.8em;
+	border-bottom: 2px solid #fff;
+}
+
+._E_E_src_components_Header_Header__containerHeader{
+	width: 100%;
+	/* max-height: 3em; */
+	height: 48px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	/* padding: 1em;
+	margin-bottom: 1em; */
+	background-color:#FA481E;
+}
+
+
+._E_E_src_components_Header_Header__description{
+
+	width:100%;
+	
+	}
+
+/* .containerlogo{
+	align-self: flex-start;	
+}
+.containertitle{
+	align-self: center;
+}
+
+.containerlogo{
+	align-self: flex-end;
+} */._E_E_src_containers_Visor_Visor__containerVisor{
   height: calc(100% - 48px);
   display: flex;
   flex-direction: column;
@@ -52,6 +110,8 @@
   font-size: 1.2em !important;
 }
 
+
+
 ._E_E_src_containers_Visor_Visor__containerSelectOrtoLeft{
   position: absolute;
   z-index: 50;
@@ -75,8 +135,8 @@
 ._E_E_src_containers_Visor_Visor__controls {
   position: relative;
   z-index: 10;
-  top: 5em;
-  left: 0px;
+  top: 3em;
+  left: 5px;
   width: 240px;
   height: 100px;
   background-color: rgba(255, 153, 74, 0.9);
@@ -141,65 +201,36 @@
   cursor: default;
   width: 105px;
 }
-._E_E_src_components_Header_Header__containerlogo {
-	max-width: 10em;
-	padding: 0.5rem;
+
+@media (max-width: 500px) {
+  ._E_E_src_containers_Visor_Visor__mySelect, ._E_E_src_containers_Visor_Visor__mySelectAnysOrto {
+    font-size: 1em !important;
+  }
+
+  ._E_E_src_containers_Visor_Visor__containerSelectOrtoLeft, ._E_E_src_containers_Visor_Visor__containerSelectOrtoRight {
+    width: 100px;
+    top: 135px;
+  }
+
+  ._E_E_src_containers_Visor_Visor__controls{
+    position: unset;
+    align-self: center;
+    margin-top: 18px;
+    width: 240px;
+    height: 68px;
+    padding: 2px;
+  }
+
+  ._E_E_src_containers_Visor_Visor__anySelecionat {
+    font-size: 3em;
+    margin-left: 15px;
+  }
+
+  ._E_E_src_containers_Visor_Visor__anysButtons {
+    left: 18px;
+  }
 }
-
-._E_E_src_components_Header_Header__containertitle{
-	padding: 1em;
-
-}
-
-._E_E_src_components_Header_Header__title{
-	color: #fff !important;
-	/* color: #C21126; */
-}
-
-._E_E_src_components_Header_Header__containeritemRight{
-	padding: 0.8em;
-}
-
-._E_E_src_components_Header_Header__buttonModalInfoMobile{
-	font-size: 0.8em;
-}
-
-
-._E_E_src_components_Header_Header__myMenu {
-	height: 0.8em;
-	border-bottom: 2px solid #fff;
-}
-
-._E_E_src_components_Header_Header__containerHeader{
-	width: 100%;
-	/* max-height: 3em; */
-	height: 48px;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-	/* padding: 1em;
-	margin-bottom: 1em; */
-	background-color:#FA481E;
-}
-
-
-._E_E_src_components_Header_Header__description{
-
-	width:100%;
-	
-	}
-
-/* .containerlogo{
-	align-self: flex-start;	
-}
-.containertitle{
-	align-self: center;
-}
-
-.containerlogo{
-	align-self: flex-end;
-} */._E_E_src_components_Footer_Footer__containerFooter{
+._E_E_src_components_Footer_Footer__containerFooter{
 	width: 100%;
 	max-height: 3em;
 	display: flex;
@@ -272,8 +303,8 @@
 ._E_E_src_components_MapCompare_MapCompare__panelinfo{
 	position: absolute;
 	z-index: 50;
-	top: 260px;
-	left: 0px;
+	top: 265px;
+	left: 5px;
 	width: 240px;
 	background: rgba(250, 72, 30, 0.95);
 	padding: 20px;
@@ -286,9 +317,9 @@
 ._E_E_src_components_MapCompare_MapCompare__panelinfoPopup{
 	position: absolute;
 	z-index: 50;
-	top: 260px;
+	top: 265px;
 	/* bottom: 35px; */
-	left: 0px;
+	left: 5px;
 	width: 240px;
 	height: 73px;
 	background-color: rgba(250, 72, 30, 0.9);

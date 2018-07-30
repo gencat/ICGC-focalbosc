@@ -47,6 +47,8 @@
   font-size: 1.2em !important;
 }
 
+
+
 .containerSelectOrtoLeft{
   position: absolute;
   z-index: 50;
@@ -70,8 +72,8 @@
 .controls {
   position: relative;
   z-index: 10;
-  top: 5em;
-  left: 0px;
+  top: 3em;
+  left: 5px;
   width: 240px;
   height: 100px;
   background-color: rgba(255, 153, 74, 0.9);
@@ -135,4 +137,33 @@
   font-size: 4em;
   cursor: default;
   width: 105px;
+}
+
+@media (max-width: 500px) {
+  .mySelect, .mySelectAnysOrto {
+    font-size: 1em !important;
+  }
+
+  .containerSelectOrtoLeft, .containerSelectOrtoRight {
+    width: 100px;
+    top: 135px;
+  }
+
+  .controls{
+    position: unset;
+    align-self: center;
+    margin-top: 18px;
+    width: 240px;
+    height: 68px;
+    padding: 2px;
+  }
+
+  .anySelecionat {
+    font-size: 3em;
+    margin-left: 15px;
+  }
+
+  .anysButtons {
+    left: 18px;
+  }
 }
