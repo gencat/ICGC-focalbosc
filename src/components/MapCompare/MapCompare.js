@@ -9,6 +9,7 @@ import Utils from "../../common/utils";
 
 import Compare  from "mapbox-gl-compare";
 import { Icon, Button, Image } from "semantic-ui-react";
+import {isMobile} from "react-device-detect";
 
 import styles from "./MapCompare.css";
 
@@ -92,7 +93,8 @@ export default class MapCompare extends Component {
 
 		this.map._setPosition(0);
 
-		this.initMapEvents();
+		if (isMobile) this.initMapEventsMobile();
+		else this.initMapEvents();
 
 		this.props.initURLParams();
 
@@ -122,7 +124,7 @@ export default class MapCompare extends Component {
 
 		const pitch = this.props.modeComparador ? 45 : 0;
 
-		
+
 
 		if (!Utils.isEmpty(this.props.currentIncendi) && (prevProps.currentIncendi.value === {} ||  prevProps.currentIncendi.value !== this.props.currentIncendi.value)) {
 
@@ -158,6 +160,8 @@ export default class MapCompare extends Component {
 	}
 
 	initMapEvents() {
+
+		console.log("initMapEvents", isMobile);
 
 		this.afterMap.subscribe("click", CONSTANTS.LAYER_CIRCLE, (e) => {
 			const feature = e.features[0];
@@ -215,9 +219,32 @@ export default class MapCompare extends Component {
 
 		//this.afterMap.subscribe("zoomend", "", this.props.onZoomChange(this.afterMap.getZoom()));
 
+		this.initZoomEvents();
+
+	}
+
+	initMapEventsMobile() {
+
+		console.log("initMapEvents", isMobile);
+
+		this.afterMap.subscribe("click", CONSTANTS.LAYER_CIRCLE, (e) =>  this.setActionOnClick(e.features[0]));
+		this.afterMap.subscribe("mousemove", CONSTANTS.LAYER_CIRCLE, (e) =>  this.setActionOnClick(e.features[0]));
+		this.afterMap.subscribe("touchend", CONSTANTS.LAYER_CIRCLE, (e) =>  this.setActionOnClick(e.features[0]));
+
+		this.afterMap.subscribe("click", CONSTANTS.LAYER_LIN, (e) =>  this.setActionOnClick(e.features[0]));
+		this.afterMap.subscribe("mousemove", CONSTANTS.LAYER_LIN, (e) =>  this.setActionOnClick(e.features[0]));
+		this.afterMap.subscribe("touchend", CONSTANTS.LAYER_LIN, (e) =>  this.setActionOnClick(e.features[0]));
+
+
+		this.initZoomEvents();
+
+	}
+
+	initZoomEvents() {
+
 		this.afterMap.subscribe("zoomend", "", (e) =>  {
 
-			console.log("zoomend");
+			//console.log("zoomend", e);
 			const zoom = this.afterMap.getZoom();
 
 			if (zoom >= CONSTANTS.LIMIT_ZOOM && this.currentZoom < CONSTANTS.LIMIT_ZOOM && this.isYearToCompare(this.props.anyIncendi)) {

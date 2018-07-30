@@ -6,6 +6,7 @@ import * as CONSTANTS from "../../constants";
 
 import ReactQueryParams from "react-query-params";
 import { Icon, Grid, Dropdown, Button, Image } from "semantic-ui-react";
+import {isMobile} from "react-device-detect";
 
 import styles from "./Visor.css";
 
@@ -334,7 +335,7 @@ export default class PanelContainer extends ReactQueryParams {
 					className={styles.mySelectAnysOrto}
 					placeholder="Selecciona l'any"
 					fluid
-					search
+					search={!isMobile}
 					selection
 					value={initValue}
 					options={CONSTANTS.ortoLayersOptions}
@@ -352,6 +353,7 @@ export default class PanelContainer extends ReactQueryParams {
 			<Dropdown
 				button
 				fluid
+				search={!isMobile}
 				className={styles.mySelect}
 				placeholder="Selecciona l'incendi"
 				selection
