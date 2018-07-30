@@ -8,7 +8,7 @@ import * as CONSTANTS from "../../constants";
 import Utils from "../../common/utils";
 
 import Compare  from "mapbox-gl-compare";
-import { Icon, Button, Image } from "semantic-ui-react";
+import { Icon, Button, Image, Loader } from "semantic-ui-react";
 import {isMobile} from "react-device-detect";
 
 import styles from "./MapCompare.css";
@@ -23,22 +23,13 @@ export default class MapCompare extends Component {
 
 	doReset;
 
+	
+
 	state = {
 		width: window.innerWidth,
-		showPanel: false,
 		showPanelPopup: false,
-		MUNICIPI:"",
-		DATAINCENT:"",
 		MUNICIPI_MOV:"",
-		DATAINCENT_MOV:"",
-		ANY:"",
-		AREA:"",
-		CODIFINAL:"",
-		XMAX:"",
-		XMIN:"",
-		YMAX:"",
-		YMIN:"",
-		AREAKM:""
+		DATAINCENT_MOV:""
 	}
 
 	constructor() {
@@ -353,7 +344,7 @@ export default class MapCompare extends Component {
 
 	render() {
 
-		const { MUNICIPI, DATAINCENT, MUNICIPI_MOV, DATAINCENT_MOV, ANY, AREAKM, CODIFINAL } = this.state;
+		const { MUNICIPI_MOV, DATAINCENT_MOV } = this.state;
 
 		return (
 			<div className={styles.containerMap}>

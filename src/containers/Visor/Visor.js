@@ -5,7 +5,7 @@ import MapCompare from "../../components/MapCompare/MapCompare";
 import * as CONSTANTS from "../../constants";
 
 import ReactQueryParams from "react-query-params";
-import { Icon, Grid, Dropdown, Button, Image } from "semantic-ui-react";
+import { Icon, Grid, Dropdown } from "semantic-ui-react";
 import {isMobile} from "react-device-detect";
 
 import styles from "./Visor.css";
@@ -18,61 +18,30 @@ export default class PanelContainer extends ReactQueryParams {
 
 		super(props);
 
-		const codifinal = this.queryParams.codifinal;
+		this.state = {
 
-		/* if (codifinal !== undefined) {
+			year: CONSTANTS.MAX_YEAR,
 
+			currentBBOX: [],
+			currentCenter: [],
 
-			console.log(codifinal);
+			currentIncendi: {},
+			beforeMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
+			afterMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
 
-			const incendiVal = this.getIncendiByCodi(codifinal);
-
-			const beforeAny = Number(CONSTANTS.incendisList[incendiVal].any) - 1;
-			const afterAny = Number(CONSTANTS.incendisList[incendiVal].any) + 1;
-
-			this.state = {
-
-				year: CONSTANTS.incendisList[incendiVal].any,
-
-				currentBBOX: [],
-				currentCenter: [],
-
-				currentIncendi: CONSTANTS.incendisList[incendiVal],
-				beforeMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[beforeAny]],
-				afterMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[afterAny]],
-
-				modeComparador: this.isYearToCompare(CONSTANTS.incendisList[incendiVal].any)
-			};
-
-		} else { */
-
-			this.state = {
-
-				year: CONSTANTS.MAX_YEAR,
-
-				currentBBOX: [],
-				currentCenter: [],
-
-				currentIncendi: {},
-				beforeMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
-				afterMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
-
-				modeComparador: false
-			};
-
-		//}
+			modeComparador: false
+		};
 
 		this.changeYear = this.changeYear.bind(this);
 
 	}
 
-	componentDidUpdate(prevProps, prevState) {
-
-		console.log("visor component didupdate");
-
-	}
 
 	resetComparador() {
+
+		this.setQueryParams({
+			codifinal: ""
+		});
 
 		this.setState({
 
@@ -227,12 +196,10 @@ export default class PanelContainer extends ReactQueryParams {
 
 	initURLParams() {
 
-		console.log("initURLParams");
 		const codifinal = this.queryParams.codifinal;
 
-		if (codifinal !== undefined) {
+		if (codifinal !== undefined && codifinal !== "") {
 
-			console.log(codifinal);
 			this.handleIncendiChange(this.getIncendiByCodi(codifinal));
 
 		}

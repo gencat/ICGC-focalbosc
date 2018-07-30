@@ -91,7 +91,7 @@
     "build-dev": "browserify -p [ css-modulesify -o ./dist/index.css ] src/index.js -o dist/index.dev.js",
     "watch-dev": "watchify src/index.js -p [ css-modulesify -o ./dist/index.css ] --debug --plugin [minifyify --map index.js.map --output dist/index.js.map] --ignore-transform unassertify --outfile dist/index.js --verbose",
     "build-min": "browserify src/index.js -p [ css-modulesify -o ./dist/index.css ] --debug --plugin [minifyify --map index.js.map --output dist/index.js.map]  | derequire > dist/index.js",
-    "start-server": "st --no-cache -H highlands.icgc.local --port 82 --index index.html .",
+    "start-server": "st --no-cache -H 127.0.0.1 --port 82 --index index.html .",
     "start": "run-p watch-dev start-server",
     "build-docs": "documentation build --github --format json --config ./docs/documentation.yml --output docs/components/api.json src/index.js",
     "lint": "eslint --fix --cache --ignore-path .gitignore src test bench docs",
