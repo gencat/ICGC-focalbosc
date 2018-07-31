@@ -3,17 +3,23 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding-top: 1em;
 }
 
 .containerMenuSelectors{
+  width: 100%;
+  margin: 0 !important;
   z-index: 1000;
   background-color:rgba(115,116,88,0.85);
   /* border-top: solid 2px white; */
   padding-left: 1em !important;
   padding-right: 1em !important;
-  padding-bottom: 1em !important;
+  /* padding-bottom: 1em !important; */
   /* text-align: center; */
+}
+
+.containerMenuSelectorsRow {
+  padding-top: 0.6rem !important;
+  padding-bottom: 0.6rem !important;
 }
 
 .mySelect{
@@ -52,7 +58,7 @@
 .containerSelectOrtoLeft{
   position: absolute;
   z-index: 50;
-  top: 150px;
+  top: 125px;
   left: 5px;
   width: 125px;
   border: solid 2px #fff;
@@ -62,7 +68,7 @@
 .containerSelectOrtoRight{
   position: absolute;
   z-index: 50;
-  top: 150px;
+  top: 125px;
   right: 5px;
   width: 125px;
   border: solid 2px #fff;
@@ -72,13 +78,13 @@
 .controls {
   position: relative;
   z-index: 10;
-  top: 3em;
-  left: 5px;
+  top: 1.2em;
+  left: 10px;
   width: 240px;
-  height: 100px;
+  /* height: 100px; */
   background-color: rgba(255, 153, 74, 0.9);
   padding: 10px;
-  padding-left: 25px;
+  padding-left: 20px;
   z-index: 3;
   color: #fff;
   border: solid 2px;
@@ -152,9 +158,9 @@
   .controls{
     position: unset;
     align-self: center;
-    margin-top: 18px;
+    margin-top: 1em;
     width: 240px;
-    height: 68px;
+    /* height: 68px; */
     padding: 2px;
   }
 

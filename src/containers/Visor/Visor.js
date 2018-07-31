@@ -338,13 +338,13 @@ export default class PanelContainer extends ReactQueryParams {
 
 			<Grid centered  className={styles.containerMenuSelectors}>
 
-				<Grid.Row only='tablet mobile'>
+				<Grid.Row className={styles.containerMenuSelectorsRow} only='tablet mobile'>
 					<Grid.Column >
 						{this.renderSelectorIncendis(this.state.currentIncendi.value)}
 					</Grid.Column>
 				</Grid.Row>
 
-				<Grid.Row columns={2} only='computer'>
+				<Grid.Row className={styles.containerMenuSelectorsRow} columns={2} only='computer'>
 					<Grid.Column >
 						{this.renderSelectorIncendis(this.state.currentIncendi.value)}
 					</Grid.Column>
