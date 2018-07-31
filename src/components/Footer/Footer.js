@@ -69,7 +69,7 @@ export default class Footer extends Component {
 
 	getEncodedUrlApp() {
 
-		return  this.state.encodeUrl;
+		return  encodeURI(window.location.href);
 
 	}
 

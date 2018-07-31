@@ -116,6 +116,7 @@
     "mapbox-gl": "^0.46.0",
     "mapbox-gl-compare": "^0.1.1",
     "react": "^16.2.0",
+    "react-device-detect": "^1.5.8",
     "react-dom": "^16.2.0",
     "react-query-params": "^1.0.7",
     "react-router-dom": "^4.2.2",

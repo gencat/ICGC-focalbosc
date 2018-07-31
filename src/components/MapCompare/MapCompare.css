@@ -24,8 +24,8 @@
 .panelinfo{
 	position: absolute;
 	z-index: 50;
-	top: 260px;
-	left: 0px;
+	top: 265px;
+	left: 5px;
 	width: 240px;
 	background: rgba(250, 72, 30, 0.95);
 	padding: 20px;
@@ -38,9 +38,9 @@
 .panelinfoPopup{
 	position: absolute;
 	z-index: 50;
-	top: 260px;
+	top: 235px;
 	/* bottom: 35px; */
-	left: 0px;
+	left: 5px;
 	width: 240px;
 	height: 73px;
 	background-color: rgba(250, 72, 30, 0.9);
