@@ -69,6 +69,8 @@ export default class Footer extends Component {
 
 		return encodeURI(window.location.href);
 
+		return  encodeURI(window.location.href);
+
 	}
 
 	getEmbedUrlApp() {
@@ -133,7 +135,7 @@ export default class Footer extends Component {
 	renderContainerRight() {
 
 		return (
-			<div className={styles.containerRight}>
+			<div  className={styles.containerRight}>
 
 				<a target="blank" onClick={()=>this.openLink(`${URLMAIL}${this.getEncodedUrlApp()}`, "_self")} >
 					<Button circular inverted icon='mail' />
