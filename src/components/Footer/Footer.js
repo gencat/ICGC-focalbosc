@@ -8,8 +8,6 @@ import {
 	URLMAIL,
 	URLTWITTER,
 	URLFACEBOOK,
-	URLGOOGLE,
-	URLPINTEREST,
 	URL_GITHUB,
 	URL_PROTOTIPS
 } from "../../constants";
@@ -32,8 +30,7 @@ export default class Footer extends Component {
 	constructor() {
 		super();
 		this.state = {
-			width: window.innerWidth,
-			encodeUrl: encodeURI(window.location.href)
+			width: window.innerWidth
 		};
 
 		window.addEventListener("resize", this.handleWindowSizeChange);
@@ -48,16 +45,17 @@ export default class Footer extends Component {
 		this.setState({ width: window.innerWidth });
 	};
 
-	openLink(url) {
+	openLink(url, mode = "_blank") {
 
-		window.open(url, "_blank");
+		console.log("url", url);
+
+		window.open(url, mode);
 
 	}
 
 	handleOpenModal() {
 
 		this.setState({ url: window.location.href });
-		this.setState({ encodeUrl: encodeURI(window.location.href)});
 
 	}
 
@@ -69,7 +67,7 @@ export default class Footer extends Component {
 
 	getEncodedUrlApp() {
 
-		return  this.state.encodeUrl;
+		return encodeURI(window.location.href);
 
 	}
 
@@ -132,21 +130,20 @@ export default class Footer extends Component {
 
 	}
 
-
 	renderContainerRight() {
 
 		return (
 			<div className={styles.containerRight}>
 
-				<a target="blank" href={`${URLMAIL}${this.getEncodedUrlApp()}`}>
+				<a target="blank" onClick={()=>this.openLink(`${URLMAIL}${this.getEncodedUrlApp()}`, "_self")} >
 					<Button circular inverted icon='mail' />
 				</a>
 
-				<a target="blank" href={`${URLTWITTER}${this.getEncodedUrlApp()}`}>
+				<a target="blank" onClick={()=>this.openLink(`${URLTWITTER}${this.getEncodedUrlApp()}`)}>
 				 <Button circular inverted icon='twitter' />
 				</a>
 
-				<a target="blank" href={`${URLFACEBOOK}${this.getEncodedUrlApp()}`}>
+				<a target="blank" onClick={()=>this.openLink(`${URLFACEBOOK}${this.getEncodedUrlApp()}`)} >
 					<Button circular inverted icon='facebook' />
 				</a>
 
@@ -158,7 +155,7 @@ export default class Footer extends Component {
 	render() {
 
 		const { width } = this.state;
-		const isMobile = width <= 500;
+		//const isMobile = width <= 500;
 
 		const footerStyle = (width <= 500 ? styles.containerFooterMobile : styles.containerFooter);
 
