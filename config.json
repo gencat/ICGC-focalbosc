@@ -1,4 +1,0 @@
-{
-  "hosts": ["root@172.30.22.120"],
-  "script": "deploy.sh"
-}

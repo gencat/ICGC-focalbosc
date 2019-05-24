@@ -1,9 +1,11 @@
 // @flow
 
-import React, { Component } from "react";
-import {  Modal, Button, Container, Divider, Form, Icon } from "semantic-ui-react";
-import Header from "../Header/Header";
-import styles from "./Footer.css";
+import React from "react";
+import {  Button, Divider, Form, Icon } from "semantic-ui-react";
+import { ResizeComponent } from "@geostarters/react-components";
+
+import ModalInfo from "../ModalInfo/ModalInfo";
+import styles from "./Footer.module.css";
 import {
 	URLMAIL,
 	URLTWITTER,
@@ -12,165 +14,68 @@ import {
 	URL_PROTOTIPS
 } from "../../constants";
 
-/* const styles = {
 
-	logo: {
-		marginRight: "1em",
-		marginLeft: "1em"
-	},
-	myMenu: {
-		height: "3.8em",
-		borderBottom: "2px solid #C21126"
-	}
+const Footer = (props) => {
 
-}; */
+	const isMobile = props.width <= 500;
 
-export default class Footer extends Component {
+	const openLink = (url, mode = "_blank") => window.open(url, mode);
 
-	constructor() {
-		super();
-		this.state = {
-			width: window.innerWidth
-		};
+	const getUrlApp = () => window.location.href;
 
-		window.addEventListener("resize", this.handleWindowSizeChange);
-	}
+	const getEncodedUrlApp = () => encodeURI(window.location.href);
 
+	const getEmbedUrlApp = () => `<iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="${getUrlApp()}" ></iframe>`;
 
-	componentWillUnmount() {
-		window.removeEventListener("resize", this.handleWindowSizeChange);
-	}
+	const renderBTLink = () => (
+		<ModalInfo modalSize="tiny" modalTrigger={<Button className={styles.myInvertedButton}><Icon name='linkify' /> Enllaça</Button>}>
+			<h3>Enllaça la vista</h3>
+			<Divider />
+			<Form inline="true" >
+				<Form.Field >
+					<label>Per enllaçar amb aquest mapa, copieu i enganxeu el següent text:</label>
+					<input readOnly value={getUrlApp()} />
+				</Form.Field>
+				<Form.Field>
+					<label>Per inserir aquest mapa al vostre web, copieu i enganxeu el següent text:</label>
+					<textarea readOnly value={getEmbedUrlApp()} />
+				</Form.Field>
+			</Form>
+		</ModalInfo>
+	);
 
-	handleWindowSizeChange = () => {
-		this.setState({ width: window.innerWidth });
-	};
+	const renderContainerLeft = () => (
+		<div className={styles.containerLeft}>
+			<Button className={styles.myInvertedButton} onClick={() => openLink(URL_PROTOTIPS)}>
+				<Icon name='external alternate' /> +Prototips
+			</Button>
+			<Button  className={styles.myInvertedButton} onClick={() => openLink(URL_GITHUB)}>
+				<Icon name='github' /> Github
+			</Button>
+			{renderBTLink()}
+		</div>
+	);
 
-	openLink(url, mode = "_blank") {
+	const renderContainerRight = () => (
+		<div className={styles.containerRight}>
+			<Button onClick={()=>openLink(`${URLMAIL}${getEncodedUrlApp()}`, "_self")} circular inverted icon='mail' />
+			<Button onClick={()=>openLink(`${URLTWITTER}${getEncodedUrlApp()}`)} circular inverted icon='twitter' />
+			<Button onClick={()=>openLink(`${URLFACEBOOK}${getEncodedUrlApp()}`)} circular inverted icon='facebook' />
+		</div>
+	);
 
-		console.log("url", url);
+	return (
+		<div className={props.width <= 500 ? styles.containerFooterMobile : styles.containerFooter}>
+			{!isMobile && renderContainerLeft()}
+			{renderContainerRight() }
+		</div>
+	);
 
-		window.open(url, mode);
+};
 
-	}
+Footer.DefaultProperties = {
+	width: 800
+};
 
-	handleOpenModal() {
-
-		this.setState({ url: window.location.href });
-
-	}
-
-	getUrlApp() {
-
-		return this.state.url;
-
-	}
-
-	getEncodedUrlApp() {
-
-		return encodeURI(window.location.href);
-
-		return  encodeURI(window.location.href);
-
-	}
-
-	getEmbedUrlApp() {
-
-		const text = `<iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="${this.getUrlApp()}" ></iframe>`;
-
-		return text;
-
-	}
-
-	renderBTLink() {
-
-		return (
-			<Modal size="tiny" trigger={<Button  onClick={this.handleOpenModal.bind(this)} className={styles.myInvertedButton}><Icon name='linkify' /> Enllaça</Button>} closeIcon>
-				<Header title=" " showModalInfo={false}></Header>
-				<Modal.Content image>
-					<Modal.Description className={styles.description}>
-						<Container textAlign='justified'>
-							<h3>Enllaça la vista</h3>
-							<Divider />
-							<Form inline>
-								<Form.Field >
-									<label>Per enllaçar amb aquest mapa, copieu i enganxeu el següent text:</label>
-									<input value={this.getUrlApp()} />
-								</Form.Field>
-								<Form.Field>
-									<label>Per inserir aquest mapa al vostre web, copieu i enganxeu el següent text:</label>
-									<textarea value={this.getEmbedUrlApp()} />
-								</Form.Field>
-							</Form>
-						</Container>
-					</Modal.Description>
-				</Modal.Content>
-			</Modal>
-
-		);
-
-	}
-
-	renderContainerLeft() {
-
-		const { width } = this.state;
-		const isMobile = width <= 500;
-
-		if (!isMobile) {
-			return (
-
-				<div className={styles.containerLeft}>
-					<Button className={styles.myInvertedButton} onClick={() => this.openLink(URL_PROTOTIPS)}>
-						<Icon name='external alternate' /> +Prototips
-					</Button>
-					<Button  className={styles.myInvertedButton} onClick={() => this.openLink(URL_GITHUB)}>
-						<Icon name='github' /> Github
-					</Button>
-					{this.renderBTLink()}
-				</div>
-			);
-		}
-
-	}
-
-	renderContainerRight() {
-
-		return (
-			<div  className={styles.containerRight}>
-
-				<a target="blank" onClick={()=>this.openLink(`${URLMAIL}${this.getEncodedUrlApp()}`, "_self")} >
-					<Button circular inverted icon='mail' />
-				</a>
-
-				<a target="blank" onClick={()=>this.openLink(`${URLTWITTER}${this.getEncodedUrlApp()}`)}>
-				 <Button circular inverted icon='twitter' />
-				</a>
-
-				<a target="blank" onClick={()=>this.openLink(`${URLFACEBOOK}${this.getEncodedUrlApp()}`)} >
-					<Button circular inverted icon='facebook' />
-				</a>
-
-			</div>
-		);
-
-	}
-
-	render() {
-
-		const { width } = this.state;
-		//const isMobile = width <= 500;
-
-		const footerStyle = (width <= 500 ? styles.containerFooterMobile : styles.containerFooter);
-
-		return (
-
-			<div className={footerStyle}>
-
-				{this.renderContainerLeft()}
-
-				{this.renderContainerRight() }
-
-			</div>
-		);
-	}
-
-}
+// eslint-disable-next-line new-cap
+export default React.memo(ResizeComponent(Footer));

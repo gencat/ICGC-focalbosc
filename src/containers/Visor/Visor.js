@@ -1,6 +1,10 @@
 // @flow
 
 import React from "react";
+
+//import ResizeComponent from "../components/ResizeComponent";
+//import { ResizeComponent } from "@geostarters/react-components";
+
 import MapCompare from "../../components/MapCompare/MapCompare";
 import * as CONSTANTS from "../../constants";
 
@@ -8,10 +12,8 @@ import ReactQueryParams from "react-query-params";
 import { Icon, Grid, Dropdown } from "semantic-ui-react";
 import {isMobile} from "react-device-detect";
 
-import styles from "./Visor.css";
+import styles from "./Visor.module.css";
 
-
-//export default class Visor extends React.Component {
 export default class PanelContainer extends ReactQueryParams {
 
 	constructor(props) {
@@ -32,12 +34,10 @@ export default class PanelContainer extends ReactQueryParams {
 			modeComparador: false
 		};
 
-		this.changeYear = this.changeYear.bind(this);
-
 	}
 
 
-	resetComparador() {
+	resetComparador = () => {
 
 		this.setQueryParams({
 			codifinal: ""
@@ -70,8 +70,6 @@ export default class PanelContainer extends ReactQueryParams {
 				modeComparador: false,
 				beforeMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
 				afterMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]]
-				/* beforeMapLayer: {},
-				afterMapLayer: {} */
 			});
 
 		} else if (this.state.modeComparador) {
@@ -84,30 +82,28 @@ export default class PanelContainer extends ReactQueryParams {
 
 		} else {
 
-			this.setState({
-				year: year
-			});
+			this.setState({year: year});
+
 		}
 
 	}
 
 
-	changeYear(event) {
-
-		this.updateYear(event.target.value);
-	}
+	changeYear = (event) => this.updateYear(event.target.value);
 
 	changeMaxYear() {
 
 		this.updateYear(CONSTANTS.ANY_FINAL);
+
 	}
 
 	changeMinYear() {
 
 		this.updateYear(CONSTANTS.ANY_INIT);
+
 	}
 
-	changeAddStepYear(e) {
+	changeAddStepYear = () => {
 
 		const currentYear = Number(this.state.year);
 
@@ -119,7 +115,7 @@ export default class PanelContainer extends ReactQueryParams {
 
 	}
 
-	changeSubstractStepYear(e) {
+	changeSubstractStepYear = () => {
 
 		const currentYear = Number(this.state.year);
 
@@ -131,7 +127,7 @@ export default class PanelContainer extends ReactQueryParams {
 
 	}
 
-	handleZoomChange(newZoom, showComparador) {
+	handleZoomChange = (newZoom, showComparador) => {
 
 
 		if (showComparador) {
@@ -156,10 +152,6 @@ export default class PanelContainer extends ReactQueryParams {
 
 	handleIncendiChange(newVal) {
 
-		console.log("handleIncendiChange: ", newVal);
-
-		/* const beforeAny = Number(CONSTANTS.incendisList[newVal].any) - 1;
-		const afterAny = Number(CONSTANTS.incendisList[newVal].any) + 1; */
 		const newCurrentIncendi = CONSTANTS.incendisList[newVal];
 		const any = Number(newCurrentIncendi.any);
 
@@ -186,7 +178,6 @@ export default class PanelContainer extends ReactQueryParams {
 		}
 
 
-
 		this.setQueryParams({
 			codifinal: `${newCurrentIncendi.key}&`
 		});
@@ -194,9 +185,9 @@ export default class PanelContainer extends ReactQueryParams {
 	}
 
 
-	initURLParams() {
+	initURLParams = () => {
 
-		const codifinal = this.queryParams.codifinal;
+		const { codifinal } = this.queryParams;
 
 		if (codifinal !== undefined && codifinal !== "") {
 
@@ -206,21 +197,21 @@ export default class PanelContainer extends ReactQueryParams {
 
 	}
 
-	handleSelectIncendi (codi) {
-		console.log("handleSelectIncendi", codi);
-		this.handleIncendiChange(this.getIncendiByCodi(codi));
-	}
+	handleSelectIncendi = (codi) => this.handleIncendiChange(this.getIncendiByCodi(codi));
 
-	isYearToCompare(year) {
-		return (year >= CONSTANTS.ANY_COMPARADOR && year <= CONSTANTS.ANY_COMPARADOR_MAX);
-	}
+	isYearToCompare = (year) => (year >= CONSTANTS.ANY_COMPARADOR && year <= CONSTANTS.ANY_COMPARADOR_MAX);
+
 
 	getIncendiByCodi(codifinal) {
 
 		for (const incendi of CONSTANTS.incendisList) {
+
 			if (incendi.key === codifinal) {
+
 				return incendi.value;
+
 			}
+
 		}
 
 	}
@@ -234,10 +225,10 @@ export default class PanelContainer extends ReactQueryParams {
 				modeComparador={this.state.modeComparador}
 				anyIncendi={this.state.year}
 				currentIncendi={this.state.currentIncendi}
-				onSelectIncendi={this.handleSelectIncendi.bind(this)}
-				onZoomChange={this.handleZoomChange.bind(this)}
-				onResetMap={this.resetComparador.bind(this)}
-				initURLParams={this.initURLParams.bind(this)}
+				onSelectIncendi={this.handleSelectIncendi}
+				onZoomChange={this.handleZoomChange}
+				onResetMap={this.resetComparador}
+				initURLParams={this.initURLParams}
 			/>
 		);
 
@@ -248,10 +239,8 @@ export default class PanelContainer extends ReactQueryParams {
 		if (!this.state.modeComparador) {
 
 			const any = this.state.year >= CONSTANTS.MAX_YEAR ? "Tots" : this.state.year;
-
 			const anyUp = this.state.year === CONSTANTS.MAX_YEAR ? "Tots" : this.state.year + 1;
 			const anyDown = this.state.year === CONSTANTS.ANY_INIT ? CONSTANTS.ANY_INIT : this.state.year - 1;
-			/* 	const tagUp */
 
 			return (
 				<div className={styles.controls} id="controls" >
@@ -259,19 +248,20 @@ export default class PanelContainer extends ReactQueryParams {
 						<div className={styles.anySelecionat}>{any}</div>
 					</div>
 					<div className={styles.anysButtons}>
-						<Icon className={styles.anysIcones} size="large" onClick={this.changeAddStepYear.bind(this)} name="chevron circle up" />{anyUp}
+						<Icon className={styles.anysIcones} size="large" onClick={this.changeAddStepYear} name="chevron circle up" />{anyUp}
 						<br />
-						<Icon  className={styles.anysIcones} size="large" onClick={this.changeSubstractStepYear.bind(this)} name="chevron circle down" />{anyDown}
+						<Icon  className={styles.anysIcones} size="large" onClick={this.changeSubstractStepYear} name="chevron circle down" />{anyDown}
 						<br />
 					</div>
 				</div>
 			);
+
 		} else {
 
 			return (
 				<div>
-					{this.renderSelectorAnysOrto(this.state.beforeMapLayer.value, this.updateBeforeMapLayer.bind(this), styles.containerSelectOrtoLeft)}
-					{this.renderSelectorAnysOrto(this.state.afterMapLayer.value, this.updateAfterMapLayer.bind(this), styles.containerSelectOrtoRight)}
+					{this.renderSelectorAnysOrto(this.state.beforeMapLayer.value, this.updateBeforeMapLayer, styles.containerSelectOrtoLeft)}
+					{this.renderSelectorAnysOrto(this.state.afterMapLayer.value, this.updateAfterMapLayer, styles.containerSelectOrtoRight)}
 				</div>
 			);
 
@@ -279,20 +269,12 @@ export default class PanelContainer extends ReactQueryParams {
 
 	}
 
-	updateAfterMapLayer(newVal) {
-		this.setState({afterMapLayer: CONSTANTS.ortoLayersOptions[newVal]});
-	}
+	updateAfterMapLayer = (newVal) => this.setState({afterMapLayer: CONSTANTS.ortoLayersOptions[newVal]});
 
-	updateBeforeMapLayer(newVal) {
-		this.setState({beforeMapLayer: CONSTANTS.ortoLayersOptions[newVal]});
-	}
-
-
+	updateBeforeMapLayer = (newVal) => this.setState({beforeMapLayer: CONSTANTS.ortoLayersOptions[newVal]});
 
 
 	renderSelectorAnysOrto(initValue, funcLayerChanged, styleName) {
-
-		//pointing="left"
 
 		return (
 
@@ -356,23 +338,6 @@ export default class PanelContainer extends ReactQueryParams {
 
 	}
 
-	/* 	renderButtonResetComparador() {
-
-		return (
-			<div className={styles.containerButtonReset}>
-				<Button onClick={this.resetComparador.bind(this)} size="small" className={styles.myButtonReset} animated='vertical'>
-					<Button.Content visible><Image src="./cat_white.svg"></Image></Button.Content>
-					<Button.Content hidden>
-						<Icon size="large" name='arrow left' />
-					</Button.Content>
-				</Button>
-			</div>
-
-		);
-
-	} */
-
-
 	render() {
 
 		return (
@@ -381,9 +346,7 @@ export default class PanelContainer extends ReactQueryParams {
 				{this.renderMenuSelectors()}
 				{this.renderSelectorAnys()}
 				{this.renderMap()}
-
 			</div>
-
 
 		);
 

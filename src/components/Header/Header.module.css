@@ -9,18 +9,9 @@
 }
 
 .title{
-	color: #fff !important;
+	/* color: #fff !important; */
 	/* color: #C21126; */
 }
-
-.containeritemRight{
-	padding: 0.8em;
-}
-
-.buttonModalInfoMobile{
-	font-size: 0.8em;
-}
-
 
 .myMenu {
 	height: 0.8em;
@@ -29,31 +20,15 @@
 
 .containerHeader{
 	width: 100%;
-	/* max-height: 3em; */
 	height: 48px;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	/* padding: 1em;
-	margin-bottom: 1em; */
 	background-color:#FA481E;
+	color: #fff;
 }
 
-
-.description{
-
-	width:100%;
-	
-	}
-
-/* .containerlogo{
-	align-self: flex-start;	
+.containeritemRight{
+    padding: 0.8em;
 }
-.containertitle{
-	align-self: center;
-}
-
-.containerlogo{
-	align-self: flex-end;
-} */

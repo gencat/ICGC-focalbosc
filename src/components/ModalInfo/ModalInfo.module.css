@@ -1,0 +1,22 @@
+
+
+.buttonModalInfoMobile{
+    font-size: 0.8em;
+}
+
+.description{
+    width: 100%;
+}
+
+.myInvertedButton{
+	box-shadow: none !important;
+	background: transparent none !important;
+	color: #fff !important;
+	text-shadow: none!important;
+}
+
+.myInvertedButton:hover, .myInvertedButton:focus {
+	background: #fff !important;
+	box-shadow: 0 0 0 2px #fff inset!important;
+	color: rgba(0,0,0,.8) !important;
+}
