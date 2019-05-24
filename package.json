@@ -2,6 +2,7 @@
   "name": "react-project-template",
   "version": "0.1.1",
   "private": true,
+  "homepage" : "https://visors.icgc.cat/focalbosc/",
   "dependencies": {
     "@geostarters/common": "^0.1.29",
     "@geostarters/react-components": "0.0.16",
