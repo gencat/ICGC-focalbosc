@@ -36,7 +36,7 @@ csv
 				any: any,
 				municipi: data.MUNICIPI,
 				bbox: `${data.XMIN},${data.YMIN},${data.XMAX},${data.YMAX}`,
-				text: `${municipi} - ${anyInc.format("DD/MM/YYYY")}`
+				text: `${municipi} - ${anyInc.format("DD/MM/YYYY")} - ${parseFloat(data.AREA).toFixed(2)} km²`
 			});
 			index = index + 1;
 
