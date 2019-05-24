@@ -1,0 +1,34 @@
+.containerlogo {
+	max-width: 10em;
+	padding: 0.5rem;
+}
+
+.containertitle{
+	padding: 1em;
+
+}
+
+.title{
+	/* color: #fff !important; */
+	/* color: #C21126; */
+}
+
+.myMenu {
+	height: 0.8em;
+	border-bottom: 2px solid #fff;
+}
+
+.containerHeader{
+	width: 100%;
+	height: 48px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	background-color:#FA481E;
+	color: #fff;
+}
+
+.containeritemRight{
+    padding: 0.8em;
+}

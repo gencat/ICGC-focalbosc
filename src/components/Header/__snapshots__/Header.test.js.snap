@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header Component renders correct properties 1`] = `
+<Header
+  showModalInfo={false}
+  title="Title"
+  width={1000}
+/>
+`;

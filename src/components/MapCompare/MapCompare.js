@@ -1,75 +1,64 @@
 //@flow
 
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import MapboxMap from "../../common/mapboxMap";
+import { ResizeComponent } from "@geostarters/react-components";
+import { Utils, MapboxMap } from "@geostarters/common";
+import Compare from "mapbox-gl-compare";
+import mapboxgl from "mapbox-gl";
+import { Icon, Button, Image } from "semantic-ui-react";
+import { isMobile } from "react-device-detect";
+
 import * as CONSTANTS from "../../constants";
+import IMAGES from "../../resources/images";
+import styles from "./MapCompare.module.css";
 
-import Utils from "../../common/utils";
-
-import Compare  from "mapbox-gl-compare";
-import { Icon, Button, Image, Loader } from "semantic-ui-react";
-import {isMobile} from "react-device-detect";
-
-import styles from "./MapCompare.css";
-
-export default class MapCompare extends Component {
+class MapCompare extends React.PureComponent {
 
 	map;
 	beforeMap;
 	afterMap;
-	//currentZoom;
 	timestamp;
-
 	doReset;
+	currentZoom;
 
-	
+	constructor(props) {
 
-	state = {
-		width: window.innerWidth,
-		showPanelPopup: false,
-		MUNICIPI_MOV:"",
-		DATAINCENT_MOV:""
+		super(props);
+		this.state = {
+			showPanelPopup: false,
+			MUNICIPI_MOV:"",
+			DATAINCENT_MOV:""
+		};
+
+		this.beforeMapContainer = React.createRef();
+		this.afterMapContainer = React.createRef();
+
 	}
-
-	constructor() {
-		super();
-		window.addEventListener("resize", this.handleWindowSizeChange);
-	}
-
-	componentWillUnmount() {
-		window.removeEventListener("resize", this.handleWindowSizeChange);
-	}
-
-	handleWindowSizeChange = () => {
-		this.setState({ width: window.innerWidth });
-	};
 
 	async componentDidMount() {
 
-		console.log("componentDidMount");
-		/* this.timestamp = Date.now(); */
-
 		this.doReset = 0;
 		this.currentZoom = CONSTANTS.INIT_APP_ZOOM;
+		const API_KEY = `${process.env.REACT_APP_MAPBOX_API_KEY}`;
 
-		this.beforeMap = new MapboxMap(CONSTANTS.MAPBOX_ACCESS_TOKEN, {
+		this.beforeMap = new MapboxMap(mapboxgl, API_KEY, {
 			style: CONSTANTS.MAPSTYLE_HISTORIC,
 			zoom: CONSTANTS.INIT_APP_ZOOM,
 			center: CONSTANTS.INIT_APP_CENTER,
 			hash:true,
 			attributionControl:false,
-			container: this.beforeMapContainer
+			container: this.beforeMapContainer.current
 		});
 
 
-		this.afterMap = new MapboxMap(CONSTANTS.MAPBOX_ACCESS_TOKEN, {
+		this.afterMap = new MapboxMap(mapboxgl, API_KEY, {
 			style: CONSTANTS.MAPSTYLE_HISTORIC,
 			zoom: CONSTANTS.INIT_APP_ZOOM,
 			center: CONSTANTS.INIT_APP_CENTER,
 			hash:true,
 			attributionControl:false,
-			container: this.afterMapContainer
+			container: this.afterMapContainer.current
 		});
 
 		await this.afterMap.create();
@@ -84,8 +73,15 @@ export default class MapCompare extends Component {
 
 		this.map._setPosition(0);
 
-		if (isMobile) this.initMapEventsMobile();
-		else this.initMapEvents();
+		if (isMobile) {
+
+			this.initMapEventsMobile();
+
+		} else {
+
+			this.initMapEvents();
+
+		}
 
 		this.props.initURLParams();
 
@@ -93,10 +89,10 @@ export default class MapCompare extends Component {
 
 	componentDidUpdate(prevProps) {
 
-		console.log("componentDidUpdate");
-
 		if (prevProps.anyIncendi !== this.props.anyIncendi) {
+
 			this.updateFilterByYear();
+
 		}
 
 		if (prevProps.beforeMapLayer.value !== this.props.beforeMapLayer.value) {
@@ -116,33 +112,32 @@ export default class MapCompare extends Component {
 		const pitch = this.props.modeComparador ? 45 : 0;
 
 
-
-		if (!Utils.isEmpty(this.props.currentIncendi) && (prevProps.currentIncendi.value === {} ||  prevProps.currentIncendi.value !== this.props.currentIncendi.value)) {
+		if (!Utils.isEmptyObject(this.props.currentIncendi) && (prevProps.currentIncendi.value === {} ||  prevProps.currentIncendi.value !== this.props.currentIncendi.value)) {
 
 			const bboxList = this.props.currentIncendi.bbox.split(",");
-			this.map._setPosition(this.props.modeComparador ? (this.state.width / 2) : 0);
-			//console.log("Abans fitBBOX", this.props.currentIncendi.bbox);
+			this.map._setPosition(this.props.modeComparador ? (this.props.width / 2) : 0);
 			this.afterMap.fitBBOX(bboxList, pitch);
 			this.beforeMap.fitBBOX(bboxList, pitch);
 
 		} else if (prevProps.modeComparador !== this.props.modeComparador) {
 
-
-			this.map._setPosition(this.props.modeComparador ? (this.state.width / 2) : 0);
+			this.map._setPosition(this.props.modeComparador ? (this.props.width / 2) : 0);
 			this.afterMap.easeTo({pitch: pitch});
 			this.beforeMap.easeTo({pitch: pitch});
+
 		}
 
 	}
 
-	initMapData() {
+	async initMapData() {
 
 		const defaultInit = {
 			layers: [CONSTANTS.INCENDISCAT_POL_LAYER, CONSTANTS.INCENDISCAT_LINE_LAYER, CONSTANTS.INCENDISCAT_CIRCLE_LAYER],
 			sources: [CONSTANTS.INCENDISCAT_SOURCE]
 		};
-		this.afterMap.addMapData(defaultInit);
-		this.beforeMap.addMapData(defaultInit);
+
+		await this.afterMap.addMapData(defaultInit);
+		await this.beforeMap.addMapData(defaultInit);
 
 		this.updateFilterByYear();
 
@@ -152,25 +147,24 @@ export default class MapCompare extends Component {
 
 	initMapEvents() {
 
-		console.log("initMapEvents", isMobile);
-
 		this.afterMap.subscribe("click", CONSTANTS.LAYER_CIRCLE, (e) => {
+
 			const feature = e.features[0];
 			this.setActionOnClick(feature);
 
 		});
 
 		this.afterMap.subscribe("click", CONSTANTS.LAYER_LIN, (e) => {
+
 			const feature = e.features[0];
 			this.setActionOnClick(feature);
 
 		});
 
 		this.afterMap.subscribe("mousemove", CONSTANTS.LAYER_POL, (e) => {
+
 			this.afterMap.setCursorPointer("pointer");
 			const feature = e.features[0];
-
-			/* this.timestamp = Date.now(); */
 
 			this.setState({
 				MUNICIPI_MOV: feature.properties.MUNICIPI,
@@ -187,8 +181,6 @@ export default class MapCompare extends Component {
 			this.afterMap.setCursorPointer("pointer");
 			const feature = e.features[0];
 
-			/* this.timestamp = Date.now(); */
-
 			this.setState({
 				MUNICIPI_MOV: feature.properties.MUNICIPI,
 				DATAINCENT_MOV: feature.properties.DATA_INCEN,
@@ -198,7 +190,7 @@ export default class MapCompare extends Component {
 		});
 
 
-		this.afterMap.subscribe("mouseleave", CONSTANTS.LAYER_CIRCLE, (e) => {
+		this.afterMap.subscribe("mouseleave", CONSTANTS.LAYER_CIRCLE, () => {
 
 			this.afterMap.setCursorPointer("");
 
@@ -208,15 +200,11 @@ export default class MapCompare extends Component {
 
 		});
 
-		//this.afterMap.subscribe("zoomend", "", this.props.onZoomChange(this.afterMap.getZoom()));
-
 		this.initZoomEvents();
 
 	}
 
 	initMapEventsMobile() {
-
-		console.log("initMapEvents", isMobile);
 
 		this.afterMap.subscribe("click", CONSTANTS.LAYER_CIRCLE, (e) =>  this.setActionOnClick(e.features[0]));
 		this.afterMap.subscribe("mousemove", CONSTANTS.LAYER_CIRCLE, (e) =>  this.setActionOnClick(e.features[0]));
@@ -226,29 +214,26 @@ export default class MapCompare extends Component {
 		this.afterMap.subscribe("mousemove", CONSTANTS.LAYER_LIN, (e) =>  this.setActionOnClick(e.features[0]));
 		this.afterMap.subscribe("touchend", CONSTANTS.LAYER_LIN, (e) =>  this.setActionOnClick(e.features[0]));
 
-
 		this.initZoomEvents();
 
 	}
 
 	initZoomEvents() {
 
-		this.afterMap.subscribe("zoomend", "", (e) =>  {
+		this.afterMap.subscribe("zoomend", "", () =>  {
 
-			//console.log("zoomend", e);
 			const zoom = this.afterMap.getZoom();
 
 			if (zoom >= CONSTANTS.LIMIT_ZOOM && this.currentZoom < CONSTANTS.LIMIT_ZOOM && this.isYearToCompare(this.props.anyIncendi)) {
 
 				this.currentZoom = zoom;
-				console.log("Show comparador", zoom);
 				this.props.onZoomChange(zoom, true);
 
 			} else if (zoom < CONSTANTS.LIMIT_ZOOM && this.currentZoom >= CONSTANTS.LIMIT_ZOOM) {
 
 				this.currentZoom = zoom;
-				console.log("hide comparador", zoom);
 				this.props.onZoomChange(zoom, false);
+
 			}
 
 		});
@@ -256,10 +241,7 @@ export default class MapCompare extends Component {
 	}
 
 
-
-	isYearToCompare(year) {
-		return (year >= CONSTANTS.ANY_COMPARADOR && year <= CONSTANTS.ANY_COMPARADOR_MAX);
-	}
+	isYearToCompare = (year) => (year >= CONSTANTS.ANY_COMPARADOR && year <= CONSTANTS.ANY_COMPARADOR_MAX);
 
 	updateFilterByYear() {
 
@@ -282,34 +264,23 @@ export default class MapCompare extends Component {
 			this.beforeMap.setFilter(CONSTANTS.LAYER_POL, ["any", ["==", CONSTANTS.FILTER_FIELD, this.props.anyIncendi]]);
 			this.beforeMap.setFilter(CONSTANTS.LAYER_LIN, ["any", ["==", CONSTANTS.FILTER_FIELD, this.props.anyIncendi]]);
 			this.beforeMap.setFilter(CONSTANTS.LAYER_CIRCLE, ["any", ["==", CONSTANTS.FILTER_FIELD, this.props.anyIncendi]]);
+
 		}
 
 	}
 
 	setActionOnClick(feature) {
 
-		console.log("setActionOnClick", feature);
 		this.closePanel();
 		this.props.onSelectIncendi(feature.properties.CODI_FINAL);
 
 	}
 
-	closePanel() {
+	closePanel = () => this.setState({ showPanelPopup: false });
 
-		this.setState({
-			showPanelPopup: false
-		});
-	}
-
-	resetMap () {
-
+	resetMap = () => {
 
 		this.props.onResetMap();
-
-		//const bboxList =  [3.3360, 40.4700, 0.1087, 42.8840];
-
-		/* this.afterMap.setCenter(CONSTANTS.INIT_APP_CENTER);
-		this.beforeMap.setCenter(CONSTANTS.INIT_APP_CENTER); */
 
 		const cameraOptions = {
 			center: CONSTANTS.INIT_APP_CENTER,
@@ -324,8 +295,8 @@ export default class MapCompare extends Component {
 
 		return (
 			<div className={styles.containerButtonReset}>
-				<Button onClick={this.resetMap.bind(this)} size="small" className={styles.myButtonReset} animated='vertical'>
-					<Button.Content visible><Image src="./cat_white.svg"></Image></Button.Content>
+				<Button onClick={this.resetMap} size="small" className={styles.myButtonReset} animated='vertical'>
+					<Button.Content visible><Image src={IMAGES.cat_white}></Image></Button.Content>
 					<Button.Content hidden>
 						<Icon size="large" name='arrow left' />
 					</Button.Content>
@@ -337,9 +308,15 @@ export default class MapCompare extends Component {
 	}
 
 	getStyleComparador() {
-		if (!this.props.modeComparador) return `${styles.map} ${styles.noComparator}`;
+
+		if (!this.props.modeComparador) {
+
+			return `${styles.map} ${styles.noComparator}`;
+
+		}
 
 		return `${styles.map}`;
+
 	}
 
 	render() {
@@ -354,16 +331,21 @@ export default class MapCompare extends Component {
 					<div>{DATAINCENT_MOV}</div>
 				</div>
 
-				<div id="beforeMap" ref={el => (this.beforeMapContainer = el)} className={this.getStyleComparador()}/>
-				<div id="afterMap" ref={el => (this.afterMapContainer = el)} className={styles.map}/>
+				<div id="beforeMap" ref={this.beforeMapContainer} className={this.getStyleComparador()}/>
+				<div id="afterMap" ref={this.afterMapContainer} className={styles.map}/>
 
 				{this.renderButtonResetComparador()}
 
 			</div>
 		);
+
 	}
 
 }
+
+// eslint-disable-next-line new-cap
+export default ResizeComponent(MapCompare);
+
 
 MapCompare.propTypes = {
 	afterMapLayer: PropTypes.object,
