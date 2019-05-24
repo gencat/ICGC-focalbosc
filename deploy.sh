@@ -11,4 +11,4 @@ mkdir build
 npm install
 npm run build
 
-mv ./* /var/www/html/
+mv ./build/* /var/www/html/
