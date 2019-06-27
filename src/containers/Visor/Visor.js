@@ -28,8 +28,8 @@ export default class PanelContainer extends ReactQueryParams {
 			currentCenter: [],
 
 			currentIncendi: {},
-			beforeMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
-			afterMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
+			beforeMapLayer: this.getBeforeMapLayer(CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]),
+			afterMapLayer: this.getBeforeMapLayer(CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]),
 
 			modeComparador: false
 		};
@@ -51,8 +51,8 @@ export default class PanelContainer extends ReactQueryParams {
 			currentCenter: [],
 
 			currentIncendi: {},
-			beforeMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
-			afterMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
+			beforeMapLayer: this.getBeforeMapLayer(CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]),
+			afterMapLayer: this.getAfterMapLayer(CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]),
 
 			modeComparador: false
 		});
@@ -62,22 +62,21 @@ export default class PanelContainer extends ReactQueryParams {
 
 	updateYear(year) {
 
-
 		if (year > CONSTANTS.ANY_COMPARADOR_MAX || year < CONSTANTS.ANY_COMPARADOR) {
 
 			this.setState({
 				year: year,
 				modeComparador: false,
-				beforeMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
-				afterMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]]
+				beforeMapLayer: this.getBeforeMapLayer(CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]),
+				afterMapLayer: this.getAfterMapLayer(CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL])
 			});
 
 		} else if (this.state.modeComparador) {
 
 			this.setState({
 				year: year,
-				beforeMapLayer:CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[year - 1]],
-				afterMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[year + 1]]
+				beforeMapLayer: this.getBeforeMapLayer(CONSTANTS.mappingAnyLayer[year - 1]),
+				afterMapLayer: this.getAfterMapLayer(CONSTANTS.mappingAnyLayer[year + 1])
 			});
 
 		} else {
@@ -129,21 +128,20 @@ export default class PanelContainer extends ReactQueryParams {
 
 	handleZoomChange = (newZoom, showComparador) => {
 
-
 		if (showComparador) {
 
 			this.setState({
 				modeComparador: showComparador,
-				beforeMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[this.state.year - 1]],
-				afterMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[this.state.year + 1]]
+				beforeMapLayer: this.getBeforeMapLayer(CONSTANTS.mappingAnyLayer[this.state.year - 1]),
+				afterMapLayer: this.getAfterMapLayer(CONSTANTS.mappingAnyLayer[this.state.year + 1])
 			});
 
 		} else {
 
 			this.setState({
 				modeComparador: showComparador,
-				beforeMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
-				afterMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]]
+				beforeMapLayer: this.getBeforeMapLayer(CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]),
+				afterMapLayer: this.getAfterMapLayer(CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL])
 			});
 
 		}
@@ -161,8 +159,8 @@ export default class PanelContainer extends ReactQueryParams {
 				currentIncendi: newCurrentIncendi,
 				year: any,
 				modeComparador: true,
-				beforeMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[any - 1]],
-				afterMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[any + 1]]
+				beforeMapLayer: this.getBeforeMapLayer(CONSTANTS.mappingAnyLayer[any - 1]),
+				afterMapLayer: this.getAfterMapLayer(CONSTANTS.mappingAnyLayer[any + 1])
 			});
 
 		} else {
@@ -171,8 +169,8 @@ export default class PanelContainer extends ReactQueryParams {
 				currentIncendi: newCurrentIncendi,
 				year: any,
 				modeComparador: false,
-				beforeMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]],
-				afterMapLayer: CONSTANTS.ortoLayersOptions[CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]]
+				beforeMapLayer: this.getBeforeMapLayer(CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]),
+				afterMapLayer: this.getAfterMapLayer(CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL])
 			});
 
 		}
@@ -269,10 +267,25 @@ export default class PanelContainer extends ReactQueryParams {
 
 	}
 
-	updateAfterMapLayer = (newVal) => this.setState({afterMapLayer: CONSTANTS.ortoLayersOptions[newVal]});
+	getBeforeMapLayer = (newVal) => {
+		return CONSTANTS.ortoLayersOptions[newVal] || CONSTANTS.ortoLayersOptions[CONSTANTS.ortoLayersOptions.length - 1];
+	}
 
-	updateBeforeMapLayer = (newVal) => this.setState({beforeMapLayer: CONSTANTS.ortoLayersOptions[newVal]});
+	getAfterMapLayer = (newVal) => {
+		return CONSTANTS.ortoLayersOptions[newVal] || CONSTANTS.ortoLayersOptions[CONSTANTS.ortoLayersOptions.length - 1];
+	}
 
+	updateAfterMapLayer = (newVal) => {
+		
+		this.setState({afterMapLayer: this.getAfterMapLayer(newVal)});
+	
+	}
+	
+	updateBeforeMapLayer = (newVal) => {
+		
+		this.setState({beforeMapLayer: this.getBeforeMapLayer(newVal)});
+
+	}
 
 	renderSelectorAnysOrto(initValue, funcLayerChanged, styleName) {
 

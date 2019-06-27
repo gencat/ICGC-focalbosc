@@ -203,9 +203,7 @@ export const ortoLayersOptions = [
 	{key: "ortoICGC2015", name:"orto5m2015", text: "2015", value: 10},
 	{key: "ortoICGC2016", name:"orto5m2016", text: "2016", value: 11},
 	{key: "ortoICGC2017", name:"orto5m2017", text: "2017", value: 12},
-	{key: "ortoICGC2018", name:"orto5actual", text: "2018", value: 13},
-	{key: "ortoICGCActual", name:"orto5actual", text: "2019", value: 14}
-
+	{key: "ortoICGCActual", name:"orto5actual", text: "2018", value: 13}
 ];
 
 
