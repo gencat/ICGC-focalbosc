@@ -16,8 +16,8 @@ let content = [];
 let index = 0;
 
 //Update every year
-const anyfinal = 2018;
-const filename = path.join(__dirname, "data/incendis_1996_2018.csv");
+const anyfinal = 2019;
+const filename = path.join(__dirname, "data", "incendis_1996_2018.csv");
 
 csv
 	.fromPath(filename, {headers : true})
