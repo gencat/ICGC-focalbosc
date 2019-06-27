@@ -95,26 +95,29 @@ class MapCompare extends React.PureComponent {
 
 		}
 
-		if(prevProps.beforeMapLayer && this.props.afterMapLayer) {
-
+		
+		if(prevProps.beforeMapLayer){
+			
 			if (prevProps.beforeMapLayer.value !== this.props.beforeMapLayer.value) {
 
 				this.beforeMap.removeLayer(prevProps.beforeMapLayer.key);
 				this.beforeMap.addLayer({"id": this.props.beforeMapLayer.key, "type": "raster", "source": this.props.beforeMapLayer.key}, CONSTANTS.CUT_LAYER);
-	
+		
 			}
-	
+
+		}
+		
+		if(prevProps.afterMapLayer){
+			
 			if (prevProps.afterMapLayer.value !== this.props.afterMapLayer.value) {
 	
 				this.afterMap.removeLayer(prevProps.afterMapLayer.key);
 				this.afterMap.addLayer({"id": this.props.afterMapLayer.key, "type": "raster", "source": this.props.afterMapLayer.key}, CONSTANTS.CUT_LAYER);
-	
+		
 			}
 			
 		}
-
 		
-
 		const pitch = this.props.modeComparador ? 45 : 0;
 
 
