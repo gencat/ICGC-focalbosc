@@ -185,7 +185,8 @@ export const mappingAnyLayer = {
 	2015: 10,
 	2016: 11,
 	2017: 12,
-	2018: 13
+	2018: 13,
+	2019: 14
 };
 
 export const ortoLayersOptions = [
@@ -202,7 +203,8 @@ export const ortoLayersOptions = [
 	{key: "ortoICGC2015", name:"orto5m2015", text: "2015", value: 10},
 	{key: "ortoICGC2016", name:"orto5m2016", text: "2016", value: 11},
 	{key: "ortoICGC2017", name:"orto5m2017", text: "2017", value: 12},
-	{key: "ortoICGCActual", name:"orto5actual", text: "2018", value: 13}
+	{key: "ortoICGC2018", name:"orto5actual", text: "2018", value: 13},
+	{key: "ortoICGCActual", name:"orto5actual", text: "2019", value: 14}
 
 ];
 
