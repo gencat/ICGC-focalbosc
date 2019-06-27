@@ -96,7 +96,7 @@ class MapCompare extends React.PureComponent {
 		}
 
 		
-		if(prevProps.beforeMapLayer){
+		if(prevProps.beforeMapLayer && this.props.beforeMapLayer){
 			
 			if (prevProps.beforeMapLayer.value !== this.props.beforeMapLayer.value) {
 
@@ -107,7 +107,7 @@ class MapCompare extends React.PureComponent {
 
 		}
 		
-		if(prevProps.afterMapLayer){
+		if(prevProps.afterMapLayer && this.props.afterMapLayer){
 			
 			if (prevProps.afterMapLayer.value !== this.props.afterMapLayer.value) {
 	
@@ -115,7 +115,7 @@ class MapCompare extends React.PureComponent {
 				this.afterMap.addLayer({"id": this.props.afterMapLayer.key, "type": "raster", "source": this.props.afterMapLayer.key}, CONSTANTS.CUT_LAYER);
 		
 			}
-			
+
 		}
 		
 		const pitch = this.props.modeComparador ? 45 : 0;
