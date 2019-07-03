@@ -23,8 +23,6 @@ const Footer = (props) => {
 
 	const openLink = (url, mode = "_blank") => window.open(url, mode);
 
-	const getUrlApp = () => window.location.href;
-
 	const getEncodedUrlApp = () => encodeURI(window.location.href);
 
 	const getEmbedUrlApp = (url) => `<div style="height: 75vh; width: 100%; margin: auto;"><iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="${url}" ></iframe></div>`;

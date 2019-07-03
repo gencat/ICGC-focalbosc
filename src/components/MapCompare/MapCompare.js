@@ -100,20 +100,36 @@ class MapCompare extends React.PureComponent {
 			
 			if (prevProps.beforeMapLayer.value !== this.props.beforeMapLayer.value) {
 
-				this.beforeMap.removeLayer(prevProps.beforeMapLayer.key);
-				this.beforeMap.addLayer({"id": this.props.beforeMapLayer.key, "type": "raster", "source": this.props.beforeMapLayer.key}, CONSTANTS.CUT_LAYER);
-		
+				try{
+					this.beforeMap.removeLayer(prevProps.beforeMapLayer.key);
+					if(this.props.beforeMapLayer.text == CONSTANTS.ANY_ESPECIAL){
+						this.beforeMap.addLayer({"id": this.props.beforeMapLayer.key, "type": "raster", "source": this.props.beforeMapLayer.key, "paint": {"raster-saturation": 0.4}}, CONSTANTS.CUT_LAYER);
+					}else{
+						this.beforeMap.addLayer({"id": this.props.beforeMapLayer.key, "type": "raster", "source": this.props.beforeMapLayer.key}, CONSTANTS.CUT_LAYER);
+					}
+				}catch(error){
+					console.log("Error", error);
+					console.log("Error", this.props.beforeMapLayer);
+				}
 			}
 
 		}
 		
 		if(prevProps.afterMapLayer && this.props.afterMapLayer){
 			
-			if (prevProps.afterMapLayer.value !== this.props.afterMapLayer.value) {
+			if ((prevProps.afterMapLayer.value !== this.props.afterMapLayer.value) || (this.props.afterMapLayer.text == CONSTANTS.ANY_ESPECIAL)) {
 	
-				this.afterMap.removeLayer(prevProps.afterMapLayer.key);
-				this.afterMap.addLayer({"id": this.props.afterMapLayer.key, "type": "raster", "source": this.props.afterMapLayer.key}, CONSTANTS.CUT_LAYER);
-		
+				try{
+					this.afterMap.removeLayer(prevProps.afterMapLayer.key);
+					if(this.props.afterMapLayer.text == CONSTANTS.ANY_ESPECIAL){
+						this.afterMap.addLayer({"id": this.props.afterMapLayer.key, "type": "raster", "source": this.props.afterMapLayer.key, "paint": {"raster-saturation": 0.4}}, CONSTANTS.CUT_LAYER);
+					}else{
+						this.afterMap.addLayer({"id": this.props.afterMapLayer.key, "type": "raster", "source": this.props.afterMapLayer.key}, CONSTANTS.CUT_LAYER);
+					}
+				}catch(error){
+					console.log("Error", error);
+					console.log("Error", this.props.afterMapLayer);
+				}
 			}
 
 		}
@@ -249,13 +265,12 @@ class MapCompare extends React.PureComponent {
 
 	}
 
-
-	isYearToCompare = (year) => (year >= CONSTANTS.ANY_COMPARADOR && year <= CONSTANTS.ANY_COMPARADOR_MAX);
+	isYearToCompare = (year) => ((year >= CONSTANTS.ANY_COMPARADOR && year <= CONSTANTS.ANY_COMPARADOR_MAX) || year === CONSTANTS.ANY_ESPECIAL);
 
 	updateFilterByYear() {
 
-		if (this.props.anyIncendi === CONSTANTS.ANY_FINAL) {
-
+		if (this.props.anyIncendi === CONSTANTS.MAX_YEAR) {
+			
 			this.afterMap.setFilter(CONSTANTS.LAYER_POL, ["any", ["!=", CONSTANTS.FILTER_FIELD, this.props.anyIncendi]]);
 			this.afterMap.setFilter(CONSTANTS.LAYER_LIN, ["any", ["!=", CONSTANTS.FILTER_FIELD, this.props.anyIncendi]]);
 			this.afterMap.setFilter(CONSTANTS.LAYER_CIRCLE, ["any", ["!=", CONSTANTS.FILTER_FIELD, this.props.anyIncendi]]);

@@ -29,7 +29,7 @@ export default class PanelContainer extends ReactQueryParams {
 
 			currentIncendi: {},
 			beforeMapLayer: this.getBeforeMapLayer(CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]),
-			afterMapLayer: this.getBeforeMapLayer(CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]),
+			afterMapLayer: this.getAfterMapLayer(CONSTANTS.mappingAnyLayer[CONSTANTS.ANY_FINAL]),
 
 			modeComparador: false
 		};
@@ -59,10 +59,9 @@ export default class PanelContainer extends ReactQueryParams {
 
 	}
 
-
 	updateYear(year) {
 
-		if (year > CONSTANTS.ANY_COMPARADOR_MAX || year < CONSTANTS.ANY_COMPARADOR) {
+		if ((year > CONSTANTS.ANY_COMPARADOR_MAX || year < CONSTANTS.ANY_COMPARADOR) && (year !== CONSTANTS.ANY_ESPECIAL)) {
 
 			this.setState({
 				year: year,
@@ -86,7 +85,6 @@ export default class PanelContainer extends ReactQueryParams {
 		}
 
 	}
-
 
 	changeYear = (event) => this.updateYear(event.target.value);
 
@@ -197,8 +195,7 @@ export default class PanelContainer extends ReactQueryParams {
 
 	handleSelectIncendi = (codi) => this.handleIncendiChange(this.getIncendiByCodi(codi));
 
-	isYearToCompare = (year) => (year >= CONSTANTS.ANY_COMPARADOR && year <= CONSTANTS.ANY_COMPARADOR_MAX);
-
+	isYearToCompare = (year) => ((year >= CONSTANTS.ANY_COMPARADOR && year <= CONSTANTS.ANY_COMPARADOR_MAX) || year === CONSTANTS.ANY_ESPECIAL);
 
 	getIncendiByCodi(codifinal) {
 
