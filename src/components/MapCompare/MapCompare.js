@@ -46,16 +46,17 @@ class MapCompare extends React.PureComponent {
 			style: CONSTANTS.MAPSTYLE_HISTORIC,
 			zoom: CONSTANTS.INIT_APP_ZOOM,
 			center: CONSTANTS.INIT_APP_CENTER,
+			maxZoom: CONSTANTS.MAX_ZOOM,
 			hash:true,
 			attributionControl:false,
 			container: this.beforeMapContainer.current
 		});
 
-
 		this.afterMap = new MapboxMap(mapboxgl, API_KEY, {
 			style: CONSTANTS.MAPSTYLE_HISTORIC,
 			zoom: CONSTANTS.INIT_APP_ZOOM,
 			center: CONSTANTS.INIT_APP_CENTER,
+			maxZoom: CONSTANTS.MAX_ZOOM,
 			hash:true,
 			attributionControl:false,
 			container: this.afterMapContainer.current
