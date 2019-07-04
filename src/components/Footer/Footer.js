@@ -1,10 +1,6 @@
 // @flow
 
-<<<<<<< HEAD
 import React, { useState }  from "react";
-=======
-import React from "react";
->>>>>>> c10198e7d12845185055d702a2eacfe4ae2cac22
 import {  Button, Divider, Form, Icon } from "semantic-ui-react";
 import { ResizeComponent } from "@geostarters/react-components";
 
@@ -18,53 +14,30 @@ import {
 	URL_PROTOTIPS
 } from "../../constants";
 
-
 const Footer = (props) => {
 
-<<<<<<< HEAD
 	const [currentUrl, setCurrentUrl] = useState(window.location.href);
 
-=======
->>>>>>> c10198e7d12845185055d702a2eacfe4ae2cac22
 	const isMobile = props.width <= 500;
 
 	const openLink = (url, mode = "_blank") => window.open(url, mode);
 
-<<<<<<< HEAD
 	const getEncodedUrlApp = () => encodeURI(window.location.href);
 
 	const getEmbedUrlApp = (url) => `<div style="height: 75vh; width: 100%; margin: auto;"><iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="${url}" ></iframe></div>`;
 
 	const renderBTLink = () => (
 		<ModalInfo modalSize="tiny" modalTrigger={<Button className={styles.myInvertedButton} onClick={() => setCurrentUrl(getEncodedUrlApp())}><Icon name='linkify' /> Enllaça</Button>}>
-=======
-	const getUrlApp = () => window.location.href;
-
-	const getEncodedUrlApp = () => encodeURI(window.location.href);
-
-	const getEmbedUrlApp = () => `<iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="${getUrlApp()}" ></iframe>`;
-
-	const renderBTLink = () => (
-		<ModalInfo modalSize="tiny" modalTrigger={<Button className={styles.myInvertedButton}><Icon name='linkify' /> Enllaça</Button>}>
->>>>>>> c10198e7d12845185055d702a2eacfe4ae2cac22
 			<h3>Enllaça la vista</h3>
 			<Divider />
 			<Form inline="true" >
 				<Form.Field >
 					<label>Per enllaçar amb aquest mapa, copieu i enganxeu el següent text:</label>
-<<<<<<< HEAD
 					<input readOnly value={currentUrl} />
 				</Form.Field>
 				<Form.Field>
 					<label>Per inserir aquest mapa al vostre web, copieu i enganxeu el següent text:</label>
 					<textarea readOnly value={getEmbedUrlApp(currentUrl)} />
-=======
-					<input readOnly value={getUrlApp()} />
-				</Form.Field>
-				<Form.Field>
-					<label>Per inserir aquest mapa al vostre web, copieu i enganxeu el següent text:</label>
-					<textarea readOnly value={getEmbedUrlApp()} />
->>>>>>> c10198e7d12845185055d702a2eacfe4ae2cac22
 				</Form.Field>
 			</Form>
 		</ModalInfo>

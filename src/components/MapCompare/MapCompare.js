@@ -104,7 +104,7 @@ class MapCompare extends React.PureComponent {
 
 				try{
 					this.beforeMap.removeLayer(prevProps.beforeMapLayer.key);
-					if(this.props.beforeMapLayer.text == CONSTANTS.ANY_ESPECIAL){
+					if(parseInt(this.props.beforeMapLayer.text) === CONSTANTS.ANY_ESPECIAL){
 						this.beforeMap.addLayer({"id": this.props.beforeMapLayer.key, "type": "raster", "source": this.props.beforeMapLayer.key, "paint": {"raster-saturation": 0.4}}, CONSTANTS.CUT_LAYER);
 					}else{
 						this.beforeMap.addLayer({"id": this.props.beforeMapLayer.key, "type": "raster", "source": this.props.beforeMapLayer.key}, CONSTANTS.CUT_LAYER);
@@ -119,11 +119,11 @@ class MapCompare extends React.PureComponent {
 		
 		if(prevProps.afterMapLayer && this.props.afterMapLayer){
 			
-			if ((prevProps.afterMapLayer.value !== this.props.afterMapLayer.value) || (this.props.afterMapLayer.text == CONSTANTS.ANY_ESPECIAL)) {
+			if ((prevProps.afterMapLayer.value !== this.props.afterMapLayer.value) || (parseInt(this.props.afterMapLayer.text) === CONSTANTS.ANY_ESPECIAL)) {
 	
 				try{
 					this.afterMap.removeLayer(prevProps.afterMapLayer.key);
-					if(this.props.afterMapLayer.text == CONSTANTS.ANY_ESPECIAL){
+					if(parseInt(this.props.afterMapLayer.text) === CONSTANTS.ANY_ESPECIAL){
 						this.afterMap.addLayer({"id": this.props.afterMapLayer.key, "type": "raster", "source": this.props.afterMapLayer.key, "paint": {"raster-saturation": 0.4}}, CONSTANTS.CUT_LAYER);
 					}else{
 						this.afterMap.addLayer({"id": this.props.afterMapLayer.key, "type": "raster", "source": this.props.afterMapLayer.key}, CONSTANTS.CUT_LAYER);
