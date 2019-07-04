@@ -11,6 +11,14 @@
 # production
 /build
 
+<<<<<<< HEAD
+=======
+#remote github gencat
+/src/scripts
+deploy.sh
+config.json
+
+>>>>>>> c10198e7d12845185055d702a2eacfe4ae2cac22
 # misc
 .DS_Store
 .env
@@ -19,6 +27,11 @@
 .env.test.local
 .env.production.local
 
+<<<<<<< HEAD
+=======
+desktop.ini
+
+>>>>>>> c10198e7d12845185055d702a2eacfe4ae2cac22
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

@@ -69,6 +69,20 @@ export const LAYER_POL = "indencis_pol";
 export const LAYER_LIN = "indencis_lin";
 export const LAYER_CIRCLE = "indencis_circle";
 
+export const INCENDISCAT_SOURCE_2018 = {
+	name: INCENDISCAT_SOURCE_NAME,
+	id: INCENDISCAT_SOURCE_NAME,
+	"attribution": "Font: <a href='https://agricultura.gencat.cat.cat/' target='_blank'>DARP</a>",
+	"type": "vector",
+	"center": [1.8457, 41.7262, 8],
+	"description": "Incendis Cat",
+	"format": "pbf",
+	"maxzoom": 18,
+	"minzoom": 6,
+	"tiles": [ PBF_INCENDIS ],
+	"vector_layers": [{ "id": VECTOR_LAYER_POL }, { "id": VECTOR_LAYER_POINT } ]
+};
+
 export const INCENDISCAT_SOURCE = {
 	name: INCENDISCAT_SOURCE_NAME,
 	id: INCENDISCAT_SOURCE_NAME,

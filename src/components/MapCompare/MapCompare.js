@@ -90,6 +90,7 @@ class MapCompare extends React.PureComponent {
 
 	componentDidUpdate(prevProps) {
 
+		//if (prevProps.beforeMapLayer.value !== this.props.beforeMapLayer.value) {
 		if (prevProps.anyIncendi !== this.props.anyIncendi) {
 
 			this.updateFilterByYear();
