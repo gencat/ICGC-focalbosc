@@ -42,7 +42,7 @@
     "enzyme-adapter-react-16": "^1.15.4",
     "enzyme-to-json": "^3.5.0",
     "eslint-plugin-jest": "^22.21.0",
-    "fast-csv": "^2.5.0",
+    "fast-csv": "^4.3.6",
     "flow-bin": "^0.89.0",
     "moment": "^2.27.0",
     "proj4": "^2.6.2"
