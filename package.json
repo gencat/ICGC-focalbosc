@@ -4,15 +4,15 @@
   "private": true,
   "homepage": "https://visors.icgc.cat/focalbosc/",
   "dependencies": {
-    "@geostarters/common": "^0.1.32",
-    "@geostarters/react-components": "0.0.16",
+    "@geostarters/common": "^0.3.3",
+    "@geostarters/react-components": "^0.3.14",
     "dotenv": "^8.2.0",
     "eslint-plugin-flowtype": "^3.13.0",
-    "mapbox-gl": "^0.54.1",
+    "mapbox-gl": "^1.13.0",
     "mapbox-gl-compare": "^0.2.1",
-    "react": "^16.13.1",
-    "react-device-detect": "^1.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^16.14.0",
+    "react-device-detect": "^1.15.0",
+    "react-dom": "^16.14.0",
     "react-query-params": "^1.0.9",
     "react-scripts": "2.1.1",
     "semantic-ui-css": "^2.4.1",
@@ -36,16 +36,16 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@geostarters/eslint-config": "0.0.2",
+    "@geostarters/eslint-config": "^0.0.6",
     "documentation": "^9.1.0",
     "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.4",
-    "enzyme-to-json": "^3.5.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "enzyme-to-json": "^3.6.1",
     "eslint-plugin-jest": "^22.21.0",
     "fast-csv": "^4.3.6",
     "flow-bin": "^0.89.0",
-    "moment": "^2.27.0",
-    "proj4": "^2.6.2"
+    "moment": "^2.29.1",
+    "proj4": "^2.7.0"
   },
   "jest": {
     "snapshotSerializers": [
