@@ -44,7 +44,7 @@
     "eslint-plugin-jest": "^22.21.0",
     "fast-csv": "^4.3.6",
     "flow-bin": "^0.89.0",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "proj4": "^2.7.0"
   },
   "jest": {
