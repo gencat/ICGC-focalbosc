@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://visors.icgc.cat/focalbosc/",
   "dependencies": {
-    "@geostarters/common": "^0.3.3",
+    "@geostarters/common": "^0.3.7",
     "@geostarters/react-components": "^0.3.14",
     "dotenv": "^8.2.0",
     "eslint-plugin-flowtype": "^3.13.0",
